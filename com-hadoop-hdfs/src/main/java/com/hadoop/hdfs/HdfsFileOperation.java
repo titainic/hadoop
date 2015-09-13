@@ -9,7 +9,7 @@ import org.apache.hadoop.fs.Path;
 import java.io.IOException;
 
 /**
- * 读取hdfs里面的avro文件
+ * HDFS文件操作
  */
 public class HdfsFileOperation
 {
