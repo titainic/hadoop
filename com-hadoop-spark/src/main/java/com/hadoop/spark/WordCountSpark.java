@@ -22,10 +22,56 @@ public class WordCountSpark
     private static String SPARK_IP = "spark://binend:7077";
     private static String readmeFile = "hdfs://lan:8020/titanic/README.md";
 
-//    public static void main(String[] args)
-//    {
+    public static void main(String[] args)
+    {
 //        init();
-//    }
+        init2();
+    }
+
+    private static void init2()
+    {
+        SparkConf conf = new SparkConf().setAppName("WordCount").setMaster(SPARK_IP);
+        JavaSparkContext sc = new JavaSparkContext(conf);
+        sc.addJar("/home/titanic/soft/WorkSpace_intellij/hadoop-hdfs/com-hadoop-spark/target/com-hadoop-spark-1.0-SNAPSHOT.jar");
+
+        JavaRDD<String> context = sc.textFile("hdfs://lan:8020/titanic/xiaoshuo");
+        context.flatMap(new FlatMapFunction<String, String>()
+        {
+            public Iterable<String> call(String s) throws Exception
+            {
+                return Arrays.asList(s.split(""));
+            }
+        });
+        
+        JavaPairRDD<String,Integer> map = context.mapToPair(new PairFunction<String, String, Integer>()
+        {
+            public Tuple2<String, Integer> call(String s) throws Exception
+            {
+                return new Tuple2<String, Integer>(s,1);
+            }
+        });
+
+        JavaPairRDD<String,Integer> reduce = map.reduceByKey(new Function2<Integer, Integer, Integer>()
+        {
+            public Integer call(Integer a, Integer b) throws Exception
+            {
+                return a + b;
+            }
+        });
+
+        reduce.saveAsTextFile("hdfs://lan:8020/titanic/xiaoshuo");
+
+        List<Tuple2<String, Integer>> tList =  reduce.collect();
+        for(Tuple2<String, Integer> t : tList)
+        {
+            System.out.println("t._2-> : "+t._2);
+            System.out.println("t._1-> : "+t._2());
+            System.out.println("t._2-> : "+t._1);
+            System.out.println("t._2-> : "+t._1);
+            System.out.println(t.toString());
+        }
+
+    }
 
     private static void init()
     {
