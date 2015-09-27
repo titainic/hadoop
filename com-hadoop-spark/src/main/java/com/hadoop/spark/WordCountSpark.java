@@ -20,12 +20,12 @@ public class WordCountSpark
 {
     private static final Pattern SPACE = Pattern.compile(" ");
     private static String SPARK_IP = "spark://binend:7077";
-    private static String readmeFile = "hdfs://titanic:8020/titanic/README.md";
+    private static String readmeFile = "hdfs://lan:8020/titanic/README.md";
 
-    public static void main(String[] args)
-    {
-        init();
-    }
+//    public static void main(String[] args)
+//    {
+//        init();
+//    }
 
     private static void init()
     {
