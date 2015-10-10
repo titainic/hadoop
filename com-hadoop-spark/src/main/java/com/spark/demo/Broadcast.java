@@ -10,7 +10,13 @@ import org.apache.spark.api.java.JavaSparkContext;
  */
 public class Broadcast
 {
-    public static void main(String[] args)
+//    public static void main(String[] args)
+//    {
+//        init();
+//
+//    }
+
+    private static void init()
     {
         SparkConf conf = new SparkConf();
         conf.setAppName("Broadcast");
