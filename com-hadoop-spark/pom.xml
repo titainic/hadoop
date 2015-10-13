@@ -41,12 +41,30 @@
       <version>1.5.0</version>
     </dependency>
 
+      <dependency>
+          <groupId>org.apache.activemq</groupId>
+          <artifactId>activemq-core</artifactId>
+          <version>5.7.0</version>
+      </dependency>
 
-   <!-- <dependency>
-      <groupId>org.apache.kafka</groupId>
-      <artifactId>kafka_2.10</artifactId>
-      <version>0.8.2.2</ version>
-    </dependency>-->
+      <!--<dependency>-->
+          <!--<groupId>io.dropwizard.metrics</groupId>-->
+          <!--<artifactId>metrics-core</artifactId>-->
+          <!--<version>3.1.2</version>-->
+      <!--</dependency>-->
+
+      <!--<dependency>
+          <groupId>org.apache.kafka</groupId>
+          <artifactId>kafka_2.10</artifactId>
+          <version>0.8.2.2</version>
+      </dependency>-->
+
+
+      <!-- <dependency>
+         <groupId>org.apache.kafka</groupId>
+         <artifactId>kafka_2.10</artifactId>
+         <version>0.8.2.2</ version>
+       </dependency>-->
 
 
 
@@ -78,4 +96,31 @@
 
 
   </dependencies>
+
+<build>
+    <plugins>
+    <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <configuration>
+            <descriptorRefs>
+                <descriptorRef>jar-with-dependencies</descriptorRef>
+            </descriptorRefs>
+            <archive>
+                <manifest>
+                    <mainClass></mainClass>
+                </manifest>
+            </archive>
+        </configuration>
+        <executions>
+            <execution>
+                <id>make-assembly</id>
+                <phase>package</phase>
+                <goals>
+                    <goal>single</goal>
+                </goals>
+            </execution>
+        </executions>
+    </plugin>
+    </plugins>
+</build>
 </project>
