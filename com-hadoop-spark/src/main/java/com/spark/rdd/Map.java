@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ *对里面的每个元素执行相同的操作
  */
 public class Map
 {
