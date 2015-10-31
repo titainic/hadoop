@@ -25,6 +25,9 @@ import kafka.consumer.ConsumerIterator;
 import kafka.consumer.KafkaStream;
 import kafka.javaapi.consumer.ConsumerConnector;
 
+/**
+ * kafka消费avro数据
+ */
 public class KafkaConsumerRun
 {
 	private String readKafkaDataAvroFilePath = "E:\\govnet_soft\\data\\data.txt";
@@ -48,7 +51,7 @@ public class KafkaConsumerRun
 	}
 	
 	/**
-	 * �����з���
+	 * 主运行方法
 	 */
 	public void runKafka()
 	{
@@ -104,7 +107,7 @@ public class KafkaConsumerRun
 	}
 	
 	/**
-	 * ��kafka��ȡ������ݴ��뵽�����ļ���
+	 * 将kafka消费的数据写入文件
 	 * @param filrPath
 	 * @param strData
 	 * @throws IOException
@@ -124,7 +127,7 @@ public class KafkaConsumerRun
 	}
 	
 	/**
-	 * ��ʼ��aveo��ݵ�Schema
+	 * 初始化avro的schema文件
 	 */
 	public void initSchema()
 	{
@@ -141,7 +144,7 @@ public class KafkaConsumerRun
 	}
 	
 	/**
-	 * ��ʼ��kafka
+	 * 初始化kafka
 	 */
 	public void initKafka()
 	{
@@ -150,7 +153,7 @@ public class KafkaConsumerRun
 	}
 	
 	/**
-	 * ��ʼ��kafka�������ļ�
+	 * 初始化kafka消费属性文件
 	 * @throws IOException 
 	 */
 	public void initProperties() throws IOException
