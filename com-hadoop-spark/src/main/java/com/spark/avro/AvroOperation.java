@@ -10,16 +10,14 @@ import java.util.Set;
 
 import org.apache.avro.Schema;
 import org.apache.avro.Schema.Field;
-import org.apache.avro.file.DataFileReader;
-import org.apache.avro.file.DataFileStream;
-import org.apache.avro.file.DataFileWriter;
+import org.apache.avro.file.*;
 import org.apache.avro.generic.GenericData;
 import org.apache.avro.generic.GenericDatumReader;
 import org.apache.avro.generic.GenericDatumWriter;
 import org.apache.avro.generic.GenericRecord;
 import org.apache.avro.io.DatumReader;
 import org.apache.avro.io.DatumWriter;
-import org.apache.commons.io.IOUtils;
+import org.apache.avro.mapred.FsInput;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
@@ -224,6 +222,51 @@ public class AvroOperation {
                 e.printStackTrace();
             }
         }
+
+    }
+
+    /**
+     * 要测试,读取hdfs里面的avro文件
+     */
+    public void readHdfsAvroForSeekableInput()
+    {
+
+        Configuration conf = new Configuration();
+        conf.set("fs.defaultFS", "/home/eddianliu/avro/20150722/LBS_AP/1445496870078.avro");
+        conf.set("fs.hdfs.impl.disable.cache", "true");
+        FileSystem fs = null;
+
+        DatumReader<GenericRecord> reader = new GenericDatumReader<GenericRecord>(sourceSchema);
+        DataFileReader dataFileReader = null;
+        SeekableInput input = null;
+        FileReader<GenericRecord> fr = null;
+
+        try
+        {
+            fs = FileSystem.get(conf);
+
+            //要测试,第一种使用过fs,conf没有使用过
+//          input = new FsInput(new Path("path"), fs);
+            input = new FsInput(new Path("path"), conf);
+            dataFileReader = new DataFileReader(input, reader);
+            fr = dataFileReader.openReader(input, reader);
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        long count = 0;
+        while (fr.hasNext())
+        {
+            count += 1;
+            GenericRecord tableData = fr.next();
+
+            tableData.toString();
+        }
+
+
+
+
 
     }
 
