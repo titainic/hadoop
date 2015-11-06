@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 把key相同的合并
+ * 把key相同元素的value进行合并相加
  */
 public class ReduceBuKey
 {
