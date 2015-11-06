@@ -64,7 +64,7 @@ public class ReduceBuKey
 
 
 
-
+                                                                        //pairRDD中v的类型，两个计算类型
         JavaPairRDD<String,Integer> reduceByKeyRDD = pairRDD.reduceByKey(new Function2<Integer, Integer, Integer>()
         {
             public Integer call(Integer x, Integer y) throws Exception
