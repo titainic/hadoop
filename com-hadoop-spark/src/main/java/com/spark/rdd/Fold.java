@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by titanic on 15-10-26.
+ * 和reduce一样,这个要提供初始值
  */
 public class Fold
 {
@@ -37,14 +37,14 @@ public class Fold
 
        JavaRDD<Integer> rdd = jsc.parallelize(aList);
 
-       int x = rdd.fold(1, new Function2<Integer, Integer, Integer>()
+       Integer drdd = rdd.fold(1, new Function2<Integer, Integer, Integer>()
        {
            public Integer call(Integer integer, Integer integer2) throws Exception
            {
-               return null;
+               return integer + integer2;
            }
        });
-        System.out.println(x);
+        System.out.println(drdd);
 
     }
 }
