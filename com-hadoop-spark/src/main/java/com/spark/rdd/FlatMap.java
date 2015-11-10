@@ -15,19 +15,19 @@ import java.util.List;
  */
 public class FlatMap
 {
-//    public static void main(String[] args)
-//    {
-//        init();
-//    }
+    public static void main(String[] args)
+    {
+        init();
+    }
 
     private static void init()
     {
         SparkConf conf = new SparkConf();
         conf.setAppName("binend flatMap");
-        conf.setMaster("spark://binend:7077");
+        conf.setMaster("local");
 
         JavaSparkContext jsc = new JavaSparkContext(conf);
-        jsc.addJar("/home/titanic/soft/WorkSpace_intellij/hadoop-spark/com-hadoop-spark/target/com-hadoop-spark-1.0-SNAPSHOT.jar");
+        //jsc.addJar("D:\\work\\intellij_20151110\\spark\\com-hadoop-spark\\target\\com-hadoop-spark-1.0-SNAPSHOT.jar");
 
         List<String> list = new ArrayList<String>();
 
@@ -48,7 +48,7 @@ public class FlatMap
             }
         });
 
-        List<String> rddList = flatMap.take(20);
+        List<String> rddList = flatMap.top(3);
         for (String s : rddList)
         {
             System.out.println(s);
