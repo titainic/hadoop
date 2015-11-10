@@ -23,7 +23,7 @@ public class Join
     {
         SparkConf conf = new SparkConf();
         conf.setAppName("PairRDD join");
-        conf.setMaster("spark://localhost:7077");
+        conf.setMaster("local");
 
         JavaSparkContext jsc = new JavaSparkContext(conf);
         jsc.addJar("/home/titanic/soft/Work_Intellij/20151106/com-hadoop-spark/target/com-hadoop-spark-1.0-SNAPSHOT.jar");
