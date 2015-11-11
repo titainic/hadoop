@@ -1,5 +1,8 @@
 package com.spark.pairrdd;
 
+import com.google.common.base.Optional;
+import org.apache.hadoop.hive.metastore.api.Partition;
+import org.apache.spark.Partitioner;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
@@ -25,17 +28,24 @@ public class Partitions
     {
         SparkConf conf = new SparkConf();
         conf.setAppName("Partitions");
-        conf.setMaster("spark://localhost:7077");
+        conf.setMaster("local");
 
         JavaSparkContext jsc = new JavaSparkContext(conf);
         jsc.addJar("/home/titanic/soft/Work_Intellij/20151106/com-hadoop-spark/target/com-hadoop-spark-1.0-SNAPSHOT.jar");
 
         //最后的参数１０，并行的的分区，应该是分配１０个任务
-        JavaRDD<String> dataRDD = jsc.textFile("file:///home/titanic/soft/spark-1.5.0/README.md", 10);
+        JavaRDD<String> dataRDD = jsc.textFile("file:///D:\\soft\\spark\\spark-1.5.1-bin-hadoop2.6\\spark-1.5.1-bin-hadoop2.6\\README.md", 10);
 
         //查看ＲＤＤ分区数
         int dataRDDPartitions = dataRDD.partitions().size();
         System.out.println(dataRDDPartitions);
+
+        Optional<Partitioner> optional = dataRDD.partitioner();
+
+        if(optional.isPresent())
+        {
+            System.out.println(optional.get().toString());
+        }
 
         JavaPairRDD<String,Integer> toPairRDD = dataRDD.flatMapToPair(new PairFlatMapFunction<String, String, Integer>()
         {
