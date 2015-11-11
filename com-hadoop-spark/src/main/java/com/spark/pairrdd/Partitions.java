@@ -64,6 +64,7 @@ public class Partitions
         Map<String,Integer> map = toPairRDD.collectAsMap();
         System.out.println(map);
 
+        //返回一组Partition对象
         int x = toPairRDD.partitions().size();
         System.out.println(x);
 
@@ -71,6 +72,9 @@ public class Partitions
         JavaPairRDD<String,Integer> coalesceRDD = toPairRDD.coalesce(5);
         int c = coalesceRDD.partitions().size();
         System.out.println(c);
+
+        //按照父分区的迭代器，逐个计算分区p的元素
+//        toPairRDD.iterator(toPairRDD.partitions().get(0),jsc);
 
     }
 
