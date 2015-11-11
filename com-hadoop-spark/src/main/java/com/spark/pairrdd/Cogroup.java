@@ -23,10 +23,10 @@ public class Cogroup
     {
         SparkConf conf = new SparkConf();
         conf.setAppName("Cogroup");
-        conf.setMaster("spark://localhost:7077");
+        conf.setMaster("local");
 
         JavaSparkContext jsc = new JavaSparkContext(conf);
-        jsc.addJar("/home/titanic/soft/Work_Intellij/20151106/com-hadoop-spark/target/com-hadoop-spark-1.0-SNAPSHOT.jar");
+        //jsc.addJar("/home/titanic/soft/Work_Intellij/20151106/com-hadoop-spark/target/com-hadoop-spark-1.0-SNAPSHOT.jar");
 
         List<Tuple2<Integer,Integer>> alist = new ArrayList<Tuple2<Integer, Integer>>();
         List<Tuple2<Integer,Integer>> blist = new ArrayList<Tuple2<Integer, Integer>>();
