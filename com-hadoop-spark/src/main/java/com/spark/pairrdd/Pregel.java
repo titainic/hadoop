@@ -8,9 +8,10 @@ import scala.Tuple2;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
- * Created by wb-yangbin.d on 2015/11/11.
+ * Pregel算法，没搞懂
  */
 public class Pregel
 {
@@ -36,8 +37,8 @@ public class Pregel
         aList.add(new Tuple2("f",1));
 
         List<Tuple2<String,Integer>> bList = new ArrayList<Tuple2<String, Integer>>();
-        bList.add(new Tuple2("a1",2));
-        bList.add(new Tuple2("b1",2));
+        bList.add(new Tuple2("a",2));
+        bList.add(new Tuple2("b",2));
         bList.add(new Tuple2("c1",2));
         bList.add(new Tuple2("d1",2));
         bList.add(new Tuple2("e1",2));
@@ -48,14 +49,32 @@ public class Pregel
 
         JavaPairRDD<String, Tuple2<Iterable<Integer>, Iterable<Integer>>> grouped  = vertices.cogroup(messages);
 
+        Map<String, Tuple2<Iterable<Integer>, Iterable<Integer>>> groupedMap = grouped.collectAsMap();
+        System.out.println(groupedMap);
+
         JavaPairRDD<String, Integer> newData = grouped.mapValues(new Function<Tuple2<Iterable<Integer>, Iterable<Integer>>, Integer>()
         {
             @Override
             public Integer call(Tuple2<Iterable<Integer>, Iterable<Integer>> iterableIterableTuple2) throws Exception
             {
-                return null;
+                int x = 0;
+                if(iterableIterableTuple2._1.iterator().hasNext())
+                {
+                    x = iterableIterableTuple2._1.iterator().next().intValue()+3;
+                }
+                else
+                {
+                    return 3;
+                }
+
+                return x;
             }
         });
+
+        Map<String, Integer> map = newData.collectAsMap();
+        String Lineage =newData.toDebugString();
+        System.out.println(Lineage);
+        System.out.println(map);
 
 
 
