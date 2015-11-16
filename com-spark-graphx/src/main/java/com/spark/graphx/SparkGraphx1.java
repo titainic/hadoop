@@ -23,6 +23,29 @@ public class SparkGraphx1
         init();
     }
 
+    /**
+     * 自定义点的RDD类，基础RDD，自定义边的RDD基础
+     *
+     *
+     * class vRDD eextends RDD
+     * {
+     *     Long VertexId  点的ID
+     *     String name ;  名字
+     *     String xuessheng 学生
+     * }
+     *
+     * 然后 sc.parallelize(Array((3L, ("rxin", "student")), (7L, ("jgonzal", "postdoc")),
+     (5L, ("franklin", "prof")), (2L, ("istoica", "prof"))))
+     这样实例化 。得到  ，VertexRDD 点RDD
+     类似的edgeRDD也是这样
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     */
     private static void init()
     {
         SparkConf conf = new SparkConf().setMaster("local").setAppName("graphx");
