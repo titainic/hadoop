@@ -11,7 +11,7 @@ import org.apache.spark.sql.hive.HiveContext;
 import java.util.List;
 
 /**
- * Created by wb-yangbin.d on 2015/11/19.
+ * spark sql DataFrame第一次操作
  */
 public class DataFrameDemo
 {
@@ -28,7 +28,7 @@ public class DataFrameDemo
 
         SQLContext sqlctx = new SQLContext(jsc);
 
-        org.apache.spark.sql.DataFrame df = sqlctx.jsonFile("D:\\work\\intellij_20151110\\spark\\com-spark-sql\\src\\main\\resources\\testweet.json");
+        org.apache.spark.sql.DataFrame df = sqlctx.read().json("D:\\work\\intellij_20151110\\spark\\com-spark-sql\\src\\main\\resources\\testweet.json");
 
         //把加载的数据注册为零时表，给个表名
         df.registerTempTable("tweets");
