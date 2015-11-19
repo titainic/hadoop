@@ -1,7 +1,9 @@
 package com.sparl.sql;
 
 import org.apache.spark.SparkConf;
+import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.api.java.function.Function;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SQLContext;
 import org.apache.spark.sql.hive.HiveContext;
@@ -37,6 +39,20 @@ public class DataFrameDemo
         sqlForTweets.show();
 
         System.out.println(rowList.get(0).toString());
+
+        JavaRDD<String> rdd = sqlForTweets.toJavaRDD().map(new Function<Row, String>()
+        {
+            public String call(Row row) throws Exception
+            {
+                return row.getString(0);
+            }
+        });
+        List<String> rddList = rdd.collect();
+
+        for(String s : rddList)
+        {
+            System.out.println(s);
+        }
 
         jsc.stop();
 
