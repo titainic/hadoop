@@ -13,15 +13,10 @@
 	<artifactId>com-spark-web</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>com-spark-web Maven Webapp</name>
+	<name>com-spark-web</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
 
-			<scope>test</scope>
-		</dependency>
 
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -30,7 +25,5 @@
 
 
 	</dependencies>
-	<build>
-		<finalName>com-spark-web</finalName>
-	</build>
+
 </project>
