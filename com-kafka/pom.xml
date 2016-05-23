@@ -1,30 +1,35 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-  <groupId>yang-bin</groupId>
-  <artifactId>com-kafka</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>jar</packaging>
+    <parent>
+        <groupId>yang-bin</groupId>
+        <artifactId>com-pom</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../com-pom/pom.xml</relativePath>
+    </parent>
 
-  <name>com-kafka</name>
-  <url>http://maven.apache.org</url>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>yang-bin</groupId>
+    <artifactId>com-kafka</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
+    <name>com-kafka</name>
+    <url>http://maven.apache.org</url>
 
-  <dependencies>
-     <dependency>
-          <groupId>org.apache.spark</groupId>
-          <artifactId>spark-streaming_2.10</artifactId>
-          <version>1.5.0</version>
-      </dependency>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
-      <dependency>
-          <groupId>org.apache.spark</groupId>
-          <artifactId>spark-streaming-kafka_2.10</artifactId>
-          <version>1.5.0</version>
-      </dependency>
-  </dependencies>
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-streaming_2.10</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-streaming-kafka_2.10</artifactId>
+        </dependency>
+    </dependencies>
 </project>

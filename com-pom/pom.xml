@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>yang-bin</groupId>
+    <artifactId>com-pom</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <properties>
+        <junit.version>4.1</junit.version>
+        <hadoop.version>2.6.0</hadoop.version>
+        <spark.version>1.5.0</spark.version>
+        <mysql-connector-java>5.1.37</mysql-connector-java>
+        <javax.servlet-api.version>3.1.0</javax.servlet-api.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.hadoop</groupId>
+                <artifactId>hadoop-hdfs</artifactId>
+                <version>${hadoop.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>org.apache.hadoop</groupId>
+                <artifactId>hadoop-common</artifactId>
+                <version>${hadoop.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.hadoop</groupId>
+                <artifactId>hadoop-client</artifactId>
+                <version>${hadoop.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.spark</groupId>
+                <artifactId>spark-core_2.10</artifactId>
+                <version>${spark.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.spark</groupId>
+                <artifactId>spark-streaming_2.10</artifactId>
+                <version>${spark.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.spark</groupId>
+                <artifactId>spark-streaming-kafka_2.10</artifactId>
+                <version>${spark.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.spark</groupId>
+                <artifactId>spark-streaming_2.10</artifactId>
+                <version>${spark.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.spark</groupId>
+                <artifactId>spark-streaming-kafka_2.10</artifactId>
+                <version>${spark.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.spark</groupId>
+                <artifactId>spark-graphx_2.10</artifactId>
+                <version>${spark.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.spark</groupId>
+                <artifactId>spark-core_2.10</artifactId>
+                <version>${spark.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.spark</groupId>
+                <artifactId>spark-mllib_2.10</artifactId>
+                <version>${spark.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.spark</groupId>
+                <artifactId>spark-sql_2.10</artifactId>
+                <version>${spark.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.spark</groupId>
+                <artifactId>spark-hive_2.10</artifactId>
+                <version>${spark.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql-connector-java}</version>
+            </dependency>
+
+            <!--<dependency>-->
+                <!--<groupId>org.apache.activemq</groupId>-->
+                <!--<artifactId>activemq-core</artifactId>-->
+                <!--<version>5.7.0</version>-->
+            <!--</dependency>-->
+
+        </dependencies>
+
+    </dependencyManagement>
+
+
+    <modules>
+        <module>../com-flink-gelly</module>
+        <module>../com-hadoop-hdfs</module>
+        <module>../com-hadoop-spark</module>
+        <module>../com-kafka</module>
+        <module>../com-spark-graphx</module>
+        <module>../com-spark-ml</module>
+        <module>../com-spark-sql</module>
+        <module>../com-spark-steraming</module>
+        <module>../com-spark-web</module>
+    </modules>
+</project>

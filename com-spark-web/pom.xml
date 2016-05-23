@@ -1,5 +1,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<parent>
+		<groupId>yang-bin</groupId>
+		<artifactId>com-pom</artifactId>
+		<version>1.0-SNAPSHOT</version>
+		<relativePath>../com-pom/pom.xml</relativePath>
+	</parent>
+
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>yang-bin</groupId>
 	<artifactId>com-spark-web</artifactId>
@@ -11,14 +19,13 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.10</version>
+
 			<scope>test</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
-			<version>3.1.0</version>
 		</dependency>
 
 
