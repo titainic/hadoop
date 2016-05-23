@@ -23,6 +23,9 @@ public class MemoryDataQuery
         initData();
     }
 
+    /**
+     * 初始化数据
+     */
     private static void initData()
     {
         initClassTable();
@@ -55,6 +58,9 @@ public class MemoryDataQuery
     }
 
 
+    /**
+     * 初始化Student表结构
+     */
     private static void initStudentTable()
     {
         studentTable = new Table();
