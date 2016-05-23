@@ -19,6 +19,19 @@
 
     <dependencyManagement>
         <dependencies>
+
+            <dependency>
+                <groupId>org.apache.calcite</groupId>
+                <artifactId>calcite-core</artifactId>
+                <version>1.7.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>${javax.servlet-api.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
@@ -45,11 +58,7 @@
                 <version>${hadoop.version}</version>
             </dependency>
 
-            <dependency>
-                <groupId>org.apache.spark</groupId>
-                <artifactId>spark-core_2.10</artifactId>
-                <version>${spark.version}</version>
-            </dependency>
+
 
             <dependency>
                 <groupId>org.apache.spark</groupId>
@@ -123,6 +132,7 @@
 
 
     <modules>
+        <module>../com-calcite</module>
         <module>../com-flink-gelly</module>
         <module>../com-hadoop-hdfs</module>
         <module>../com-hadoop-spark</module>
