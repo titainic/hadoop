@@ -12,9 +12,10 @@
     <properties>
         <junit.version>4.1</junit.version>
         <hadoop.version>2.6.0</hadoop.version>
-        <spark.version>1.5.0</spark.version>
+        <spark.version>1.6.1</spark.version>
         <mysql-connector-java>5.1.37</mysql-connector-java>
         <javax.servlet-api.version>3.1.0</javax.servlet-api.version>
+        <calcite-core.version>1.7.0</calcite-core.version>
     </properties>
 
     <dependencyManagement>
@@ -23,7 +24,7 @@
             <dependency>
                 <groupId>org.apache.calcite</groupId>
                 <artifactId>calcite-core</artifactId>
-                <version>1.7.0</version>
+                <version>${calcite-core.version}</version>
             </dependency>
 
             <dependency>
