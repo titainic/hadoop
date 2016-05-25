@@ -1,4 +1,4 @@
-package sparl.ml.als;
+package spark.ml.als;
 
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
@@ -18,7 +18,7 @@ public class ALSDemo01
 {
     public static void main(String[] args)
     {
-        init();
+//        init();
     }
 
     private static void init()

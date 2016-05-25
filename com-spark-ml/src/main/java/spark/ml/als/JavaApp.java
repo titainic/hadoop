@@ -1,4 +1,4 @@
-package sparl.ml.als;
+package spark.ml.als;
 
 import org.apache.spark.SparkConf;
 
@@ -22,7 +22,7 @@ public class JavaApp
 {
     public static void main(String[] args)
     {
-        init();
+//        init();
     }
 
     private static void init()
