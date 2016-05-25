@@ -34,7 +34,7 @@ public class Statistics
     {
         SparkConf sc = new SparkConf();
         sc.setAppName("xxxxStatistics");
-        sc.setMaster("spark://127.0.0.1:7077");
+        sc.setMaster("local[2]");
 
         JavaSparkContext jsc = new JavaSparkContext(sc);
         jsc.addJar("/home/titanic/soft/intellij_work/hadoop/com-spark-ml/target/com-spark-ml-0.0.1-SNAPSHOT.jar");
@@ -45,10 +45,11 @@ public class Statistics
         {
             public Iterable<Integer> call(String s) throws Exception
             {
-                String[] arrs = s.split("\t");
+                String[] arrs = s.split(",");
                 List<Integer> list = new ArrayList<Integer>();
                 for(String str : arrs)
                 {
+                    System.out.println(str);
                     list.add(Integer.valueOf(str));
                 }
                 return list;
@@ -66,8 +67,12 @@ public class Statistics
 
         MultivariateStatisticalSummary mss = org.apache.spark.mllib.stat.Statistics.colStats(vdata.rdd());
 
+
         System.out.println(mss.max());
         System.out.println(mss.min());
         System.out.println(mss.mean());
+        System.out.println(mss.variance());
+        System.out.println(mss.normL1());
+        System.out.println(mss.normL2());
     }
 }
