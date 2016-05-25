@@ -18,16 +18,9 @@ import java.util.List;
 public class Statistics
 {
 
-    public Statistics sthis;
-
-    public Statistics()
-    {
-        sthis = this;
-    }
-
     public static void main(String[] args)
     {
-        init();
+//        init();
     }
 
     private static void init()
