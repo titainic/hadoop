@@ -20,14 +20,14 @@ public class Statistics
 
     public static void main(String[] args)
     {
-//        init();
+        init();
     }
 
     private static void init()
     {
         SparkConf sc = new SparkConf();
-        sc.setAppName("xxxxStatistics");
-        sc.setMaster("local[2]");
+        sc.setAppName("Statistics");
+        sc.setMaster("spark://titanic-Lenovo:7077");
 
         JavaSparkContext jsc = new JavaSparkContext(sc);
         jsc.addJar("/home/titanic/soft/intellij_work/hadoop/com-spark-ml/target/com-spark-ml-0.0.1-SNAPSHOT.jar");
