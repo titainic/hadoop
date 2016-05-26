@@ -1,7 +1,9 @@
 package com.calcite.memory;
 
-import java.util.HashMap;
-import java.util.Map;
+import org.apache.calcite.jdbc.CalciteConnection;
+
+import java.sql.*;
+import java.util.Properties;
 
 /**
  * 内存数据查询
@@ -14,84 +16,58 @@ import java.util.Map;
  */
 public class MemoryDataQuery
 {
-    public static Map<String, Database> map = new HashMap<String, Database>();
-    public static Table classTable = null;
-    public static Table studentTable = null;
-
-    public static void main(String args[])
+    public static void main(String[] args)
     {
-        initData();
+        init();
     }
 
-    /**
-     * 初始化数据
-     */
-    private static void initData()
+    private static void init()
     {
-        initClassTable();
-        initStudentTable();
+        Properties info = new Properties();
+
+        try
+        {
+            Class.forName("org.apache.calcite.jdbc.Driver");
+            Connection conn = DriverManager.getConnection("jdbc:calcite:model=/home/titanic/soft/intellij_work/hadoop/com-calcite/src/main/resources/School.json", info);
+
+
+            //--------------------------------------------------------------------------
+//            CalciteConnection calciteConn = conn.unwrap(CalciteConnection.class);
+            ResultSet result = conn.getMetaData().getTables(null, null, null,null );
+            while (result.next())
+            {
+                System.out.println("Catalog : " +result.getString(1) + ",Database : " + result.getString(2) + ",Table : " + result.getString(3));
+            }
+            result.close();
+            result = conn.getMetaData().getColumns(null, null, "Student", null);
+            while (result.next())
+            {
+                System.out.println("name : " + result.getString(4) + ", type : " + result.getString(5) + ", typename : " + result.getString(6));
+            }
+            result.close();
+            //--------------------------------------------------------------------------
+
+
+            Statement st = conn.createStatement();
+            String sql = "select \"home\", 1 , count(1) from \"Student\" as S INNER JOIN \"Class\" as C on S.\"classId\" = C.\"id\" group by \"home\"";
+            System.out.println(sql);
+            result = st.executeQuery(sql);
+            while (result.next())
+            {
+                System.out.println(result.getString(1) + "\t" + result.getString(2) + "\t" + result.getString(3));
+            }
+            result.close();
+            conn.close();
+
+        } catch (ClassNotFoundException e)
+        {
+            e.printStackTrace();
+        } catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+
     }
-
-    /**
-     * 初始化class表结构
-     */
-    private static void initClassTable()
-    {
-        classTable = new Table();
-        classTable.setTablesName("Class");
-
-        Column name = new Column();
-        name.setName("id");
-        name.setType("varchar");
-
-        Column id = new Column();
-        id.setName("id");
-        id.setType("integer");
-
-        Column teacher = new Column();
-        teacher.setName("teacher");
-        teacher.setType("varchar");
-
-        classTable.columns.add(name);
-        classTable.columns.add(id);
-        classTable.columns.add(teacher);
-    }
-
-
-    /**
-     * 初始化Student表结构
-     */
-    private static void initStudentTable()
-    {
-        studentTable = new Table();
-        studentTable.setTablesName("Student");
-
-        Column name = new Column();
-        name.name = "name";
-        name.type = "varchar";
-        studentTable.columns.add(name);
-
-        Column id = new Column();
-        id.name = "id";
-        id.type = "varchar";
-        studentTable.columns.add(id);
-
-        Column classId = new Column();
-        classId.name = "classId";
-        classId.type = "integer";
-        studentTable.columns.add(classId);
-
-        Column birth = new Column();
-        birth.name = "birthday";
-        birth.type = "date";
-        studentTable.columns.add(birth);
-
-        Column home = new Column();
-        home.name = "home";
-        home.type = "varchar";
-        studentTable.columns.add(home);
-    }
-
 
 
 }
