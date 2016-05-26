@@ -10,6 +10,7 @@ import java.util.*;
  */
 public class MemoryData
 {
+
     public static final Map<String, Database> MAP = new HashMap<String, Database>();
     public static Map<String, SqlTypeName> SQLTYPE_MAPPING = new HashMap<String, SqlTypeName>();
     public static Map<String, Class> JAVATYPE_MAPPING = new HashMap<String, Class>();
@@ -26,6 +27,30 @@ public class MemoryData
         school.tables.add(student);
         school.tables.add(classs);
         MAP.put("school", school);
+    }
+
+    public static void initClassTable(Table cl) {
+
+        cl.tableName = "Class";
+        Column name = new Column();
+        name.name = "name";
+        name.type = "varchar";
+        cl.columns.add(name);
+
+        Column id = new Column();
+        id.name = "id";
+        id.type = "integer";
+        cl.columns.add(id);
+
+        Column teacher = new Column();
+        teacher.name = "teacher";
+        teacher.type = "varchar";
+        cl.columns.add(teacher);
+
+        cl.data.add(Arrays.asList("3-1", "1", "fengsu"));
+        cl.data.add(Arrays.asList("3-2", "2", "sunshue"));
+        cl.data.add(Arrays.asList("3-3", "3", "sunshdh"));
+        cl.data.add(Arrays.asList("3-4", "4", "shwud"));
     }
 
     public static void initRowType() {
@@ -49,29 +74,6 @@ public class MemoryData
         SQLTYPE_MAPPING.put("time", SqlTypeName.TIME);
         SQLTYPE_MAPPING.put("timestamp", SqlTypeName.TIMESTAMP);
         SQLTYPE_MAPPING.put("any", SqlTypeName.ANY);
-    }
-
-    public static void initClassTable(Table cl) {
-        cl.tableName = "Class";
-        Column name = new Column();
-        name.name = "name";
-        name.type = "varchar";
-        cl.columns.add(name);
-
-        Column id = new Column();
-        id.name = "id";
-        id.type = "integer";
-        cl.columns.add(id);
-
-        Column teacher = new Column();
-        teacher.name = "teacher";
-        teacher.type = "varchar";
-        cl.columns.add(teacher);
-
-        cl.data.add(Arrays.asList("3-1", "1", "fengsu"));
-        cl.data.add(Arrays.asList("3-2", "2", "sunshue"));
-        cl.data.add(Arrays.asList("3-3", "3", "sunshdh"));
-        cl.data.add(Arrays.asList("3-4", "4", "shwud"));
     }
 
     public static void initStudentTable(Table student) {
