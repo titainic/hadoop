@@ -143,5 +143,6 @@
         <module>../com-spark-sql</module>
         <module>../com-spark-steraming</module>
         <module>../com-spark-web</module>
+        <module>../com-kylin</module>
     </modules>
 </project>
