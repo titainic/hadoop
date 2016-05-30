@@ -1,7 +1,7 @@
 package com.sqoop.mysql;
 
 /**
- * Created by titanic on 16-5-30.
+ * mysql数据导入hive
  */
 public class MySqlToHive
 {

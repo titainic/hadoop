@@ -1,7 +1,7 @@
 package com.sqoop.oracle;
 
 /**
- * Created by titanic on 16-5-30.
+ * oracle数据导入hive
  */
 public class OracleToHive
 {
