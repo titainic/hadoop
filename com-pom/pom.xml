@@ -144,5 +144,6 @@
         <module>../com-spark-steraming</module>
         <module>../com-spark-web</module>
         <module>../com-kylin</module>
+        <module>../com-sqoop</module>
     </modules>
 </project>
