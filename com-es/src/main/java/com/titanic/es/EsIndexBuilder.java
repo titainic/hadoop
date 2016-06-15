@@ -28,8 +28,7 @@ public class EsIndexBuilder
 
         if (checkIndexExists(index))
         {
-            System.out.println("es index is Exists");
-            System.exit(0);
+            deleteEsIndex(index);
         }
 
 
