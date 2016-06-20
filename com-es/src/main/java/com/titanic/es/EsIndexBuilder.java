@@ -122,7 +122,7 @@ public class EsIndexBuilder
      */
     public boolean deleteEsIndex(String index)
     {
-        DeleteIndexResponse rep = EsClient.getEsClient().admin().indices().prepareDelete("myindexname").execute().actionGet();
+        DeleteIndexResponse rep = EsClient.getEsClient().admin().indices().prepareDelete(index).execute().actionGet();
         return rep.isAcknowledged();
     }
 }
