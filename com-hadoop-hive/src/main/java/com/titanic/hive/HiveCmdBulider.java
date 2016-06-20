@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Created by titanic on 16-6-15.
+ *测试发现beeline只能在hive集群运行，hive集群之外不能运行
  */
 public class HiveCmdBulider
 {
@@ -53,7 +53,7 @@ public class HiveCmdBulider
                 }
                 buf.append("beeline ");
                 // 'jdbc:hive2://localhost:10000'
-                buf.append("-u jdbc:hive2://192.9.11.92:10000/default -n root -w 12345678");
+                buf.append("-u jdbc:hive2://192.9.11.92:10000/default");
                 buf.append(" -f ");
                 buf.append(tmpHql.getAbsolutePath());
                 buf.append(";rm -f ");

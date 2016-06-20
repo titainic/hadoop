@@ -1,6 +1,6 @@
 package com.titanic.hive;
 
-import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.hive.cli.CliSessionState;
 import org.apache.hadoop.hive.common.StatsSetupConst;
 import org.apache.hadoop.hive.conf.HiveConf;
@@ -21,7 +21,7 @@ import java.util.Map;
 
 
 /**
- * Created by titanic on 16-6-15.
+ * 用于执行Hive cmd命令的客户端，不适合查询数据库。测试通过
  */
 public class HiveClient
 {
@@ -38,7 +38,7 @@ public class HiveClient
     public HiveClient(String hiveConfigPath)
     {
         hiveConf = new HiveConf(HiveClient.class);
-        hiveConf.addResource(hiveConfigPath);
+        hiveConf.addResource(new Path("file:///home/titanic/soft/hive-site.xml"));
     }
 
     public HiveClient(Map<String, String> confMap)
@@ -87,7 +87,7 @@ public class HiveClient
      * @throws CommandNeedRetryException
      * @throws IOException
      */
-    public void executeHQL(String hql) throws CommandNeedRetryException, IOException
+    public void executeCmdHQL(String hql) throws CommandNeedRetryException, IOException
     {
         CommandProcessorResponse response = getDriver().run(hql);
         int responseCode = response.getResponseCode();
@@ -95,13 +95,14 @@ public class HiveClient
         {
             throw  new IOException("Failed to execute hql ["+hql+ "], error message is: " + response.getErrorMessage());
         }
+
     }
 
-    public void exeexecuteHQL(String[] hqls) throws IOException, CommandNeedRetryException
+    public void executeCmdHQL(String[] hqls) throws IOException, CommandNeedRetryException
     {
         for(String sql: hqls)
         {
-            executeHQL(sql);
+            executeCmdHQL(sql);
         }
     }
 

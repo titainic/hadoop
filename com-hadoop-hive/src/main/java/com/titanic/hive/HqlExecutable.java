@@ -1,38 +1,32 @@
 package com.titanic.hive;
 
-import org.apache.hadoop.conf.Configurable;
-import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.conf.Configured;
-import org.apache.hadoop.hive.ql.CommandNeedRetryException;
+import org.apache.hadoop.hive.metastore.api.MetaException;
 
-import java.io.IOException;
+import java.util.List;
 
 /**
- * Created by titanic on 16-6-15.
+ * HiveCilent测试代码，测试OK
  */
 public class HqlExecutable
 {
-    public static void main(String[] args)
+    public static void main(String[] args) throws MetaException
     {
-//        Configuration configuration = new Configuration();
-//        configuration.addResource("/home/titanic/soft/core-site.xml");
-
-        HiveCmdBulider hiveCmdBulider = new HiveCmdBulider("BEELINE");
-        hiveCmdBulider.addStatement("show databases;");
-
-        System.out.println(hiveCmdBulider.build());
-
+        //resources目录下的hive配置文件
         HiveClient hiveClient = new HiveClient("/home/titanic/soft/hive-site.xml");
-        try
-        {
-            hiveClient.executeHQL(hiveCmdBulider.build());
-        } catch (CommandNeedRetryException e)
-        {
-            e.printStackTrace();
-        } catch (IOException e)
-        {
-            e.printStackTrace();
-        }
 
+        List<String> dbNames = hiveClient.getHiveDbNames();
+
+        //获取所有数据，和数据库中表的名称
+        for (String db : dbNames)
+        {
+            System.out.println("db->:" + db);
+            List<String> tableNames = hiveClient.getHiveTableNames(db);
+            for (String table : tableNames)
+            {
+                System.out.println("table ->" +table);
+            }
+            System.out.println("----------------------------");
+
+        }
     }
 }
