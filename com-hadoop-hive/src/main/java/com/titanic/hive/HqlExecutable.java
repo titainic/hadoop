@@ -11,8 +11,14 @@ public class HqlExecutable
 {
     public static void main(String[] args) throws MetaException
     {
+        getInfo();
+
+    }
+
+    public static void getInfo() throws MetaException
+    {
         //resources目录下的hive配置文件
-        HiveClient hiveClient = new HiveClient("/home/titanic/soft/hive-site.xml");
+        HiveClient hiveClient = new HiveClient("/home/titanic/soft/hadoop/hive-2.0.0/conf/hive-site.xml");
 
         List<String> dbNames = hiveClient.getHiveDbNames();
 
