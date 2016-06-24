@@ -35,10 +35,14 @@ public class HiveClient
 
     }
 
+    /**
+     * hive-site.xml配置文件的路径
+     * @param hiveConfigPath
+     */
     public HiveClient(String hiveConfigPath)
     {
         hiveConf = new HiveConf(HiveClient.class);
-        hiveConf.addResource(new Path("file:///home/titanic/soft/hive-site.xml"));
+        hiveConf.addResource(new Path(hiveConfigPath));
     }
 
     public HiveClient(Map<String, String> confMap)
@@ -54,11 +58,12 @@ public class HiveClient
 
     /**
      * 获取driver
+     *
      * @return
      */
     private Driver getDriver()
     {
-        if(driver == null)
+        if (driver == null)
         {
             driver = new Driver(hiveConf);
             SessionState.start(new CliSessionState(hiveConf));
@@ -68,21 +73,23 @@ public class HiveClient
 
     /**
      * 追加配置
+     *
      * @param confMap
      */
     private void appendConfiguration(Map<String, String> confMap)
     {
-        if(confMap != null && confMap.size() >0)
+        if (confMap != null && confMap.size() > 0)
         {
             for (Map.Entry<String, String> e : confMap.entrySet())
             {
-                hiveConf.set(e.getKey(),e.getValue());
+                hiveConf.set(e.getKey(), e.getValue());
             }
         }
     }
 
     /**
      * 执行hive sql命令
+     *
      * @param hql
      * @throws CommandNeedRetryException
      * @throws IOException
@@ -91,16 +98,16 @@ public class HiveClient
     {
         CommandProcessorResponse response = getDriver().run(hql);
         int responseCode = response.getResponseCode();
-        if(responseCode != 0)
+        if (responseCode != 0)
         {
-            throw  new IOException("Failed to execute hql ["+hql+ "], error message is: " + response.getErrorMessage());
+            throw new IOException("Failed to execute hql [" + hql + "], error message is: " + response.getErrorMessage());
         }
 
     }
 
     public void executeCmdHQL(String[] hqls) throws IOException, CommandNeedRetryException
     {
-        for(String sql: hqls)
+        for (String sql : hqls)
         {
             executeCmdHQL(sql);
         }
@@ -108,7 +115,7 @@ public class HiveClient
 
     private HiveMetaStoreClient getMetaStoreClient() throws MetaException
     {
-        if(metaStoreClient == null)
+        if (metaStoreClient == null)
         {
             metaStoreClient = new HiveMetaStoreClient(hiveConf);
         }
@@ -117,6 +124,7 @@ public class HiveClient
 
     /**
      * 获取hive的表
+     *
      * @param database
      * @param tableName
      * @return
@@ -129,6 +137,7 @@ public class HiveClient
 
     /**
      * 获取hive的table中fields
+     *
      * @param database
      * @param tablesName
      * @return
@@ -141,6 +150,7 @@ public class HiveClient
 
     /**
      * 获取hive的table在HDFS中存储的路径
+     *
      * @param database
      * @param tableName
      * @return
@@ -164,6 +174,7 @@ public class HiveClient
 
     /**
      * 获取hive中所有数据库名
+     *
      * @return
      * @throws MetaException
      */
@@ -174,6 +185,7 @@ public class HiveClient
 
     /**
      * 获取hive某一个数据库中所有表的名字
+     *
      * @param database
      * @return
      * @throws MetaException
@@ -202,6 +214,7 @@ public class HiveClient
 
     /**
      * 非本地的表？？？
+     *
      * @param database
      * @param tableName
      * @return
@@ -215,5 +228,34 @@ public class HiveClient
     public void clearConfig()
     {
         hiveConf.clear();
+    }
+
+    /**
+     * 是否是外部表
+     * @param table
+     * @return
+     */
+    public static boolean isExternalTable(Table table)
+    {
+        if (table == null)
+        {
+            return false;
+        }
+        Map<String, String> params = table.getParameters();
+        if (params == null)
+        {
+            return false;
+        }
+
+        return "TRUE".equalsIgnoreCase(params.get("EXTERNAL"));
+    }
+
+    /**
+     * 有时间研究下hive的这个工具类
+     * API ： https://hive.apache.org/javadocs/r0.13.1/api/metastore/org/apache/hadoop/hive/metastore/MetaStoreUtils.html
+     */
+    public void useMetaStoreUtils()
+    {
+
     }
 }
