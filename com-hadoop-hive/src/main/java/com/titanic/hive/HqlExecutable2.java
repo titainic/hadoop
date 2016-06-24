@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.Map;
 
 /**
- * Created by titanic on 16-6-15.
+ * 代码调用示例
  */
 public class HqlExecutable2
 {
