@@ -21,6 +21,7 @@
 
     <dependencies>
 
+        <!-- hive 和es在一个项目里面有ｊａｒ冲突-->
         <!--以命令方式，在hive里面创建es的映射表时，需要此依赖，病排除一下不需要的jar-->
         <dependency>
             <groupId>org.elasticsearch</groupId>
