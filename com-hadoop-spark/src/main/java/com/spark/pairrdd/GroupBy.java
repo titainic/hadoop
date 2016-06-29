@@ -17,10 +17,10 @@ import java.util.Map;
  */
 public class GroupBy
 {
-    public static void main(String[] args)
-    {
-        init();
-    }
+//    public static void main(String[] args)
+//    {
+//        init();
+//    }
 
     private static void init()
     {

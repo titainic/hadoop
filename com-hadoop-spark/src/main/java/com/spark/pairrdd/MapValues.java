@@ -15,10 +15,10 @@ import java.util.Map;
  */
 public class MapValues
 {
-    public static void main(String[] args)
-    {
-        init();
-    }
+//    public static void main(String[] args)
+//    {
+//        init();
+//    }
 
     private static void init()
     {
@@ -40,7 +40,6 @@ public class MapValues
 
         JavaPairRDD<String,Integer> pairRDD = rdd.mapValues(new Function<Integer, Integer>()
         {
-            @Override
             public Integer call(Integer integer) throws Exception
             {
                 return integer+1;

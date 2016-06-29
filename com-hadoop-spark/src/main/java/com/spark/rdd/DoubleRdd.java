@@ -14,10 +14,10 @@ import java.util.List;
  */
 public class DoubleRdd
 {
-    public static void main(String[] args)
-    {
-        init();
-    }
+//    public static void main(String[] args)
+//    {
+//        init();
+//    }
 
     private static void init()
     {

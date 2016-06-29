@@ -27,145 +27,145 @@
     <dependencyManagement>
         <dependencies>
 
-            <dependency>
-                <groupId>org.elasticsearch</groupId>
-                <artifactId>elasticsearch</artifactId>
-                <version>${elasticsearch.version}</version>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>org.elasticsearch</groupId>-->
+                <!--<artifactId>elasticsearch</artifactId>-->
+                <!--<version>${elasticsearch.version}</version>-->
+            <!--</dependency>-->
 
-            <dependency>
-                <groupId>org.apache.zookeeper</groupId>
-                <artifactId>zookeeper</artifactId>
-                <version>${zookeeper.version}</version>
-            </dependency>
-
-
-            <dependency>
-                <groupId>org.apache.hbase</groupId>
-                <artifactId>hbase</artifactId>
-                <version>${hbase.version}</version>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>org.apache.zookeeper</groupId>-->
+                <!--<artifactId>zookeeper</artifactId>-->
+                <!--<version>${zookeeper.version}</version>-->
+            <!--</dependency>-->
 
 
-            <dependency>
-                <groupId>org.apache.hbase</groupId>
-                <artifactId>hbase-client</artifactId>
-                <version>${hbase-client.version}</version>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>org.apache.hbase</groupId>-->
+                <!--<artifactId>hbase</artifactId>-->
+                <!--<version>${hbase.version}</version>-->
+            <!--</dependency>-->
 
 
-            <dependency>
-                <groupId>com.google.guava</groupId>
-                <artifactId>guava</artifactId>
-                <version>${guava.version}</version>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>org.apache.hbase</groupId>-->
+                <!--<artifactId>hbase-client</artifactId>-->
+                <!--<version>${hbase-client.version}</version>-->
+            <!--</dependency>-->
 
 
-            <dependency>
-                <groupId>commons-lang</groupId>
-                <artifactId>commons-lang</artifactId>
-                <version>${commons-lang.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.calcite</groupId>
-                <artifactId>calcite-core</artifactId>
-                <version>${calcite-core.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>javax.servlet</groupId>
-                <artifactId>javax.servlet-api</artifactId>
-                <version>${javax.servlet-api.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>${junit.version}</version>
-                <scope>test</scope>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.hadoop</groupId>
-                <artifactId>hadoop-hdfs</artifactId>
-                <version>${hadoop.version}</version>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>com.google.guava</groupId>-->
+                <!--<artifactId>guava</artifactId>-->
+                <!--<version>${guava.version}</version>-->
+            <!--</dependency>-->
 
 
-            <dependency>
-                <groupId>org.apache.hadoop</groupId>
-                <artifactId>hadoop-common</artifactId>
-                <version>${hadoop.version}</version>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>commons-lang</groupId>-->
+                <!--<artifactId>commons-lang</artifactId>-->
+                <!--<version>${commons-lang.version}</version>-->
+            <!--</dependency>-->
 
-            <dependency>
-                <groupId>org.apache.hadoop</groupId>
-                <artifactId>hadoop-client</artifactId>
-                <version>${hadoop.version}</version>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>org.apache.calcite</groupId>-->
+                <!--<artifactId>calcite-core</artifactId>-->
+                <!--<version>${calcite-core.version}</version>-->
+            <!--</dependency>-->
+
+            <!--<dependency>-->
+                <!--<groupId>javax.servlet</groupId>-->
+                <!--<artifactId>javax.servlet-api</artifactId>-->
+                <!--<version>${javax.servlet-api.version}</version>-->
+            <!--</dependency>-->
+
+            <!--<dependency>-->
+                <!--<groupId>junit</groupId>-->
+                <!--<artifactId>junit</artifactId>-->
+                <!--<version>${junit.version}</version>-->
+                <!--<scope>test</scope>-->
+            <!--</dependency>-->
+
+            <!--<dependency>-->
+                <!--<groupId>org.apache.hadoop</groupId>-->
+                <!--<artifactId>hadoop-hdfs</artifactId>-->
+                <!--<version>${hadoop.version}</version>-->
+            <!--</dependency>-->
+
+
+            <!--<dependency>-->
+                <!--<groupId>org.apache.hadoop</groupId>-->
+                <!--<artifactId>hadoop-common</artifactId>-->
+                <!--<version>${hadoop.version}</version>-->
+            <!--</dependency>-->
+
+            <!--<dependency>-->
+                <!--<groupId>org.apache.hadoop</groupId>-->
+                <!--<artifactId>hadoop-client</artifactId>-->
+                <!--<version>${hadoop.version}</version>-->
+            <!--</dependency>-->
 
 
 
-            <dependency>
-                <groupId>org.apache.spark</groupId>
-                <artifactId>spark-streaming_2.10</artifactId>
-                <version>${spark.version}</version>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>org.apache.spark</groupId>-->
+                <!--<artifactId>spark-streaming_2.10</artifactId>-->
+                <!--<version>${spark.version}</version>-->
+            <!--</dependency>-->
 
-            <dependency>
-                <groupId>org.apache.spark</groupId>
-                <artifactId>spark-streaming-kafka_2.10</artifactId>
-                <version>${spark.version}</version>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>org.apache.spark</groupId>-->
+                <!--<artifactId>spark-streaming-kafka_2.10</artifactId>-->
+                <!--<version>${spark.version}</version>-->
+            <!--</dependency>-->
 
-            <dependency>
-                <groupId>org.apache.spark</groupId>
-                <artifactId>spark-streaming_2.10</artifactId>
-                <version>${spark.version}</version>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>org.apache.spark</groupId>-->
+                <!--<artifactId>spark-streaming_2.10</artifactId>-->
+                <!--<version>${spark.version}</version>-->
+            <!--</dependency>-->
 
-            <dependency>
-                <groupId>org.apache.spark</groupId>
-                <artifactId>spark-streaming-kafka_2.10</artifactId>
-                <version>${spark.version}</version>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>org.apache.spark</groupId>-->
+                <!--<artifactId>spark-streaming-kafka_2.10</artifactId>-->
+                <!--<version>${spark.version}</version>-->
+            <!--</dependency>-->
 
-            <dependency>
-                <groupId>org.apache.spark</groupId>
-                <artifactId>spark-graphx_2.10</artifactId>
-                <version>${spark.version}</version>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>org.apache.spark</groupId>-->
+                <!--<artifactId>spark-graphx_2.10</artifactId>-->
+                <!--<version>${spark.version}</version>-->
+            <!--</dependency>-->
 
-            <dependency>
-                <groupId>org.apache.spark</groupId>
-                <artifactId>spark-core_2.10</artifactId>
-                <version>${spark.version}</version>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>org.apache.spark</groupId>-->
+                <!--<artifactId>spark-core_2.10</artifactId>-->
+                <!--<version>${spark.version}</version>-->
+            <!--</dependency>-->
 
-            <dependency>
-                <groupId>org.apache.spark</groupId>
-                <artifactId>spark-mllib_2.10</artifactId>
-                <version>${spark.version}</version>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>org.apache.spark</groupId>-->
+                <!--<artifactId>spark-mllib_2.10</artifactId>-->
+                <!--<version>${spark.version}</version>-->
+            <!--</dependency>-->
 
-            <dependency>
-                <groupId>org.apache.spark</groupId>
-                <artifactId>spark-sql_2.10</artifactId>
-                <version>${spark.version}</version>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>org.apache.spark</groupId>-->
+                <!--<artifactId>spark-sql_2.10</artifactId>-->
+                <!--<version>${spark.version}</version>-->
+            <!--</dependency>-->
 
-            <dependency>
-                <groupId>org.apache.spark</groupId>
-                <artifactId>spark-hive_2.10</artifactId>
-                <version>${spark.version}</version>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>org.apache.spark</groupId>-->
+                <!--<artifactId>spark-hive_2.10</artifactId>-->
+                <!--<version>${spark.version}</version>-->
+            <!--</dependency>-->
 
-            <dependency>
-                <groupId>mysql</groupId>
-                <artifactId>mysql-connector-java</artifactId>
-                <version>${mysql-connector-java}</version>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>mysql</groupId>-->
+                <!--<artifactId>mysql-connector-java</artifactId>-->
+                <!--<version>${mysql-connector-java}</version>-->
+            <!--</dependency>-->
 
 
 

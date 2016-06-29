@@ -13,10 +13,10 @@ import java.util.List;
  */
 public class Fold
 {
-    public static void main(String[] args)
-    {
-        init();
-    }
+//    public static void main(String[] args)
+//    {
+//        init();
+//    }
 
     private static void init()
     {

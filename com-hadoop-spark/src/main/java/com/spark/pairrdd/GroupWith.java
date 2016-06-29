@@ -15,10 +15,10 @@ import java.util.List;
  */
 public class GroupWith
 {
-    public static void main(String[] args)
-    {
-        init();
-    }
+//    public static void main(String[] args)
+//    {
+//        init();
+//    }
 
     private static void init()
     {
@@ -31,7 +31,6 @@ public class GroupWith
         JavaRDD<String> rdd = jsc.textFile("file:///D:\\soft\\spark\\spark-1.5.1-bin-hadoop2.6\\spark-1.5.1-bin-hadoop2.6\\README.md");
         JavaPairRDD<String,Integer> pairRDD = rdd.flatMapToPair(new PairFlatMapFunction<String, String, Integer>()
         {
-            @Override
             public Iterable<Tuple2<String, Integer>> call(String s) throws Exception
             {
                 List<Tuple2<String, Integer>> list  =new ArrayList<Tuple2<String, Integer>>();

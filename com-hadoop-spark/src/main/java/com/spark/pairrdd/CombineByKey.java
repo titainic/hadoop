@@ -17,10 +17,10 @@ import java.util.function.Function;
  */
 public class CombineByKey
 {
-    public static void main(String[] args)
-    {
-        init();
-    }
+//    public static void main(String[] args)
+//    {
+//        init();
+//    }
 
     private static void init()
     {

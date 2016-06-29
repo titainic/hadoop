@@ -15,10 +15,10 @@ import java.util.Map;
  */
 public class Pregel
 {
-    public static void main(String[] args)
-    {
-        init();
-    }
+//    public static void main(String[] args)
+//    {
+//        init();
+//    }
 
     private static void init()
     {
@@ -54,7 +54,6 @@ public class Pregel
 
         JavaPairRDD<String, Integer> newData = grouped.mapValues(new Function<Tuple2<Iterable<Integer>, Iterable<Integer>>, Integer>()
         {
-            @Override
             public Integer call(Tuple2<Iterable<Integer>, Iterable<Integer>> iterableIterableTuple2) throws Exception
             {
                 int x = 0;

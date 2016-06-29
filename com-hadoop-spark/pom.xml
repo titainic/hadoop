@@ -2,12 +2,6 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 
-  <parent>
-    <groupId>yang-bin</groupId>
-    <artifactId>com-pom</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <relativePath>../com-pom/pom.xml</relativePath>
-  </parent>
 
 
   <modelVersion>4.0.0</modelVersion>
@@ -24,23 +18,8 @@
     <dependency>
       <groupId>org.apache.spark</groupId>
       <artifactId>spark-core_2.10</artifactId>
+      <version>1.6.1</version>
     </dependency>
-
-    <dependency>
-      <groupId>org.apache.spark</groupId>
-      <artifactId>spark-streaming_2.10</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.apache.spark</groupId>
-      <artifactId>spark-streaming-kafka_2.10</artifactId>
-    </dependency>
-
- 
-
-
-
-
   </dependencies>
 
 <!--<build>
