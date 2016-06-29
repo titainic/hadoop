@@ -17,10 +17,10 @@ public class SparkSqlForMySql
 {
 
 
-    public static void main(String[] rgs)
-    {
-        init();
-    }
+//    public static void main(String[] rgs)
+//    {
+//        init();
+//    }
 
     private static void init()
     {

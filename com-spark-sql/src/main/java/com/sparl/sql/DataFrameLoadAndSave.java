@@ -10,10 +10,10 @@ import org.apache.spark.sql.SQLContext;
  */
 public class DataFrameLoadAndSave
 {
-    public static void main(String[] args)
-    {
-        init();
-    }
+//    public static void main(String[] args)
+//    {
+//        init();
+//    }
 
     private static void init()
     {

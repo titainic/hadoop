@@ -10,11 +10,11 @@ import org.apache.spark.sql.SQLContext;
  */
 public class DataFrameQuery
 {
-    public static void main(String[] args)
-    {
-        DataFrameQuery dfq = new DataFrameQuery();
-        dfq.init();
-    }
+//    public static void main(String[] args)
+//    {
+//        DataFrameQuery dfq = new DataFrameQuery();
+//        dfq.init();
+//    }
 
     private  void init()
     {
