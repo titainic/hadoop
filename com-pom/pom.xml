@@ -191,5 +191,7 @@
         <module>../com-utils</module>
         <module>../com-hadoop-hive</module>
         <module>../com-es</module>
+        <module>../com-hive-es</module>
+        <module>../com-spark-es</module>
     </modules>
 </project>
