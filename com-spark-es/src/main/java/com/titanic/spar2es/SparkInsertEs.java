@@ -1,27 +1,22 @@
 package com.titanic.spar2es;
 
-import com.google.common.collect.ImmutableList;
 import org.apache.spark.SparkConf;
-import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.api.java.function.Function2;
-import org.apache.spark.api.java.function.PairFlatMapFunction;
 import org.elasticsearch.spark.rdd.api.java.JavaEsSpark;
-import scala.Tuple2;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by titanic on 16-6-30.
+ * 以bean方式插入数据到es
  */
 public class SparkInsertEs
 {
-    public static void main(String[] args)
-    {
-       init();
-    }
+//    public static void main(String[] args)
+//    {
+//       init();
+//    }
 
     private static void init()
     {
