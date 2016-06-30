@@ -7,7 +7,7 @@
     <groupId>yang-bin</groupId>
     <artifactId>com-hive-es</artifactId>
     <version>1</version>
-    <packaging>JAR</packaging>
+    <packaging>jar</packaging>
 
     <dependencies>
     <dependency>
