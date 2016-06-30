@@ -17,25 +17,6 @@ public class HqlExecutable2
     public static void main(String[] args)
     {
 
-//        Map<String, String> map = Maps.newHashMap();
-//        map.put("id", "int");
-//        map.put("name", "string");
-//        map.put("age", "int");
-//        map.put("tel", "string");
-//
-//        EsIndexBuilder esIndexBuilder = new EsIndexBuilder();
-//
-//        try
-//        {
-//            esIndexBuilder.buliderEsIndex(map, esIndex, esType);
-//        } catch (IOException e)
-//        {
-//            e.printStackTrace();
-//        }
-//
-//        createHiveForEs(map,hiveToEsTable,esIndex+"/"+esType);
-
-        InsertHiveToEs();
 
 
     }
