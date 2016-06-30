@@ -8,6 +8,9 @@ import org.elasticsearch.spark.rdd.api.java.JavaEsSpark;
 import java.util.Map;
 
 /**
+ *
+ * spark结合es，要把es-hadoop的jar在spark/conf/spark-env.sh中添加
+ * export SPARK_CLASSPATH=$SPARK_CLASSPATH:/home/titanic/soft/hadoop/spark-1.6.1-bin-hadoop2.6/lib/elasticsearch-hadoop-2.3.2.jar
  * Created by titanic on 16-6-30.
  */
 public class SparkReadEs

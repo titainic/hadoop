@@ -7,6 +7,9 @@ import org.apache.spark.sql.SQLContext;
 import org.elasticsearch.spark.sql.api.java.JavaEsSparkSQL;
 
 /**
+ *
+ * spark结合es，要把es-hadoop的jar在spark/conf/spark-env.sh中添加
+ * export SPARK_CLASSPATH=$SPARK_CLASSPATH:/home/titanic/soft/hadoop/spark-1.6.1-bin-hadoop2.6/lib/elasticsearch-hadoop-2.3.2.jar
  * 第二中spark链接　ｅｓ
  */
 public class SparkSqlEs
