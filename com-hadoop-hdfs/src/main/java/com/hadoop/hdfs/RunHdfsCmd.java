@@ -9,7 +9,7 @@ import org.apache.hadoop.fs.Path;
  * 示例代码
  * http://www.programcreek.com/java-api-examples/index.php?api=org.apache.hadoop.fs.FsShell
  */
-public class RunHdhsCmd
+public class RunHdfsCmd
 {
     public static void main(String[] args)
     {
