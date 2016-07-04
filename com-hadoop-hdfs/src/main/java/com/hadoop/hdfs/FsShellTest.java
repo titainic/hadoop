@@ -18,7 +18,7 @@ public class FsShellTest
         conf.addResource(new Path("file:///home/titanic/soft/hadoop/hadoop-2.6.4/etc/hadoop/core-site.xml"));
         FsShell shell = new FsShell(conf);
 
-        //命令前面加 -
+        //命令前面加-完全按照hadoop的命令　hadoop fs -chmod u-x /tmp
         String[] cmd = new String[]{"-chmod","u-x","/tmp"};
         try
         {
