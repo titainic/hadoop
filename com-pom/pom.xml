@@ -193,5 +193,6 @@
         <module>../com-es</module>
         <module>../com-hive-es</module>
         <module>../com-spark-es</module>
+        <module>../com-zjava-demo</module>
     </modules>
 </project>
