@@ -71,6 +71,7 @@ public class HBaseClientExample
             table.addFamily(new HColumnDescriptor("professional"));
 
             admin.createTable(table);
+            admin.close();
         } catch (IOException e)
         {
             e.printStackTrace();
@@ -90,9 +91,11 @@ public class HBaseClientExample
             {
                 System.out.println(table.getTableName());
             }
+            admin.close();
         } catch (IOException e)
         {
             e.printStackTrace();
+
         }
     }
 
@@ -109,6 +112,7 @@ public class HBaseClientExample
             {
                 System.out.println("Table emp is disable");
             }
+            admin.close();
         } catch (IOException e)
         {
             e.printStackTrace();
@@ -127,6 +131,7 @@ public class HBaseClientExample
             {
                 System.out.println("Table emp is enable");
             }
+            admin.close();
         } catch (IOException e)
         {
             e.printStackTrace();
@@ -146,6 +151,7 @@ public class HBaseClientExample
         try
         {
             admin.addColumn(tableName, familys);
+            admin.close();
         } catch (IOException e)
         {
             e.printStackTrace();
@@ -163,6 +169,7 @@ public class HBaseClientExample
         try
         {
             admin.deleteColumn(tableName, family);
+            admin.close();
         } catch (IOException e)
         {
             e.printStackTrace();
@@ -179,6 +186,7 @@ public class HBaseClientExample
         try
         {
             admin.tableExists(tableName);
+            admin.close();
         } catch (IOException e)
         {
             e.printStackTrace();
@@ -196,6 +204,7 @@ public class HBaseClientExample
         try
         {
             admin.deleteTable(tableName);
+            admin.close();
         } catch (IOException e)
         {
             e.printStackTrace();
@@ -222,6 +231,7 @@ public class HBaseClientExample
             put.add(toBytes("professional"), toBytes("salary"), toBytes("50000"));
 
             table.put(put);
+            table.close();
         } catch (IOException e)
         {
             e.printStackTrace();
@@ -244,6 +254,7 @@ public class HBaseClientExample
             put.add(toBytes("personal"), toBytes("city"), toBytes("shenz"));
             put.add(toBytes("professional"), toBytes("salary"), toBytes("30986125"));
             table.put(put);
+            table.close();
         } catch (IOException e)
         {
             e.printStackTrace();
@@ -267,7 +278,7 @@ public class HBaseClientExample
 
             String city = Bytes.toString(value);
             System.out.println(city);
-
+            table.close();
         } catch (IOException e)
         {
             e.printStackTrace();
@@ -290,6 +301,7 @@ public class HBaseClientExample
             delete.addFamily(toBytes("professional"));
 
             table.delete(delete);
+            table.close();
         } catch (IOException e)
         {
             e.printStackTrace();
@@ -318,6 +330,7 @@ public class HBaseClientExample
             }
 
             scanner.close();
+            table.close();
 
         } catch (IOException e)
         {
