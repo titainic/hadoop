@@ -26,6 +26,19 @@ import java.util.List;
  *
  * 有异常，解决办法
  * http://stackoverflow.com/questions/33503749/hive-spark-error-java-lang-illegalstateexception-unread-block-data
+ *
+ * 要把　hbase/lib 下的hbase-protocol-1.2.1.jar,hbase-common-1.2.1.jar,
+ *                  htrace-core-3.1.0-incubating.jar
+                    hbase-server-1.2.1.jar
+                    hbase-client-1.2.1.jar
+ hive/lib/
+            hive-hbase-handler-1.2.1.jar
+            hive-common-2.0.0.jar
+            hive-exec-2.0.0.jar
+
+ 和hbase-spark-2.0.0-20160316.173537-2.jar
+ 添加到 spark-env.sh中
+ 　　　　export SPARK_CLASSPATH=/usr/local/hbase-1.1.2/lib/hbase-protocol-1.1.2.jar:/usr/local/hbase-1.1.2/lib/hbase-common-1.1.2.jar:/usr/local/hbase-1.1.2/lib/htrace-core-3.1.0-incubating.jar:/usr/local/hbase-1.1.2/lib/hbase-server-1.1.2.jar:/usr/local/hbase-1.1.2/lib/hbase-client-1.1.2.jar:/usr/local/hive-1.2.1/lib/hive-hbase-handler-1.2.1.jar:/usr/local/hive-1.2.1/lib/hive-common-1.2.1.jar:/usr/local/hive-1.2.1/lib/hive-exec-1.2.1.jar
  */
 public class SparkSqlForHbase
 {
