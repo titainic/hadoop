@@ -1,7 +1,6 @@
 package com.thread.demo;
 
 import java.util.ArrayList;
-import java.util.Vector;
 
 /**
  * Created by titanic on 16-7-8.
