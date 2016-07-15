@@ -32,7 +32,8 @@ public class CountDownLatchDemo implements Runnable
         ExecutorService exec = Executors.newFixedThreadPool(10);
         RunBackGroup runBackGroup = new RunBackGroup();
 
-        for (int i = 0; i < 9; i++)
+        // i < 9 主线程就会一只等待
+        for (int i = 0; i < 10; i++)
         {
             exec.submit(demo);
         }
