@@ -43,7 +43,12 @@ import java.util.List;
 public class SparkSqlForHbase
 {
 
-    public static void main(String[] args)
+//    public static void main(String[] args)
+//    {
+//        init();
+//    }
+
+    private static void init()
     {
         String tableName = "emp";
 
@@ -74,7 +79,6 @@ public class SparkSqlForHbase
             System.out.println(res);
         }
         jsc.stop();
-
     }
 
 }
