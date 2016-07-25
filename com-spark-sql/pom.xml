@@ -75,5 +75,12 @@
             <artifactId>spark-streaming_2.10</artifactId>
             <version>1.6.1</version>
         </dependency>
+
+        <!--spark链接mongo-->
+        <dependency>
+            <groupId>org.mongodb.mongo-hadoop</groupId>
+            <artifactId>mongo-hadoop-spark</artifactId>
+            <version>1.5.2</version>
+        </dependency>
     </dependencies>
 </project>
