@@ -180,6 +180,7 @@
         <module>../com-hadoop-hbase</module>
         <module>../com-hadoop-hdfs</module>
         <module>../com-hadoop-spark</module>
+        <module>../com-hadoop-zk</module>
         <module>../com-kafka</module>
         <module>../com-spark-graphx</module>
         <module>../com-spark-ml</module>
