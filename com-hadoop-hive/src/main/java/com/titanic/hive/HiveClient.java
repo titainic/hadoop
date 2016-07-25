@@ -42,7 +42,7 @@ public class HiveClient
     public HiveClient(String hiveConfigPath)
     {
         hiveConf = new HiveConf(HiveClient.class);
-        hiveConf.addResource(new Path(hiveConfigPath));
+        hiveConf.addResource(new Path("file://"+hiveConfigPath));
     }
 
     public HiveClient(Map<String, String> confMap)
