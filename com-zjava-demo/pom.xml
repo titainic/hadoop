@@ -11,4 +11,14 @@
     <version>1</version>
     <packaging>jar</packaging>
 
+    <dependencies>
+        <!--高效无锁队列-->
+        <dependency>
+            <groupId>com.lmax</groupId>
+            <artifactId>disruptor</artifactId>
+            <version>3.3.4</version>
+        </dependency>
+
+    </dependencies>
+
 </project>
