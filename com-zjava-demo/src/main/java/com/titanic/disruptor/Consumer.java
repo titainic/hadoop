@@ -12,6 +12,6 @@ public class Consumer implements WorkHandler<PCData>
 
     public void onEvent(PCData pcData) throws Exception
     {
-        System.out.println(Thread.currentThread().getId()+":Event: --"+pcData.getData() * pcData.getData()+"--");
+        System.out.println(Thread.currentThread().getId()+":Event: --"+pcData.getData() +"--");
     }
 }
