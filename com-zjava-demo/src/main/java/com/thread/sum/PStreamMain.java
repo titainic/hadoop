@@ -1,9 +1,6 @@
 package com.thread.sum;
 
 import com.thread.bean.Msg;
-import com.thread.runnable.Div;
-import com.thread.runnable.Multiply;
-import com.thread.runnable.Plus;
 
 /**
  * 并行流水线

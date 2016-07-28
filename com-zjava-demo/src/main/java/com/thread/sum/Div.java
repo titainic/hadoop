@@ -1,4 +1,4 @@
-package com.thread.runnable;
+package com.thread.sum;
 
 import com.thread.bean.Msg;
 
@@ -6,9 +6,9 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 /**
- * 加法计算
+ * Created by titanic on 16-7-28.
  */
-public class Plus implements Runnable
+public class Div implements Runnable
 {
     public static BlockingQueue<Msg> bq = new LinkedBlockingQueue<Msg>();
 
@@ -19,13 +19,13 @@ public class Plus implements Runnable
             try
             {
                 Msg msg = bq.take();
-                msg.j = msg.i + msg.j;
-                Thread.sleep(10000);
-                Multiply.bq.add(msg);
+                msg.i = msg.i / 2;
+                System.out.println(msg.orgStr+"="+msg.i);
             } catch (InterruptedException e)
             {
                 e.printStackTrace();
             }
         }
+
     }
 }
