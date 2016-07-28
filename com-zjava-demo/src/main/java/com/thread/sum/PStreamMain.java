@@ -4,6 +4,7 @@ import com.thread.bean.Msg;
 
 /**
  * 并行流水线
+ * 计算（ B + C ）* B / 2
  */
 public class PStreamMain
 {
