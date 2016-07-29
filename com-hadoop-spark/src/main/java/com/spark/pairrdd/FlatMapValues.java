@@ -6,11 +6,11 @@ import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.FlatMapFunction;
 import org.apache.spark.api.java.function.Function;
-import org.apache.spark.api.java.function.PairFlatMapFunction;
 import org.apache.spark.api.java.function.PairFunction;
 import scala.Tuple2;
 
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.Map;
 
 /**
@@ -36,9 +36,9 @@ public class FlatMapValues
         JavaRDD<String> dataRDD = jsc.textFile("file:///D:\\soft\\spark\\spark-1.5.1-bin-hadoop2.6\\spark-1.5.1-bin-hadoop2.6\\README.md");
         JavaRDD<String> pairRDD = dataRDD.flatMap(new FlatMapFunction<String, String>()
         {
-            public Iterable<String> call(String s) throws Exception
+            public Iterator<String> call(String s) throws Exception
             {
-                return Arrays.asList(s.split(" "));
+                return Arrays.asList(s.split(" ")).iterator();
             }
         });
         JavaPairRDD<String,Integer> pairRDDxx = pairRDD.mapToPair(new PairFunction<String, String, Integer>()
