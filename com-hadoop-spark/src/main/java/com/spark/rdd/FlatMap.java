@@ -8,6 +8,7 @@ import org.apache.spark.api.java.function.FlatMapFunction;
 import java.util.ArrayList;
 
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -41,10 +42,10 @@ public class FlatMap
         JavaRDD<String> rdd = jsc.parallelize(list);
         JavaRDD<String> flatMap = rdd.flatMap(new FlatMapFunction<String, String>()
         {
-            public Iterable<String> call(String s) throws Exception
+            public Iterator<String> call(String s) throws Exception
             {
                 System.out.println(">>>>>>>>" + s);
-                return Arrays.asList(s.split(","));
+                return Arrays.asList(s.split(",")).iterator();
             }
         });
 

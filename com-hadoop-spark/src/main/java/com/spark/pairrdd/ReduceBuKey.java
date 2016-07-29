@@ -10,6 +10,7 @@ import org.apache.spark.api.java.function.PairFunction;
 import scala.Tuple2;
 
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -42,9 +43,9 @@ public class ReduceBuKey
 
        JavaRDD<String> rddx =   rdd.flatMap(new FlatMapFunction<String, String>()
        {
-           public Iterable<String> call(String s) throws Exception
+           public Iterator<String> call(String s) throws Exception
            {
-               return Arrays.asList(s.split(" "));
+               return Arrays.asList(s.split(" ")).iterator();
            }
        });
 

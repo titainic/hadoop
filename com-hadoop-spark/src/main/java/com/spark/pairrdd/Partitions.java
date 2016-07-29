@@ -10,6 +10,7 @@ import org.apache.spark.api.java.function.PairFlatMapFunction;
 import scala.Tuple2;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -39,7 +40,7 @@ public class Partitions
         int dataRDDPartitions = dataRDD.partitions().size();
         System.out.println(dataRDDPartitions);
 
-        Optional<Partitioner> optional = dataRDD.partitioner();
+        org.apache.spark.api.java.Optional<Partitioner> optional = dataRDD.partitioner();
 
         if(optional.isPresent())
         {
@@ -48,7 +49,7 @@ public class Partitions
 
         JavaPairRDD<String,Integer> toPairRDD = dataRDD.flatMapToPair(new PairFlatMapFunction<String, String, Integer>()
         {
-            public Iterable<Tuple2<String, Integer>> call(String s) throws Exception
+            public Iterator<Tuple2<String, Integer>> call(String s) throws Exception
             {
                 String[] tempStr = s.split(" ");
                 List<Tuple2<String, Integer>> list =new  ArrayList<Tuple2<String, Integer>>();
@@ -57,7 +58,7 @@ public class Partitions
                     Tuple2 t = new Tuple2(str,1);
                     list.add(t);
                 }
-                return list;
+                return list.iterator();
             }
         });
         Map<String,Integer> map = toPairRDD.collectAsMap();

@@ -46,11 +46,11 @@ public class LeftOuterJoin
         JavaPairRDD<Integer,Integer> ardd = jsc.parallelizePairs(alist);
         JavaPairRDD<Integer,Integer> brdd = jsc.parallelizePairs(blist);
 
-        JavaPairRDD<Integer, Tuple2<Integer, Optional<Integer>>> crdd = ardd.leftOuterJoin(brdd);
+        JavaPairRDD<Integer, Tuple2<Integer, org.apache.spark.api.java.Optional<Integer>>> crdd = ardd.leftOuterJoin(brdd);
 
-        JavaPairRDD<Integer, Tuple2<Integer, Optional<Integer>>> drdd = crdd.sortByKey();
+        JavaPairRDD<Integer, Tuple2<Integer, org.apache.spark.api.java.Optional<Integer>>> drdd = crdd.sortByKey();
 
-        Map<Integer, Tuple2<Integer, Optional<Integer>>> map = drdd.collectAsMap();
+        Map<Integer, Tuple2<Integer, org.apache.spark.api.java.Optional<Integer>>> map = drdd.collectAsMap();
         System.out.println(map);
     }
 }
