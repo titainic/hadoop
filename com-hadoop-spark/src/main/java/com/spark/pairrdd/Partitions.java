@@ -1,7 +1,6 @@
 package com.spark.pairrdd;
 
 import com.google.common.base.Optional;
-import org.apache.hadoop.hive.metastore.api.Partition;
 import org.apache.spark.Partitioner;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
@@ -19,10 +18,10 @@ import java.util.Map;
  */
 public class Partitions
 {
-    public static void main(String[] args)
-    {
-        init();
-    }
+//    public static void main(String[] args)
+//    {
+//        init();
+//    }
 
     private static void init()
     {
