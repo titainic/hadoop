@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * spark链接mysql数据库
+ * spark链接mysql数据库 spark1.6版本
  */
 public class SparkSqlForMySql
 {
