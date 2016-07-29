@@ -9,6 +9,7 @@ import org.apache.spark.api.java.function.PairFlatMapFunction;
 import scala.Tuple2;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -35,7 +36,7 @@ public class GroupBy
 
         JavaPairRDD<String,Integer> pairRDD = data.flatMapToPair(new PairFlatMapFunction<String, String, Integer>()
         {
-            public Iterable<Tuple2<String, Integer>> call(String s) throws Exception
+            public Iterator<Tuple2<String, Integer>> call(String s) throws Exception
             {
                 String[] tempStr = s.split(" ");
                 List<Tuple2<String, Integer>> list = new ArrayList<Tuple2<String, Integer>>();
@@ -44,7 +45,7 @@ public class GroupBy
                     Tuple2 t = new Tuple2(str, 1);
                     list.add(t);
                 }
-                return list;
+                return list.iterator();
             }
         });
         JavaPairRDD<String, Iterable<Tuple2<String, Integer>>> rdd = pairRDD.groupBy(new Function<Tuple2<String, Integer>, String>()
