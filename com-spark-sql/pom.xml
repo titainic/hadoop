@@ -7,8 +7,6 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>com-spark-sql</name>
-    <url>http://maven.apache.org</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -27,8 +25,8 @@
     <dependencies>
         <dependency>
             <groupId>org.apache.spark</groupId>
-            <artifactId>spark-core_2.10</artifactId>
-            <version>1.6.1</version>
+            <artifactId>spark-core_2.11</artifactId>
+            <version>2.0.0</version>
         </dependency>
 
         <!--使用２．６．４版本 -->
@@ -48,14 +46,14 @@
 
         <dependency>
             <groupId>org.apache.spark</groupId>
-            <artifactId>spark-sql_2.10</artifactId>
-            <version>1.6.1</version>
+            <artifactId>spark-sql_2.11</artifactId>
+            <version>2.0.0</version>
         </dependency>
 
         <dependency>
             <groupId>org.apache.spark</groupId>
-            <artifactId>spark-hive_2.10</artifactId>
-            <version>1.6.1</version>
+            <artifactId>spark-hive_2.11</artifactId>
+            <version>2.0.0</version>
         </dependency>
 
         <dependency>
@@ -72,8 +70,8 @@
 
         <dependency>
             <groupId>org.apache.spark</groupId>
-            <artifactId>spark-streaming_2.10</artifactId>
-            <version>1.6.1</version>
+            <artifactId>spark-streaming_2.11</artifactId>
+            <version>2.0.0</version>
         </dependency>
 
         <!--spark链接mongo-->
