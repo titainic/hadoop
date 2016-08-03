@@ -175,7 +175,7 @@
 
 
     <modules>
-        <module>../com-calcite</module>
+        <module>../com-akka</module>
         <module>../com-flink-gelly</module>
         <module>../com-hadoop-hbase</module>
         <module>../com-hadoop-hdfs</module>
