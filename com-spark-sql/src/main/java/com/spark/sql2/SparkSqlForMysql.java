@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * spark2.0链接mysql
  */
-public class SparkSqlFOrMysql
+public class SparkSqlForMysql
 {
     public static void main(String[] args)
     {
@@ -35,7 +35,6 @@ public class SparkSqlFOrMysql
 
 
         mysqlds.show();
-
 
         spark.stop();
     }
