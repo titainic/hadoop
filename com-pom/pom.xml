@@ -175,6 +175,7 @@
 
 
     <modules>
+        <module>../com-ignite</module>
         <module>../com-akka</module>
         <module>../com-alluxio</module>
         <module>../com-camel/camel-java</module>
