@@ -18,7 +18,7 @@ import java.util.concurrent.Executors;
  * kafka消费者模型：分区消费模型，组消费模型。两种消费模型
  * <p>
  * 组消费模型
- * 测试未通过，没有消费到数据。组id有问题？
+ * 测试通过
  */
 public class ConsumerGroupExample
 {
@@ -89,13 +89,13 @@ public class ConsumerGroupExample
                 String topic = message.topic();
                 int partition = message.partition();
                 long offset = message.offset();
-                String key = new String(message.key());
+//                String key = new String(message.key());
                 String msg = new String(message.message());
                 // 在这里处理消息,这里仅简单的输出
                 // 如果消息消费失败，可以将已上信息打印到日志中，活着发送到报警短信和邮件中，以便后续处理
                 System.out.println("consumerid:" + consumerid + ", thread : " + Thread.currentThread().getName()
                         + ", topic : " + topic + ", partition : " + partition + ", offset : " + offset + " , key : "
-                        + key + " , mess : " + msg);
+                         + " , mess : " + msg);
             }
         }
     }

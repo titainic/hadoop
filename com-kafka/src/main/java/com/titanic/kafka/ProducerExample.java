@@ -30,10 +30,13 @@ public class ProducerExample
         example.configure();
         example.start();
 
-        for (int i = 100; i < 200; i++)
+
+        int x = 0;
+        while (true)
         {
-            System.out.println(i+"_xpppp");
-            example.produceSync(i+"_xppppDDZ");
+            System.out.println(x);
+            example.produceSync("x:"+x);
+            x++;
         }
     }
 
