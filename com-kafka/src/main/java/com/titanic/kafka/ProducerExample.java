@@ -17,8 +17,11 @@ public class ProducerExample
 {
 
     String topic = "titanic";
+
     KafkaProducer<String, String> producer;
+
     Properties kafkaProps = new Properties();
+
     String kafkaServer = "127.0.0.1:9092";
 
     public static void main(String[] args)
