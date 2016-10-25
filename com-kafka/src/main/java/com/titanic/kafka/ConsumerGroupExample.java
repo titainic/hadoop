@@ -24,12 +24,12 @@ public class ConsumerGroupExample
 
     public static String zk = "127.0.0.1:2181";
 
-    public static String kafkaGroupId = "exia";
+    public static String kafkaGroupId = "titcnia_consumer_group";
 
 
-    public static String topic = "test";
+    public static String topic = "titanic";
 
-    public static String consumerid = "exia_bin_c";
+    public static String consumerid = "titcnia_consumer_cid";
 
 
     public static void main(String[] args)
@@ -46,8 +46,8 @@ public class ConsumerGroupExample
     {
 
         Properties props = new Properties();
-//        props.put("group.id", kafkaGroupId);
-//        props.put("consumer.id", consumerid);
+        props.put("group.id", kafkaGroupId);
+        props.put("consumer.id", consumerid);
         props.put("zookeeper.connect", zk);
         props.put("zookeeper.session.timeout.ms", "60000");
         props.put("zookeeper.sync.time.ms", "2000");
