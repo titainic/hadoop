@@ -18,6 +18,7 @@ import java.util.concurrent.Executors;
  * kafka消费者模型：分区消费模型，组消费模型。两种消费模型
  * <p>
  * 组消费模型
+ * 测试未通过，没有消费到数据。组id有问题？
  */
 public class ConsumerGroupExample
 {
