@@ -46,8 +46,8 @@ public class ConsumerGroupExample
     {
 
         Properties props = new Properties();
-        props.put("group.id", kafkaGroupId);
-        props.put("consumer.id", consumerid);
+//        props.put("group.id", kafkaGroupId);
+//        props.put("consumer.id", consumerid);
         props.put("zookeeper.connect", zk);
         props.put("zookeeper.session.timeout.ms", "60000");
         props.put("zookeeper.sync.time.ms", "2000");
@@ -67,7 +67,7 @@ public class ConsumerGroupExample
 
         for (KafkaStream stream : streamsList)
         {
-            executor.submit(new MyStreamThread(stream));
+            executor.execute(new MyStreamThread(stream));
         }
     }
 
