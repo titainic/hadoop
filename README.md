@@ -1,6 +1,9 @@
 
 #以下是自己购买的微信计算机（类似树莓派）基于ARM架构．构建的大数据集群环境．
 ##此集群是自己进行学习研究和测试所用！！！性能并非很强．只是进行分布式学习研究所用
+###硬件配置：1G内存 * 1，５１２内存 * 8
+###操作系统：ubuntu-core-16.04
+###系统运行占50M内存，hadoop，namenode节点占用200M,spark,master占用200M.子节点(hadoop,spark)都只占用100M内存
 ![image](https://github.com/titainic/note-image/blob/master/1.jpg)
 ![image](https://github.com/titainic/note-image/blob/master/2.jpg)
 ![image](https://github.com/titainic/note-image/blob/master/3.jpg)
