@@ -1,3 +1,8 @@
+
+#以下是自己购买的微信计算机（类似树莓派）基于ARM架构．构建的大数据集群环境．
+![image](https://github.com/titainic/note-image/blob/master/1.jpg)
+![image](https://github.com/titainic/note-image/blob/master/２.jpg)
+![image](https://github.com/titainic/note-image/blob/master/３.jpg)
 # 本项目，大数据研究学习，积累所写，不定时更新。
 ## com-akka         akka模块学习
 ## com-alluxio      alluxio分布式内存文件系统
