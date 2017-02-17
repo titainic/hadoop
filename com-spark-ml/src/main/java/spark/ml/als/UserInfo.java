@@ -11,10 +11,10 @@ import org.apache.spark.api.java.function.Function;
  */
 public class UserInfo
 {
-    public static void main(String[] args)
-    {
+//    public static void main(String[] args)
+//    {
 //        init();
-    }
+//    }
 
     private static void init()
     {

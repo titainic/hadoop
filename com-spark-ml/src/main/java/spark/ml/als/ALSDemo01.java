@@ -1,25 +1,22 @@
 package spark.ml.als;
 
 import org.apache.spark.SparkConf;
-import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.Function;
 import org.apache.spark.mllib.recommendation.ALS;
 import org.apache.spark.mllib.recommendation.MatrixFactorizationModel;
 import org.apache.spark.mllib.recommendation.Rating;
-import org.apache.spark.rdd.RDD;
-import scala.Tuple2;
 
 /**
  * Created by titanic on 15-11-7.
  */
 public class ALSDemo01
 {
-    public static void main(String[] args)
-    {
+//    public static void main(String[] args)
+//    {
 //        init();
-    }
+//    }
 
     private static void init()
     {

@@ -20,10 +20,10 @@ import java.util.*;
  */
 public class JavaApp
 {
-    public static void main(String[] args)
-    {
+//    public static void main(String[] args)
+//    {
 //        init();
-    }
+//    }
 
     private static void init()
     {
