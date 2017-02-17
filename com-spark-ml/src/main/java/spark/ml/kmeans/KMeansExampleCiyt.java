@@ -16,18 +16,18 @@ import java.util.List;
 /**
  * k-means聚类实现
  */
-public class KMeansExample implements Serializable
+public class KMeansExampleCiyt implements Serializable
 {
     public static void main(String[] args)
     {
-//        KMeansExample kmeans = new KMeansExample();
-//        kmeans.startKmeans();
+        KMeansExampleCiyt kmeans = new KMeansExampleCiyt();
+        kmeans.startKmeans();
 
     }
 
     private void startKmeans()
     {
-        String dataPath = "/home/titanic/soft/intellij_work/hadoop/com-spark-ml/src/main/resources/k-means/data.txt";
+        String dataPath = "/home/titanic/soft/intellij_work/hadoop/com-spark-ml/src/main/resources/k-means/city.txt";
         SparkSession spark = SparkSession.builder().master("spark://titanic-Lenovo:7077").appName("k-means").getOrCreate();
         SparkContext sc = spark.sparkContext();
 
@@ -69,31 +69,6 @@ public class KMeansExample implements Serializable
         }).collect();
 
 
-        print(resList);
-        System.out.println("-----------------------");
-
-        //计算cost
-        double wssse = clusters.computeCost(paresdRDD.rdd());
-        System.out.println("Within Set Sum of Squared Errors = " + wssse);
-
-        System.out.println("-----------------------");
-        //打印出中心点
-        System.out.println("Cluster centers:");
-        for (Vector center : clusters.clusterCenters())
-        {
-            System.out.println(" " + center);
-        }
-
-
-        System.out.println("-----------------------");
-
-        //进行一些预测
-        System.out.println("Prediction of (1.1, 2.1, 3.1): "
-                + clusters.predict(Vectors.dense(new double[]{1.1, 2.1, 3.1})));
-        System.out.println("Prediction of (10.1, 9.1, 11.1): "
-                + clusters.predict(Vectors.dense(new double[]{10.1, 9.1, 11.1})));
-        System.out.println("Prediction of (21.1, 17.1, 16.1): "
-                + clusters.predict(Vectors.dense(new double[]{21.1, 17.1, 16.1})));
 
 
         spark.stop();
