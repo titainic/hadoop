@@ -27,7 +27,7 @@ public class StaticVSInstance
 
         start = System.currentTimeMillis();
         StaticVSInstance s1 = new StaticVSInstance();
-        for (int i = 0; i <1000000000 ; i++)
+        for (int i = 0; i < 1000000000 ; i++)
         {
             s1.instanceMethod();
         }
