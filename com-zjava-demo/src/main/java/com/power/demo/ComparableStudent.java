@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 /**
- * Comparable排序
+ * Comparable，对象比较排序
  */
 public class ComparableStudent implements Comparable<ComparableStudent>
 {
