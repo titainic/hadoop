@@ -22,7 +22,7 @@ public class ProducerExample
 
     Properties kafkaProps = new Properties();
 
-    String kafkaServer = "127.0.0.1:9092";
+    String kafkaServer = "192.9.206.51:9092,192.9.206.52:9092,192.9.206.52:9092";
 
     public static void main(String[] args)
     {

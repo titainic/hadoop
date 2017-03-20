@@ -18,18 +18,21 @@ import java.util.List;
  */
 public class KMeansExample implements Serializable
 {
-    public static void main(String[] args)
-    {
+//    public static void main(String[] args)
+//    {
 //        KMeansExample kmeans = new KMeansExample();
 //        kmeans.startKmeans();
-
-    }
+//
+//    }
 
     private void startKmeans()
     {
         String dataPath = "/home/titanic/soft/intellij_work/hadoop/com-spark-ml/src/main/resources/k-means/data.txt";
         SparkSession spark = SparkSession.builder().master("spark://titanic-Lenovo:7077").appName("k-means").getOrCreate();
+        spark.conf().set("spark.executor.memory", "300m");
+
         SparkContext sc = spark.sparkContext();
+
 
         sc.addJar("/home/titanic/soft/intellij_work/hadoop/com-spark-ml/target/com-spark-ml-0.0.1-SNAPSHOT.jar");
         JavaRDD<String> cityRDD = spark.read().textFile("file://" + dataPath).javaRDD();

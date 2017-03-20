@@ -40,12 +40,19 @@ public class KMeansExampleCiyt implements Serializable
         {
             public Vector call(String s) throws Exception
             {
-                String[] sarray = s.split(" ");
-                double[] values = new double[sarray.length];
-                for (int i = 0; i < sarray.length; i++)
+                String[] sarray = s.split(",");
+
+                String[] xx = new String[2];
+
+                for (int i = 0; i <sarray.length ; i++)
                 {
-                    values[i] = Double.parseDouble(sarray[i]);
+                    xx[0] = sarray[2];
+                    xx[1] = sarray[3];
                 }
+                double[] values = new double[2];
+
+                    values = Double.parseDouble(xx);
+
                 return Vectors.dense(values);
             }
         });
@@ -69,7 +76,7 @@ public class KMeansExampleCiyt implements Serializable
         }).collect();
 
 
-
+//        sc.parallelize(Seq<>)
 
         spark.stop();
     }

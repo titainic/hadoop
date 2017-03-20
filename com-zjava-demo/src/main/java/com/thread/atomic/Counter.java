@@ -6,7 +6,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * java实现原子操作
- * 
+ *
  * 多线程操作一个共享变量,线程安全
  */
 public class Counter

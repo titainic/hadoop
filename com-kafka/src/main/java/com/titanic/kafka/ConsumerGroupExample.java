@@ -23,7 +23,7 @@ import java.util.concurrent.Executors;
 public class ConsumerGroupExample
 {
 
-    public static String zk = "127.0.0.1:2181";
+    public static String zk = "192.9.206.51:2181,192.9.206.52:2181,192.9.206.53:2181";
 
     public static String groupId = "titanic_g";
 

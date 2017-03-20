@@ -10,6 +10,7 @@ import org.apache.spark.mllib.linalg.Vectors;
 import org.apache.spark.mllib.stat.MultivariateStatisticalSummary;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -18,10 +19,10 @@ import java.util.List;
 public class Statistics
 {
 
-    public static void main(String[] args)
-    {
-        init();
-    }
+//    public static void main(String[] args)
+//    {
+//        init();
+//    }
 
     private static void init()
     {
@@ -36,7 +37,7 @@ public class Statistics
         JavaRDD<String> data = jsc.textFile("file:///home/titanic/soft/intellij_work/hadoop/com-spark-ml/src/main/resources/sample_stat.txt");
         JavaRDD<Integer> data1 = data.flatMap(new FlatMapFunction<String, Integer>()
         {
-            public Iterable<Integer> call(String s) throws Exception
+            public Iterator<Integer> call(String s) throws Exception
             {
                 String[] arrs = s.split(",");
                 List<Integer> list = new ArrayList<Integer>();
@@ -45,7 +46,7 @@ public class Statistics
                     System.out.println(str);
                     list.add(Integer.valueOf(str));
                 }
-                return list;
+                return list.iterator();
             }
         });
 
