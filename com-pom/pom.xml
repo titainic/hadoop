@@ -200,6 +200,6 @@
         <module>../com-hive-es</module>
         <module>../com-spark-es</module>
         <module>../com-zjava-demo</module>
-        <module>../com-extension/com-webmagic</module>
+        <module>../com-extension/com-http</module>
     </modules>
 </project>
