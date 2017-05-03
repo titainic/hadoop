@@ -201,5 +201,7 @@
         <module>../com-spark-es</module>
         <module>../com-zjava-demo</module>
         <module>../com-extension/com-http</module>
+        <module>../com-kerberos</module>
+        <module>../com-tensorflow</module>
     </modules>
 </project>
