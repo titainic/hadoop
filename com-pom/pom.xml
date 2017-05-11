@@ -203,5 +203,6 @@
         <module>../com-extension/com-http</module>
         <module>../com-kerberos</module>
         <module>../com-tensorflow</module>
+        <module>../com-netty</module>
     </modules>
 </project>
