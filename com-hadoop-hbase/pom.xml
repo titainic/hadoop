@@ -13,56 +13,145 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <lib.basedir>${basedir}/src/main/resources/lib</lib.basedir>
     </properties>
 
     <dependencies>
-
         <dependency>
-            <groupId>org.apache.hbase</groupId>
-            <artifactId>hbase-client</artifactId>
-            <version>1.2.1</version>
-        </dependency>
-
-
-        <!--<dependency>-->
-            <!--<groupId>org.apache.hbase</groupId>-->
-            <!--<artifactId>hbase</artifactId>-->
-            <!--<version>1.2.1</version>-->
-        <!--</dependency>-->
-
-        <dependency>
-            <groupId>org.apache.zookeeper</groupId>
-            <artifactId>zookeeper</artifactId>
-            <version>3.4.6</version>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.9</version>
         </dependency>
 
         <dependency>
-            <groupId>commons-configuration</groupId>
-            <artifactId>commons-configuration</artifactId>
-            <version>1.10</version>
-        </dependency>
-
-        <dependency>
-            <groupId>commons-lang</groupId>
-            <artifactId>commons-lang</artifactId>
-            <version>2.6</version>
-        </dependency>
-
-        <dependency>
-            <groupId>commons-logging</groupId>
-            <artifactId>commons-logging</artifactId>
-            <version>1.2</version>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.38</version>
         </dependency>
 
         <dependency>
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-common</artifactId>
-            <version>2.6.4</version>
+            <version>2.7.2</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.zookeeper</groupId>
+                    <artifactId>zookeeper</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
 
+        <dependency>
+            <groupId>org.apache.zookeeper</groupId>
+            <artifactId>zookeeper</artifactId>
+            <version>3.5.1-alpha</version>
+            <scope>system</scope>
+            <systemPath>${lib.basedir}/zookeeper-3.5.1.jar</systemPath>
+        </dependency>
 
+        <dependency>
+            <groupId>org.apache.hbase</groupId>
+            <artifactId>hbase-server</artifactId>
+            <version>1.0.2</version>
+            <!--<scope>system</scope>-->
+            <!--<systemPath>${lib.basedir}/hbase-server-1.0.2.jar</systemPath>-->
+        </dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20170516</version>
+        </dependency>
 
+        <dependency>
+            <groupId>org.apache.hbase</groupId>
+            <artifactId>hbase-client</artifactId>
+            <version>1.0.2</version>
+            <!--<scope>system</scope>-->
+            <!--<systemPath>${lib.basedir}/hbase-client-1.0.2.jar</systemPath>-->
+        </dependency>
 
+        <dependency>
+            <groupId>org.apache.hbase</groupId>
+            <artifactId>hbase-common</artifactId>
+            <version>1.0.2</version>
+            <!--<scope>system</scope>-->
+            <!--<systemPath>${lib.basedir}/hbase-common-1.0.2.jar</systemPath>-->
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.hbase</groupId>
+            <artifactId>hbase-protocol</artifactId>
+            <version>1.0.2</version>
+            <!--<scope>system</scope>-->
+            <!--<systemPath>${lib.basedir}/hbase-protocol-1.0.2.jar</systemPath>-->
+        </dependency>
     </dependencies>
+
+        <build>
+            <plugins>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>appassembler-maven-plugin</artifactId>
+                    <version>1.2.1</version>
+                    <executions>
+                        <execution>
+                            <id>make-assembly</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>assemble</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+
+                    <configuration>
+                        <!--lib下直接存放jar，没有路径文件夹（如com/apache)，如果没有这个选项则放在lib下的jar包会被com/apache类似的多层文件夹包裹起来-->
+                        <repositoryLayout>flat</repositoryLayout>
+                        <configurationDirectory>conf</configurationDirectory>
+                        <configurationSourceDirectory>src/main/resources</configurationSourceDirectory>
+                        <copyConfigurationDirectory>true</copyConfigurationDirectory>
+                        <includeConfigurationDirectoryInClasspath>true</includeConfigurationDirectoryInClasspath>
+                        <!--生成的项目的目录位置，这里的client是项目的名称，你可以根据你的需要自己随便命名-->
+                        <assembleDirectory>${project.build.directory}/tyky</assembleDirectory>
+                        <!--java启动参数-->
+                        <extraJvmArguments>-Xms128m</extraJvmArguments>
+                        <binFileExtensions>
+                            <unix>.sh</unix>
+                        </binFileExtensions>
+                        <platforms>
+                            <platform>windows</platform>
+                            <platform>unix</platform>
+                        </platforms>
+                        <repositoryName>lib</repositoryName>
+                        <programs>
+                            <program>
+                                <!--指定主类，脚本名。会生成shell/bat两种类型,也可用platforms指定运行平台-->
+                                <mainClass>com.tyky.main.servives.TykyMain</mainClass>
+                                <!-- 生成的脚本文件的名称，比如start.sh,你也可以根据你的需要命名成其他名字 -->
+                                <name>start</name>
+                            </program>
+                        </programs>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </build>
+        <!-- 打包命令 clean package appassembler:assemble
+              打包程一个可执行start.sh
+              tyky
+                 -/bin
+                    -/start.sh  如果依赖本地jar.需要手动修改添加其中CLASSPATH添加:"$REPO"/xxxx.jar
+                    -/start.bat
+                 -/conf
+                    -/配置文件
+                 -/lib
+                    -/依赖所需要的jar
+
+
+              -->
+
+
+
+
+
+
 </project>
