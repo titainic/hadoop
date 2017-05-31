@@ -1,9 +1,9 @@
 package com.titanic.hbase.main;
 
-import com.tyky.hbase.api.HBaseAdmin;
-import com.tyky.hbase.api.HBaseClientFactory;
-import com.tyky.hbase.api.HBaseTable;
-import com.tyky.utils.api.TykyUtils;
+import com.titanic.hbase.api.HBaseAdmin;
+import com.titanic.hbase.api.HBaseClientFactory;
+import com.titanic.hbase.api.HBaseTable;
+import com.titanic.hbase.utils.TykyUtils;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.hbase.HColumnDescriptor;
