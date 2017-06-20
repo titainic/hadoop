@@ -1,7 +1,10 @@
 package com.hadoop.hdfs;
 
 import org.apache.avro.Schema;
+import org.apache.avro.file.DataFileReader;
 import org.apache.avro.file.DataFileWriter;
+import org.apache.avro.file.FileReader;
+import org.apache.avro.file.SeekableInput;
 import org.apache.avro.generic.GenericData;
 import org.apache.avro.generic.GenericDatumReader;
 import org.apache.avro.generic.GenericDatumWriter;
@@ -10,6 +13,7 @@ import org.apache.avro.io.DatumReader;
 import org.apache.avro.io.DatumWriter;
 import org.apache.avro.io.Decoder;
 import org.apache.avro.io.DecoderFactory;
+import org.apache.avro.mapred.FsInput;
 import org.apache.avro.util.Utf8;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FSDataOutputStream;
@@ -168,6 +172,25 @@ public class OpAvroFile
             in.close();
         }
         return data;
+    }
+
+    /**
+     * 读取hdfs上面avro数据
+     * @param path
+     * @param conf
+     * @throws IOException
+     */
+    public void ReadHDFSAvro(Path path,Configuration conf) throws IOException
+    {
+        SeekableInput input = new FsInput(path, conf);
+        DatumReader<GenericRecord> reader = new GenericDatumReader<GenericRecord>();
+        FileReader<GenericRecord> fileReader = DataFileReader.openReader(input, reader);
+
+        for (GenericRecord datum : fileReader) {
+            System.out.println("value = " + datum);
+        }
+
+        fileReader.close();
     }
 
 }
