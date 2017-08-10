@@ -11,6 +11,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class Counter
 {
+
     private AtomicInteger atomicI = new AtomicInteger(0);
     private int i = 0 ;
 
