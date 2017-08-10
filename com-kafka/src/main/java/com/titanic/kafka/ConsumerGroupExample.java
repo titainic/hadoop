@@ -23,11 +23,11 @@ import java.util.concurrent.Executors;
 public class ConsumerGroupExample
 {
 
-    public static String zk = "192.9.206.51:2181,192.9.206.52:2181,192.9.206.53:2181";
+    public static String zk = "192.9.4.9:2181,192.9.4.10:2181,192.9.4.11:2181";
 
     public static String groupId = "titanic_g";
 
-    public static String topic = "titanic";
+    public static String topic = "test2";
 
     public static String consumerid = "titcnia_c";
 
