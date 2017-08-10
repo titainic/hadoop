@@ -21,8 +21,7 @@
  ******************************************************************************/
 package com.titanic.hbase.api;
 
-import com.tyky.kerberos.api.KerberosConfiguration;
-import com.tyky.main.servives.TykyMain;
+import com.titanic.hbase.kerberos.KerberosConfiguration;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HTableDescriptor;
 import org.apache.hadoop.hbase.TableName;
@@ -36,7 +35,7 @@ import java.io.IOException;
 public class HBaseClientFactory
 {
 
-    private Logger logger = Logger.getLogger(TykyMain.class);
+    private Logger logger = Logger.getLogger(HBaseClientFactory.class);
 
     private Connection conn = null;
     private final Configuration conf;
