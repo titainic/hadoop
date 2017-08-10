@@ -2,7 +2,7 @@ package com.titanic.hbase.mysql;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.tyky.utils.api.TykyUtils;
+import com.titanic.hbase.utils.TykyUtils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
