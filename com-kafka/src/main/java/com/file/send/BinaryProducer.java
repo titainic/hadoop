@@ -98,6 +98,7 @@ public class BinaryProducer
         WatchKey key;
         path.register(watcher, ENTRY_CREATE);
 
+        //监控文件变化
         while (true)
         {
             key = watcher.take();
