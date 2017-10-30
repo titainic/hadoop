@@ -25,7 +25,7 @@ import static java.nio.file.StandardWatchEventKinds.ENTRY_CREATE;
  * 卡夫卡的设计并不是为了移动大的信息，它也不是移动像照片这样的大型二进制文件的最佳选择。
  * 在她的文章中，Kafka Gwen Shapira提出了一些处理大消息的方法，并说卡夫卡的最佳消息大小大约是10k。
  * 因此，我决定去寻找分裂的解决方案，并把我发送给10k块的文件分割给kafka。
- * 
+ *
  * 使用者必须将文件从其块中组合起来。我在这里选择的简单方法是创建一个只有一个分区的主题。
  * 通过这种方式，我可以确保这些块以相同的顺序到达消费者。这在一个非常繁忙的生产系统中是不具有规模的，
  * 而且可能还不够。使用并行发布和消费的多个分区将会更加健壮，但是在消费者端需要更复杂的逻辑，
@@ -64,7 +64,7 @@ public class BinaryProducer
      */
     private List<byte[]> splitFile(String name, byte[] datum)
     {
-        int i;
+//        int i;
         int length = datum.length;
 
         //10kb大小
