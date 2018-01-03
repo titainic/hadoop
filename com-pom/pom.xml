@@ -75,5 +75,6 @@
         <module>../com-kerberos</module>
         <module>../com-tensorflow</module>
         <module>../com-netty</module>
+        <module>../com-nutch</module>
     </modules>
 </project>
