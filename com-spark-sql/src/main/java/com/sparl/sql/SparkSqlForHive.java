@@ -32,13 +32,21 @@ public class SparkSqlForHive
         System.setProperty("hive.metastore.uris", "thrift://tyky01:9083");
 
         //intellij 使用yarn模式提交任务到集群
-        System.setProperty("hadoop.home.dir","/home/titanic/funds/hadoop");
-        conf.set("spark.yarn.preserve.staging.files","false");
+//        System.setProperty("hadoop.home.dir","/opt/soft/hadoop-3.0.0");
+//        System.setProperty("HADOOP_CONF_DIR", "/opt/soft/spark-2.2.1-bin-hadoop2.7/conf/spark-env.sh");
+
+//        conf.set("spark.yarn.preserve.staging.files","false");
         conf.set("spark.hadoop.yarn.resourcemanager.hostname", "tyky00");
         conf.set("spark.hadoop.yarn.resourcemanager.address", "tyky00:8032");
-        conf.set("spark.yarn.archive", "file:////home/titanic/funds/spark-jars.zip");
+
+//        conf.set("spark.yarn.archive", "hdfs://tyky00:8020/spark/spark-jars.zip");
 
         JavaSparkContext jsc = new JavaSparkContext(conf);
+        jsc.hadoopConfiguration().addResource(SparkSqlForHive.class.getClassLoader().getResourceAsStream("conf/yarn-site.xml"));
+        jsc.hadoopConfiguration().addResource(SparkSqlForHive.class.getClassLoader().getResourceAsStream("conf/core-site.xml"));
+        jsc.hadoopConfiguration().addResource(SparkSqlForHive.class.getClassLoader().getResourceAsStream("conf/hdfs-site.xml"));
+        jsc.hadoopConfiguration().addResource(SparkSqlForHive.class.getClassLoader().getResourceAsStream("conf/mapred-site.xml"));
+        jsc.addJar("/home/titanic/soft/intellij_worksparce/github-hadoop/com-spark-sql/target/com-spark-sql-0.0.1-SNAPSHOT.jar");
 
         HiveContext sqlContext = new HiveContext(jsc.sc());
         Dataset<Row> df = sqlContext.sql("select * from default.o_opendata_hive");
