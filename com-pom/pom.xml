@@ -29,13 +29,13 @@
         <dependencies>
 
             <!--依赖本地jar方式-->
-            <dependency>
-                <groupId>commons-cli-1.2.jar</groupId>
-                <artifactId>commons-cli</artifactId>
-                <version>1.0</version>
-                <scope>system</scope>
-                <systemPath>${lib.basedir}/commons-cli-1.2.jar</systemPath>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>commons-cli-1.2.jar</groupId>-->
+                <!--<artifactId>commons-cli</artifactId>-->
+                <!--<version>1.0</version>-->
+                <!--<scope>system</scope>-->
+                <!--<systemPath>${lib.basedir}/commons-cli-1.2.jar</systemPath>-->
+            <!--</dependency>-->
 
 
 
