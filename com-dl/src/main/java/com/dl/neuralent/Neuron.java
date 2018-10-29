@@ -31,7 +31,7 @@ public class Neuron
     private Double outputBeforeActivation;
 
     /**
-     * 神经元的偏倚。除了第一层.它应该总是1.0
+     * 神经元的偏置。除了第一层.它应该总是1.0
      */
     private Double bias = 1.0;
 
