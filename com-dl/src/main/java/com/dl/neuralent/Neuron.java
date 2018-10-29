@@ -81,14 +81,12 @@ public class Neuron
 
                     if (i == numberOfInput)
                     {
-                        bias = input.get(i);
+                        outputBeforeActivation = outputBeforeActivation + bias * weight.get(i);
                     }
                     else
                     {
-                        bias = weight.get(i);
+                        outputBeforeActivation = outputBeforeActivation + input.get(i) * weight.get(i);
                     }
-
-                    outputBeforeActivation = outputBeforeActivation + i;
                 }
             }
         }
