@@ -76,5 +76,6 @@
         <module>../com-tensorflow</module>
         <module>../com-netty</module>
         <module>../com-nutch</module>
+        <module>../com-dl4j</module>
     </modules>
 </project>

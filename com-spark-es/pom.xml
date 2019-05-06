@@ -40,13 +40,13 @@
             <artifactId>elasticsearch-hadoop</artifactId>
             <version>6.4.3</version>
         </dependency>
-        <dependency>
-            <groupId>oracle</groupId>
-            <artifactId>oracle.driver.qq</artifactId>
-            <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>/home/titanic/soft/driver-7.jar </systemPath>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>oracle</groupId>-->
+<!--            <artifactId>oracle.driver.qq</artifactId>-->
+<!--            <version>1.0</version>-->
+<!--            <scope>system</scope>-->
+<!--            <systemPath>/home/titanic/soft/driver-7.jar </systemPath>-->
+<!--        </dependency>-->
 
     </dependencies>
 
