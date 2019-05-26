@@ -2,25 +2,40 @@
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <artifactId>com-zjava-demo</artifactId>
-        <groupId>yang-bin</groupId>
-        <version>1</version>
-        <relativePath>../com-zjava-demo/pom.xml</relativePath>
-    </parent>
+
     <modelVersion>4.0.0</modelVersion>
-
+    <groupId>yang-bin</groupId>
     <artifactId>com-dl4j</artifactId>
-
+    <version>1</version>
     <name>com-dl4j</name>
     <!-- FIXME change it to the project's website -->
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.7</maven.compiler.source>
-        <maven.compiler.target>1.7</maven.compiler.target>
-    </properties>
 
+<dependencies>
+    <dependency>
+        <groupId>org.deeplearning4j</groupId>
+        <artifactId>deeplearning4j-core</artifactId>
+        <version>1.0.0-beta4</version>
+    </dependency>
+
+<!--    <dependency>-->
+<!--        <groupId>org.deeplearning4j</groupId>-->
+<!--        <artifactId>dl4j-spark_2.11</artifactId>-->
+<!--        <version>1.0.0-beta4_spark_2</version>-->
+<!--    </dependency>-->
+
+    <dependency>
+        <groupId>org.nd4j</groupId>
+        <artifactId>nd4j-native-platform</artifactId>
+        <version>1.0.0-beta4</version>
+    </dependency>
+
+    <dependency>
+        <groupId>org.deeplearning4j</groupId>
+        <artifactId>deeplearning4j-ui_2.11</artifactId>
+        <version>1.0.0-beta4</version>
+    </dependency>
+</dependencies>
 
 
 </project>

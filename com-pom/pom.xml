@@ -77,5 +77,6 @@
         <module>../com-netty</module>
         <module>../com-nutch</module>
         <module>../com-dl4j</module>
+        <module>../com-dl4j-spark</module>
     </modules>
 </project>
