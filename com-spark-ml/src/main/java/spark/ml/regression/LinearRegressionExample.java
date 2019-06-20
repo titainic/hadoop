@@ -48,6 +48,7 @@ public class LinearRegressionExample
         System.out.println("numIterations: " + trainingSummary.totalIterations());
         System.out.println("objectiveHistory: " + Vectors.dense(trainingSummary.objectiveHistory()));
         trainingSummary.residuals().show();
+        trainingSummary.meanSquaredError();
         System.out.println("RMSE(均方根、标准差): " + trainingSummary.rootMeanSquaredError());
         System.out.println("R2(决定系数)=: " + trainingSummary.r2());
 
