@@ -25,6 +25,41 @@ public class Dl4jExample
         double[] fOrderArray = fOrderNd.data().asDouble();
         System.out.println(Arrays.toString(fOrderArray));
 
+//        add();
+        System.out.println();
+        mul();
+
+    }
+
+    /**
+     * 加法
+     */
+    public static void add(){
+        INDArray data = Nd4j.create(new double[]{1.0,2.0});
+
+        INDArray addInd = data.add(10.0);
+        System.out.println(addInd);
+        System.out.println(data);
+    }
+
+    /**
+     * 乘法
+     */
+    public static void mul()
+    {
+        INDArray data = Nd4j.create(new double[]{1.0, 2.0});
+        INDArray mData1 = data.mul(20.0);
+        System.out.println("mul result: " + mData1);
+        System.out.println("after mul result: " + data);
+
+
+        INDArray data2 = Nd4j.create(new double[]{1.0, 2.0});
+        INDArray mData3 = data.muli(data2);
+        System.out.println("muli result: " + mData3);
+        System.out.println("after muli result: " + data);
+
+
+
 
     }
 }
