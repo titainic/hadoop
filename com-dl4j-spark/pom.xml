@@ -16,10 +16,29 @@
 
 
   <dependencies>
+
+    <dependency>
+      <groupId>org.deeplearning4j</groupId>
+      <artifactId>deeplearning4j-core</artifactId>
+      <version>1.0.0-beta4</version>
+    </dependency>
     <dependency>
       <groupId>org.deeplearning4j</groupId>
       <artifactId>dl4j-spark_2.11</artifactId>
       <version>1.0.0-beta4_spark_2</version>
+    </dependency>
+
+    <!-- 必须配置，使用cpu-->
+    <dependency>
+      <groupId>org.nd4j</groupId>
+      <artifactId>nd4j-native-platform</artifactId>
+      <version>1.0.0-beta4</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.deeplearning4j</groupId>
+      <artifactId>deeplearning4j-ui_2.11</artifactId>
+      <version>1.0.0-beta4</version>
     </dependency>
   </dependencies>
 
