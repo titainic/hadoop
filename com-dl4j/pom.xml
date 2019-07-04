@@ -7,6 +7,18 @@
     <groupId>yang-bin</groupId>
     <artifactId>com-dl4j</artifactId>
     <version>1</version>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
     <name>com-dl4j</name>
     <!-- FIXME change it to the project's website -->
 
@@ -22,6 +34,12 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.github.sh0nk</groupId>
+            <artifactId>matplotlib4j</artifactId>
+            <version>0.4.0</version>
+        </dependency>
+
 <!--        <dependency>-->
 <!--            <groupId>com.github.yannrichet</groupId>-->
 <!--            <artifactId>JMathPlot</artifactId>-->
