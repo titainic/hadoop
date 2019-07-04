@@ -4,6 +4,9 @@ import org.nd4j.linalg.api.ndarray.INDArray;
 import org.nd4j.linalg.factory.Nd4j;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class LinearRegression
 {
@@ -11,12 +14,24 @@ public class LinearRegression
     public double k;
     public double b;
 
+    public static List<Double> xList = new ArrayList<Double>();
+    public static List<Double> yList = new ArrayList<Double>();
+
+
+
 
     public static void main(String[] args) throws IOException, InterruptedException
     {
         LinearRegression model = new LinearRegression();
 
-        INDArray data = Nd4j.readNumpy("/home/titanic/soft/workspace/github-hadoop/com-dl4j/src/main/resources/lr2.csv", ",");
+        INDArray data = Nd4j.readNumpy("/home/titanic/soft/intellij_workspace/github-hadoop/com-dl4j/src/main/resources/lr2.csv", ",");
+
+
+        data.getDouble(0, data.columns());
+
+
+//        System.out.println(sd);
+
 
         //初始化
         double k_label = 1.1;
@@ -30,8 +45,9 @@ public class LinearRegression
         for (int iter = 0; iter < iterations; ++iter)
         {
             model.fitSGD(data, label);
-//            System.out.println(loss);
         }
+
+        PlotViewDemo.data("lr",xList,yList,model.getK(),model.getB());
         System.out.println("k: " + model.getK());
         System.out.println("b: " + model.getB());
 
@@ -52,7 +68,6 @@ public class LinearRegression
     //随机梯度下降
     public void fitSGD(INDArray trainData, INDArray labelData)
     {
-//        double diff = 0.0;
         for (int index = 0; index < trainData.length(); ++index)
         {
 
