@@ -1,6 +1,7 @@
 package com.dl4j.example;
 
 import com.github.sh0nk.matplotlib4j.Plot;
+import com.github.sh0nk.matplotlib4j.PythonConfig;
 import com.github.sh0nk.matplotlib4j.PythonExecutionException;
 import org.jfree.chart.ChartColor;
 import org.jfree.chart.ChartFactory;
@@ -70,7 +71,7 @@ public class PlotViewDemo
     // https://github.com/sh0nk/matplotlib4j
     public static void testPlot() throws IOException, PythonExecutionException
     {
-        Plot plt = Plot.create();
+        Plot plt = Plot.create(PythonConfig.pyenvConfig("anaconda3-4.6.11"));
         plt.plot()
                 .add(Arrays.asList(1.3, 2))
                 .label("label")
