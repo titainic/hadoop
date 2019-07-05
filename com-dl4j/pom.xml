@@ -39,7 +39,11 @@
             <artifactId>matplotlib4j</artifactId>
             <version>0.4.0</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.opencsv</groupId>
+            <artifactId>opencsv</artifactId>
+            <version>3.3</version>
+        </dependency>
 <!--        <dependency>-->
 <!--            <groupId>com.github.yannrichet</groupId>-->
 <!--            <artifactId>JMathPlot</artifactId>-->
@@ -91,6 +95,12 @@
             <groupId>org.deeplearning4j</groupId>
             <artifactId>deeplearning4j-ui_2.11</artifactId>
             <version>1.0.0-beta4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-sql_2.11</artifactId>
+            <version>2.1.0</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 
