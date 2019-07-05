@@ -34,32 +34,6 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>com.github.sh0nk</groupId>
-            <artifactId>matplotlib4j</artifactId>
-            <version>0.4.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.opencsv</groupId>
-            <artifactId>opencsv</artifactId>
-            <version>3.3</version>
-        </dependency>
-<!--        <dependency>-->
-<!--            <groupId>com.github.yannrichet</groupId>-->
-<!--            <artifactId>JMathPlot</artifactId>-->
-<!--            <version>1.0</version>-->
-<!--        </dependency>-->
-
-        <dependency>
-            <groupId>jfree</groupId>
-            <artifactId>jfreechart</artifactId>
-            <version>1.0.13</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jfree</groupId>
-            <artifactId>jcommon</artifactId>
-            <version>1.0.23</version>
-        </dependency>
 
         <dependency>
             <groupId>com.github.sh0nk</groupId>
@@ -73,35 +47,21 @@
             <version>1.0.0-beta4</version>
         </dependency>
 
-        <!--    <dependency>-->
-        <!--        <groupId>org.deeplearning4j</groupId>-->
-        <!--        <artifactId>dl4j-spark_2.11</artifactId>-->
-        <!--        <version>1.0.0-beta4_spark_2</version>-->
-        <!--    </dependency>-->
-
+        <!--GPU使用此依赖 -->
         <dependency>
             <groupId>org.nd4j</groupId>
             <artifactId>nd4j-cuda-10.1-platform</artifactId>
             <version>1.0.0-beta4</version>
         </dependency>
 
+        <!--CPU使用此依赖 -->
 <!--        <dependency>-->
 <!--            <groupId>org.nd4j</groupId>-->
 <!--            <artifactId>nd4j-native-platform</artifactId>-->
 <!--            <version>1.0.0-beta4</version>-->
 <!--        </dependency>-->
 
-        <dependency>
-            <groupId>org.deeplearning4j</groupId>
-            <artifactId>deeplearning4j-ui_2.11</artifactId>
-            <version>1.0.0-beta4</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.spark</groupId>
-            <artifactId>spark-sql_2.11</artifactId>
-            <version>2.1.0</version>
-            <scope>compile</scope>
-        </dependency>
+
     </dependencies>
 
 
