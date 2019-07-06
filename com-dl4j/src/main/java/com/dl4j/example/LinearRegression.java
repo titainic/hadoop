@@ -45,13 +45,12 @@ public class LinearRegression
         }
 
 
-        //算出k和b以后，计算出方程y=kx+b直线所需要点
+        //算出k和b以后，计算出方程y=kx+b直线所需要点d的集合
         List<Double> yLine = new ArrayList<>();
         List<Double> xLine = new ArrayList<>();
         Double k = model.getK();
         Double b = model.getB();
 
-        //x=(y-b)/k
         for (int i = 0; i < 1000; i++)
         {
             //y=kx+b
