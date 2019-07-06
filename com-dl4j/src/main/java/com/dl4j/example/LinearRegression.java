@@ -101,7 +101,7 @@ public class LinearRegression
             //k=k-2y(y-kx-b)(-x)a
             k = k + 2 * y * (y - k * x - b) * x * learningrate;
 
-            //b=k-2y(y-kx-b)a
+            //b=b-2y(y-kx-b)a
             b = b - 2 * y * (y - k * x - b) * learningrate;
         }
 
