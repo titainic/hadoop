@@ -3,11 +3,13 @@ package com.dl4j.example;
 import com.github.sh0nk.matplotlib4j.Plot;
 import com.github.sh0nk.matplotlib4j.PythonConfig;
 import com.github.sh0nk.matplotlib4j.PythonExecutionException;
-import org.nd4j.linalg.api.ndarray.INDArray;
-import org.nd4j.linalg.factory.Nd4j;
 
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.math.BigDecimal;
+import java.io.InputStreamReader;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,24 +28,23 @@ public class LinearRegression
     {
         LinearRegression model = new LinearRegression();
 
-        //加载csv数据
-        INDArray data = Nd4j.readNumpy("/home/titainic/soft/intellij_workspace/github-hodoop/com-dl4j/src/main/resources/lr2.csv", ",");
-        INDArray xData = data.getColumn(0);
-        INDArray yData = data.getColumn(1);
-
-
-        //获取画图数据
-        double[] xDataPlot = xData.dup().data().asDouble();
-        double[] yDataPlot = yData.dup().data().asDouble();
-        List<Double> xList = arrat2List(xDataPlot);
-        List<Double> yList = arrat2List(yDataPlot);
-
+        List<Double> xList = new ArrayList<>();
+        List<Double> yList = new ArrayList<>();
+        DataInputStream in = new DataInputStream(new FileInputStream(new File("/home/titanic/soft/intellij_workspace/github-hadoop/com-dl4j/src/main/resources/lr2.csv")));
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(in, "UTF-8"));
+        String csvRow;
+        while ((csvRow = bufferedReader.readLine()) != null)
+        {
+            String[] strArr = csvRow.split(",");
+            xList.add(Double.valueOf(strArr[0]));
+            yList.add(Double.valueOf(strArr[1]));
+        }
 
         //迭代次数
-        final int iterations = 11;
+        final int iterations = 1;
         for (int iter = 0; iter < iterations; ++iter)
         {
-            model.fitSGD(xData, yData);
+            model.fitSGD(xList, yList);
         }
 
 
@@ -63,6 +64,7 @@ public class LinearRegression
             double x = xList.get(i);
             //y=kx+b
             Double yL = k * x + b;
+            double r2 = Math.pow((yL - yList.get(i)), 2);
             yLine.add(yL);
         }
         List<Double> yuuu = doublesData(yLine);
@@ -80,64 +82,56 @@ public class LinearRegression
     }
 
 
-    //全量梯度下降
-//    public double fitBGD(INDArray trainData, INDArray labelData)
-//    {
-//        INDArray diff = labelData.sub(trainData.mul(k).add(b));
-//        k = diff.dup().mu
-//
-//        System.out.println(diff);
-//        return 0;
-//    }
+
 
     //梯度下降
-    public void fitSGD(INDArray xData, INDArray yData)
+    public void fitSGD(List<Double> xData, List<Double> yData)
     {
-        double[] xArray = xData.dup().data().asDouble();
-        double[] yArray = yData.dup().data().asDouble();
-        for (int i = 0; i < xArray.length; i++)
+        List<LRLoss> lrList = new ArrayList<>();
+
+        for (int i = 0; i < xData.size(); i++)
         {
-            double y = yArray[i];
-            double x = xArray[i];
+            double y = yData.get(i);
+            double x = xData.get(i);
 
             //k=k-2y(y-kx-b)(-x)a
             k = k - (y - k * x - b) * x * learningrate;
 
             //b=b-2y(y-kx-b)a
             b = b - (y - k * x - b) * learningrate;
-        }
 
+            double yll = k*x+b;
+            double r2 = Math.pow((yll - yData.get(i)), 2);
+
+            LRLoss loss = new LRLoss(k,b,r2);
+
+            lrList.add(loss);
+            System.out.println("Loss->"+r2);
+            System.out.println("k->"+k);
+            System.out.println("b->"+b);
+            System.out.println("\n");
+        }
 
     }
 
 
-    public void fitSGDBigDecimal(INDArray xData, INDArray yData)
+
+    public void minKB(List<LRLoss> lrList)
     {
-
-        double[] xArray = xData.dup().data().asDouble();
-        double[] yArray = yData.dup().data().asDouble();
-        for (int i = 0; i < xArray.length; i++)
+        double sum = 0, min = lrList.get(0).getLoss(), max = min;
+        for (int i = 0; i < lrList.size(); i++)
         {
-            BigDecimal yBic = new BigDecimal(yArray[i]);
-            BigDecimal xBic = new BigDecimal(xArray[i]);
-            BigDecimal kBic = new BigDecimal(k);
-            BigDecimal bBic = new BigDecimal(b);
-//            double y = yArray[i];
-//            double x = xArray[i];
+            sum += lrList.get(i).getLoss();
+            if (min > lrList.get(i).getLoss()) {
+                min = lrList.get(i).getLoss();
 
-            //k=k-2y(y-kx-b)(-x)a
-//            k = k - (y - k * x - b) * x * learningrate;
-            BigDecimal tmp = new BigDecimal(kBic.multiply(xBic).toString());
-            kBic = kBic.subtract(yBic.subtract(tmp).subtract(bBic)).multiply(xBic).multiply(BigDecimal.valueOf(learningrate));
-
-
-            //b=b-2y(y-kx-b)a
-//            b = b - (y - k * x - b) * learningrate;
-            bBic = bBic.subtract(yBic.subtract(tmp).subtract(bBic)).multiply(BigDecimal.valueOf(learningrate));
+            }
+//            if (max < lrList.get(i).getLoss()) {
+//                max = lrList.get(i).getLoss();
+//            }
         }
-
-
     }
+
 
     public double getK()
     {
