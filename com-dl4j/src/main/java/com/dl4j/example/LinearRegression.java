@@ -7,6 +7,7 @@ import org.nd4j.linalg.api.ndarray.INDArray;
 import org.nd4j.linalg.factory.Nd4j;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +27,7 @@ public class LinearRegression
         LinearRegression model = new LinearRegression();
 
         //加载csv数据
-        INDArray data = Nd4j.readNumpy("/home/titanic/soft/intellij_workspace/github-hadoop/com-dl4j/src/main/resources/lr2.csv", ",");
+        INDArray data = Nd4j.readNumpy("/home/titainic/soft/intellij_workspace/github-hodoop/com-dl4j/src/main/resources/lr2.csv", ",");
         INDArray xData = data.getColumn(0);
         INDArray yData = data.getColumn(1);
 
@@ -39,7 +40,7 @@ public class LinearRegression
 
 
         //迭代次数
-        final int iterations = 1;
+        final int iterations = 11;
         for (int iter = 0; iter < iterations; ++iter)
         {
             model.fitSGD(xData, yData);
@@ -89,7 +90,7 @@ public class LinearRegression
 //        return 0;
 //    }
 
-    //随机梯度下降
+    //梯度下降
     public void fitSGD(INDArray xData, INDArray yData)
     {
         double[] xArray = xData.dup().data().asDouble();
@@ -104,6 +105,35 @@ public class LinearRegression
 
             //b=b-2y(y-kx-b)a
             b = b - (y - k * x - b) * learningrate;
+        }
+
+
+    }
+
+
+    public void fitSGDBigDecimal(INDArray xData, INDArray yData)
+    {
+
+        double[] xArray = xData.dup().data().asDouble();
+        double[] yArray = yData.dup().data().asDouble();
+        for (int i = 0; i < xArray.length; i++)
+        {
+            BigDecimal yBic = new BigDecimal(yArray[i]);
+            BigDecimal xBic = new BigDecimal(xArray[i]);
+            BigDecimal kBic = new BigDecimal(k);
+            BigDecimal bBic = new BigDecimal(b);
+//            double y = yArray[i];
+//            double x = xArray[i];
+
+            //k=k-2y(y-kx-b)(-x)a
+//            k = k - (y - k * x - b) * x * learningrate;
+            BigDecimal tmp = new BigDecimal(kBic.multiply(xBic).toString());
+            kBic = kBic.subtract(yBic.subtract(tmp).subtract(bBic)).multiply(xBic).multiply(BigDecimal.valueOf(learningrate));
+
+
+            //b=b-2y(y-kx-b)a
+//            b = b - (y - k * x - b) * learningrate;
+            bBic = bBic.subtract(yBic.subtract(tmp).subtract(bBic)).multiply(BigDecimal.valueOf(learningrate));
         }
 
 
