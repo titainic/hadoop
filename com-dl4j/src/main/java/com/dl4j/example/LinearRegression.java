@@ -7,6 +7,7 @@ import org.nd4j.linalg.api.ndarray.INDArray;
 import org.nd4j.linalg.factory.Nd4j;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,8 +34,8 @@ public class LinearRegression
         //获取画图数据
         double[] xDataPlot = xData.dup().data().asDouble();
         double[] yDataPlot = yData.dup().data().asDouble();
-        List xList = arrat2List(xDataPlot);
-        List yList = arrat2List(yDataPlot);
+        List<Double> xList = arrat2List(xDataPlot);
+        List<Double> yList = arrat2List(yDataPlot);
 
 
         //迭代次数
@@ -47,33 +48,33 @@ public class LinearRegression
 
         //算出k和b以后，计算出方程y=kx+b直线所需要点d的集合
         List<Double> yLine = new ArrayList<>();
-        List<Double> xLine = new ArrayList<>();
+        String kstr = model.getK() + "";
+        model.setK(Double.valueOf(kstr.substring(0, 15)));
+        String bstr = model.getB() + "";
+        model.setB(Double.valueOf(bstr.substring(0, 15)));
+
         Double k = model.getK();
         Double b = model.getB();
 
-        for (int i = 0; i < 1000; i++)
+
+        for (int i = 0; i < xList.size(); i++)
         {
+            double x = xList.get(i);
             //y=kx+b
-            Double yL = k * i + b;
-            //x=(y-b)/k
-            Double xL = (yL - b) / k;
-
+            Double yL = k * x + b;
             yLine.add(yL);
-            xLine.add(xL);
         }
-
+        List<Double> yuuu = doublesData(yLine);
 
         //打印图形和拟合函数的直线
         Plot plt = Plot.create(PythonConfig.pyenvConfig("anaconda3-4.6.11"));
         plt.plot().add(xList, yList, "o");
-        plt.plot().add(xLine, yLine);
+        plt.plot().add(xList, yuuu);
         plt.title("lr");
-        plt.xlim(0,10);
-        plt.ylim(0,25);
+        plt.xlim(0, 10);
+        plt.ylim(0, 25);
         plt.legend();
         plt.show();
-
-
 
     }
 
@@ -99,10 +100,10 @@ public class LinearRegression
             double x = xArray[i];
 
             //k=k-2y(y-kx-b)(-x)a
-            k = k + 2 * y * (y - k * x - b) * x * learningrate;
+            k = k - (y - k * x - b) * x * learningrate;
 
             //b=b-2y(y-kx-b)a
-            b = b - 2 * y * (y - k * x - b) * learningrate;
+            b = b - (y - k * x - b) * learningrate;
         }
 
 
@@ -145,6 +146,18 @@ public class LinearRegression
             }
         }
         return list;
+    }
+
+    public static List<Double> doublesData(List<Double> list)
+    {
+        DecimalFormat df = new DecimalFormat("#.0000000000");
+        List<Double> xLists = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++)
+        {
+            String str = df.format(list.get(i));
+            xLists.add(Double.valueOf(str));
+        }
+        return xLists;
     }
 
 }
