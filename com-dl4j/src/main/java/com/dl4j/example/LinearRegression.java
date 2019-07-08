@@ -24,13 +24,13 @@ public class LinearRegression
     public double k = 5;
     public double b = 8;
 
-    public static void main(String[] args) throws IOException, InterruptedException, PythonExecutionException
+    public static void main(String[] args) throws IOException, PythonExecutionException
     {
         LinearRegression model = new LinearRegression();
 
         List<Double> xList = new ArrayList<>();
         List<Double> yList = new ArrayList<>();
-        DataInputStream in = new DataInputStream(new FileInputStream(new File("/home/titanic/soft/intellij_workspace/github-hadoop/com-dl4j/src/main/resources/lr2.csv")));
+        DataInputStream in = new DataInputStream(new FileInputStream(new File(LinearRegression.class.getClassLoader().getResource("lr2.csv").getFile())));
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(in, "UTF-8"));
         String csvRow;
         while ((csvRow = bufferedReader.readLine()) != null)
@@ -41,10 +41,11 @@ public class LinearRegression
         }
 
         //迭代次数
-        final int iterations = 1;
+        final int iterations = 100;
         for (int iter = 0; iter < iterations; ++iter)
         {
-            model.fitSGD(xList, yList);
+            model.gradientDescient(xList, yList,model);
+
         }
 
 
@@ -64,7 +65,6 @@ public class LinearRegression
             double x = xList.get(i);
             //y=kx+b
             Double yL = k * x + b;
-            double r2 = Math.pow((yL - yList.get(i)), 2);
             yLine.add(yL);
         }
         List<Double> yuuu = doublesData(yLine);
@@ -84,53 +84,68 @@ public class LinearRegression
 
 
 
-    //梯度下降
-    public void fitSGD(List<Double> xData, List<Double> yData)
+
+    public void gradientDescient(List<Double> xData, List<Double> yData,LinearRegression model)
     {
-        List<LRLoss> lrList = new ArrayList<>();
+        double sum0 = 0.0;
+        double sum1 = 0.0;
 
         for (int i = 0; i < xData.size(); i++)
         {
-            double y = yData.get(i);
             double x = xData.get(i);
+            double y = yData.get(i);
 
-            //k=k-2y(y-kx-b)(-x)a
-            k = k - (y - k * x - b) * x * learningrate;
-
-            //b=b-2y(y-kx-b)a
-            b = b - (y - k * x - b) * learningrate;
-
-            double yll = k*x+b;
-            double r2 = Math.pow((yll - yData.get(i)), 2);
-
-            LRLoss loss = new LRLoss(k,b,r2);
-
-            lrList.add(loss);
-            System.out.println("Loss->"+r2);
-            System.out.println("k->"+k);
-            System.out.println("b->"+b);
-            System.out.println("\n");
+            sum0 += calc_error(x,y);
+            sum1 += calc_error(x, y) * x;
         }
 
-    }
+        this.b = b - learningrate * sum0 / xData.size();
+        this.k = k - learningrate * sum1 / xData.size();
 
+        double loss = 0;
 
-
-    public void minKB(List<LRLoss> lrList)
-    {
-        double sum = 0, min = lrList.get(0).getLoss(), max = min;
-        for (int i = 0; i < lrList.size(); i++)
+        for(int c = 0 ;c < xData.size();c++)
         {
-            sum += lrList.get(i).getLoss();
-            if (min > lrList.get(i).getLoss()) {
-                min = lrList.get(i).getLoss();
+            double x = xData.get(c);
+            double y = yData.get(c);
+            loss+= Math.pow(calc_error(x,y),2);
 
-            }
-//            if (max < lrList.get(i).getLoss()) {
-//                max = lrList.get(i).getLoss();
-//            }
         }
+
+        String lossSub = loss + "";
+        lossSub = lossSub.substring(0, 4);
+
+//        BigDecimal bigLoss = new BigDecimal(lossSub);
+//        BigDecimal minkb = new BigDecimal("2");
+//
+//
+//        if((k+b)< 5)
+//        {
+//            if (bigLoss.compareTo(minkb) == -1)
+//            {
+//                model.setB(b);
+//                model.setK(k);
+//                return true;
+//            }
+//        }
+
+        System.out.println("loss->"+loss);
+//        return false;
     }
+
+    //目标函数
+    public double predict(double x)
+    {
+        return k * x + b;
+    }
+
+    //误差值
+    public double calc_error(double x, double y)
+    {
+        return predict(x) - y;
+    }
+
+
 
 
     public double getK()
