@@ -36,7 +36,7 @@ public class LinearRegressionDL4J
     //初始化学习速度（梯度下降速度）
     public double learningrate = 0.1d;
 
-    public static int iteration = 18;
+    public static int iteration = 10;
 
 
     //初始化加载图像数据
@@ -113,7 +113,7 @@ public class LinearRegressionDL4J
         double bt = model.getB();
         double learningrate = model.getLearningrate();
 
-        INDArray diff = y.dup().sub(x.mul(wt)).add(bt);
+        INDArray diff = y.dup().sub(x.mul(wt)).sub(bt);
         wt = wt + diff.dup().muli(x).sumNumber().doubleValue() / x.length() * 2 * learningrate;
         bt = bt + diff.sumNumber().doubleValue() / x.length() * 2 * learningrate;
 
