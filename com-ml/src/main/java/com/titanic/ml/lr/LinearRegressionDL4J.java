@@ -12,7 +12,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,7 +35,7 @@ public class LinearRegressionDL4J
     //初始化学习速度（梯度下降速度）
     public double learningrate = 0.1d;
 
-    public static int iteration = 10;
+    public static int iteration = 40;
 
 
     //初始化加载图像数据
@@ -77,6 +76,7 @@ public class LinearRegressionDL4J
         INDArray y = data.getColumn(1);
 
 
+        //迭代次数
         for (int i = 0; i < iteration; i++)
         {
             fitBGD(x, y, model);
@@ -86,14 +86,10 @@ public class LinearRegressionDL4J
 
 
 
-        String kstr = model.getW() + "";
-        model.setW(Double.valueOf(kstr.substring(0, 15)));
-        String bstr = model.getB() + "";
-        model.setB(Double.valueOf(bstr.substring(0, 15)));
-
         Double wx = model.getW();
         Double bx = model.getB();
 
+        //绘制直线数据
         List<Double> yLine = new ArrayList<>();
         for (int i = 0; i < xList.size(); i++)
         {
@@ -102,11 +98,16 @@ public class LinearRegressionDL4J
             Double yL = wx * xi + bx;
             yLine.add(yL);
         }
-        List<Double> yuuu = doublesData(yLine);
-        PlotViewUtils.xyViewAndLine(xList,yList,yuuu,0,12,0,25);
+        PlotViewUtils.xyViewAndLine(xList,yList,yLine,0,12,0,25);
 
     }
 
+    /**
+     * 梯度下降实现
+     * @param x
+     * @param y
+     * @param model
+     */
     public static void fitBGD(INDArray x, INDArray y, LinearRegressionDL4J model)
     {
         double wt = model.getW();
@@ -114,9 +115,8 @@ public class LinearRegressionDL4J
         double learningrate = model.getLearningrate();
 
         INDArray diff = y.dup().sub(x.mul(wt)).sub(bt);
-        wt = wt + diff.dup().muli(x).sumNumber().doubleValue() / x.length() * 2 * learningrate;
-        bt = bt + diff.sumNumber().doubleValue() / x.length() * 2 * learningrate;
-
+        wt = wt - diff.dup().muli(x).sumNumber().doubleValue() / x.length() * 2 * learningrate;
+        bt = bt - diff.sumNumber().doubleValue() / x.length() * 2 * learningrate;
 
         double loss = Math.pow(calc_error(x, y, model), 2);
 
@@ -173,15 +173,5 @@ public class LinearRegressionDL4J
         this.b = b;
     }
 
-    public static List<Double> doublesData(List<Double> list)
-    {
-        DecimalFormat df = new DecimalFormat("#.0000000000");
-        List<Double> xLists = new ArrayList<>();
-        for (int i = 0; i < list.size(); i++)
-        {
-            String str = df.format(list.get(i));
-            xLists.add(Double.valueOf(str));
-        }
-        return xLists;
-    }
+
 }
