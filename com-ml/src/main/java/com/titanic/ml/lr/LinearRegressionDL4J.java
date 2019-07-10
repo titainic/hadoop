@@ -1,5 +1,6 @@
 package com.titanic.ml.lr;
 
+import com.titanic.ml.utils.PlotViewUtils;
 import org.nd4j.linalg.api.ndarray.INDArray;
 import org.nd4j.linalg.factory.Nd4j;
 
@@ -11,6 +12,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,16 +28,15 @@ public class LinearRegressionDL4J
     public static List<Double> yList = new ArrayList<>();
 
     //初始化斜率
-    public double w = 5;
+    public double w = 125.6;
 
     //初始化截距
-    public double b = 8;
+    public double b = 10.3;
 
     //初始化学习速度（梯度下降速度）
-    public double learningrate = 8;
+    public double learningrate = 0.1d;
 
-    public static int iteration = 10;
-
+    public static int iteration = 18;
 
 
     //初始化加载图像数据
@@ -66,48 +67,83 @@ public class LinearRegressionDL4J
     }
 
 
-
-
     public static void main(String[] args) throws IOException
     {
         LinearRegressionDL4J model = new LinearRegressionDL4J();
 
         //加载csv数据,用于计算
         INDArray data = Nd4j.readNumpy(dataPath, ",");
-        INDArray xData = data.getColumn(0);
-        INDArray yData = data.getColumn(1);
+        INDArray x = data.getColumn(0);
+        INDArray y = data.getColumn(1);
 
-//        PlotViewUtils.xyViewPoint(xList,yList,0,10,0,25);
 
-        for(int i = 0 ;i < iteration ; i++)
+        for (int i = 0; i < iteration; i++)
         {
-            fitBGD(xData, yData, model);
+            fitBGD(x, y, model);
+            System.out.println("i->"+i);
+            System.out.println("\n");
         }
+
+
+
+        String kstr = model.getW() + "";
+        model.setW(Double.valueOf(kstr.substring(0, 15)));
+        String bstr = model.getB() + "";
+        model.setB(Double.valueOf(bstr.substring(0, 15)));
+
+        Double wx = model.getW();
+        Double bx = model.getB();
+
+        List<Double> yLine = new ArrayList<>();
+        for (int i = 0; i < xList.size(); i++)
+        {
+            double xi = xList.get(i);
+            //y=kx+b
+            Double yL = wx * xi + bx;
+            yLine.add(yL);
+        }
+        List<Double> yuuu = doublesData(yLine);
+        PlotViewUtils.xyViewAndLine(xList,yList,yuuu,0,12,0,25);
 
     }
 
-    public static void fitBGD(INDArray x, INDArray y,LinearRegressionDL4J model)
+    public static void fitBGD(INDArray x, INDArray y, LinearRegressionDL4J model)
     {
         double wt = model.getW();
         double bt = model.getB();
         double learningrate = model.getLearningrate();
 
+        INDArray diff = y.dup().sub(x.mul(wt)).add(bt);
+        wt = wt + diff.dup().muli(x).sumNumber().doubleValue() / x.length() * 2 * learningrate;
+        bt = bt + diff.sumNumber().doubleValue() / x.length() * 2 * learningrate;
 
 
-        wt = wt - (x.muli(wt).add(bt).sub(y)).muli(x).mul(learningrate).sumNumber().doubleValue() / x.length();
-        bt = bt - (x.muli(wt).add(bt).sub(y)).muli(learningrate).sumNumber().doubleValue() / x.length();
+        double loss = Math.pow(calc_error(x, y, model), 2);
 
-        double error = x.muli(wt).add(bt).sub(y).sumNumber().doubleValue();
-        double loss = Math.pow(error, 2);
-
-        System.out.println("w->"+wt);
-        System.out.println("b->"+bt);
-        System.out.println("loss->"+loss);
-
+        System.out.println("w->" + wt);
+        System.out.println("b->" + bt);
+        System.out.println("loss->" + loss);
 
 
         model.setW(wt);
         model.setB(bt);
+    }
+
+    //目标函数
+    public static INDArray predict(INDArray x, LinearRegressionDL4J model)
+    {
+        //wx+b
+        INDArray yc = x.mul(model.getW()).add(model.getB());
+        return yc;
+    }
+
+    //误差值
+    public static double calc_error(INDArray x, INDArray y, LinearRegressionDL4J model)
+    {
+        //y-wx-b
+        INDArray yc = predict(x, model);
+        INDArray error = y.sub(yc);
+        return error.sumNumber().doubleValue();
     }
 
 
@@ -116,10 +152,6 @@ public class LinearRegressionDL4J
         return learningrate;
     }
 
-    public void setLearningrate(double learningrate)
-    {
-        this.learningrate = learningrate;
-    }
 
     public double getW()
     {
@@ -141,4 +173,15 @@ public class LinearRegressionDL4J
         this.b = b;
     }
 
+    public static List<Double> doublesData(List<Double> list)
+    {
+        DecimalFormat df = new DecimalFormat("#.0000000000");
+        List<Double> xLists = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++)
+        {
+            String str = df.format(list.get(i));
+            xLists.add(Double.valueOf(str));
+        }
+        return xLists;
+    }
 }
