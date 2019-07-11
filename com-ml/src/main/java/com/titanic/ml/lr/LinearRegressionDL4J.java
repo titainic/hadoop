@@ -134,7 +134,7 @@ public class LinearRegressionDL4J
         return loss;
     }
 
-    //目标函数
+    //预测函数
     public static INDArray predict(INDArray x, LinearRegressionDL4J model)
     {
         //wx+b
