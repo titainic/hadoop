@@ -93,7 +93,7 @@ public class LinearRegressionDL4J
         Double wx = model.getW();
         Double bx = model.getB();
 
-        //根据x求出ｙhttp://titanic.leanote.com/post/Java%E5%9F%BA%E4%BA%8ED
+        //根据x求出ｙ.y就是预测的值
         List<Double> yLine = new ArrayList<>();
         for (int i = 0; i < xList.size(); i++)
         {
