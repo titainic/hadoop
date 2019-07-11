@@ -16,12 +16,12 @@ public class PlotViewUtils
      * @param yList
      * @param yuuu
      */
-    public static void xyViewAndLine(List<Double> xList,List<Double> yList,List<Double> yuuu,double xStart,double xEnd,double yStart,double yEnd)
+    public static void xyViewAndLine(List<Double> xList,List<Double> yList,List<Double> yuuu,double xStart,double xEnd,double yStart,double yEnd,String loss)
     {
         Plot plt = Plot.create(PythonConfig.pyenvConfig("anaconda3-4.6.11"));
         plt.plot().add(xList, yList, "o");
         plt.plot().add(xList, yuuu);
-        plt.title("lr");
+        plt.title("Loss="+loss);
         plt.xlim(xStart, xEnd);
         plt.ylim(yStart, yEnd);
         plt.legend();

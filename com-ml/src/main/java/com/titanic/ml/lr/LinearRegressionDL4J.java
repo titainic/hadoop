@@ -78,9 +78,10 @@ public class LinearRegressionDL4J
         INDArray x = data.getColumn(0);
         INDArray y = data.getColumn(1);
 
+        double loss = 0;
         while (true)
         {
-            double loss = fitBGD(x, y, model);
+            loss = fitBGD(x, y, model);
 
             //误差范围（当误差小于设置发值，即w,b的极值）
             if (loss < errorSize)
@@ -101,7 +102,7 @@ public class LinearRegressionDL4J
             Double yL = wx * xi + bx;
             yLine.add(yL);
         }
-        PlotViewUtils.xyViewAndLine(xList,yList,yLine,0,12,0,25);
+        PlotViewUtils.xyViewAndLine(xList,yList,yLine,0,12,0,25,loss+"");
 
     }
 
