@@ -83,7 +83,7 @@ public class LinearRegressionDL4J
         {
             loss = fitBGD(x, y, model);
 
-            //误差范围（当误差小于设置发值，即w,b的极小值）
+            //当w,b取的值，得到的总体误差最小时，即loss在误差范围内
             if (loss < errorSize)
             {
                 break;
@@ -93,7 +93,7 @@ public class LinearRegressionDL4J
         Double wx = model.getW();
         Double bx = model.getB();
 
-        //根据x求出ｙ
+        //根据x求出ｙhttp://titanic.leanote.com/post/Java%E5%9F%BA%E4%BA%8ED
         List<Double> yLine = new ArrayList<>();
         for (int i = 0; i < xList.size(); i++)
         {
