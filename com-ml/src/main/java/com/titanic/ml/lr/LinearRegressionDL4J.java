@@ -83,7 +83,7 @@ public class LinearRegressionDL4J
         {
             loss = fitBGD(x, y, model);
 
-            //误差范围（当误差小于设置发值，即w,b的极值）
+            //误差范围（当误差小于设置发值，即w,b的极小值）
             if (loss < errorSize)
             {
                 break;
