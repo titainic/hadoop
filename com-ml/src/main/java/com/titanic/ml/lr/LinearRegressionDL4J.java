@@ -20,6 +20,8 @@ import java.util.List;
  */
 public class LinearRegressionDL4J
 {
+    //文件路径
+
     public static String dataPath = LinearRegressionDL4J.class.getClassLoader().getResource("lr2.csv").getFile();
 
     //用于打印坐标系点
@@ -27,15 +29,16 @@ public class LinearRegressionDL4J
     public static List<Double> yList = new ArrayList<>();
 
     //初始化斜率
-    public double w = 125.6;
+    public double w = 2;
 
     //初始化截距
-    public double b = 10.3;
+    public double b = 3;
 
     //初始化学习速度（梯度下降速度）
-    public double learningrate = 0.1d;
+    public double learningrate = 0.01d;
 
-    public static int iteration = 40;
+    //误差范围
+    public static double errorSize = 0.01d;
 
 
     //初始化加载图像数据
@@ -75,21 +78,21 @@ public class LinearRegressionDL4J
         INDArray x = data.getColumn(0);
         INDArray y = data.getColumn(1);
 
-
-        //迭代次数
-        for (int i = 0; i < iteration; i++)
+        while (true)
         {
-            fitBGD(x, y, model);
-            System.out.println("i->"+i);
-            System.out.println("\n");
+            double loss = fitBGD(x, y, model);
+
+            //误差范围（当误差小于设置发值，即w,b的极值）
+            if (loss < errorSize)
+            {
+                break;
+            }
         }
-
-
 
         Double wx = model.getW();
         Double bx = model.getB();
 
-        //绘制直线数据
+        //根据x求出ｙ
         List<Double> yLine = new ArrayList<>();
         for (int i = 0; i < xList.size(); i++)
         {
@@ -103,30 +106,32 @@ public class LinearRegressionDL4J
     }
 
     /**
-     * 梯度下降实现
+     * 梯度下降计算
      * @param x
      * @param y
      * @param model
+     * @return
      */
-    public static void fitBGD(INDArray x, INDArray y, LinearRegressionDL4J model)
+    public static double fitBGD(INDArray x, INDArray y, LinearRegressionDL4J model)
     {
         double wt = model.getW();
         double bt = model.getB();
         double learningrate = model.getLearningrate();
 
         INDArray diff = y.dup().sub(x.mul(wt)).sub(bt);
-        wt = wt - diff.dup().muli(x).sumNumber().doubleValue() / x.length() * 2 * learningrate;
-        bt = bt - diff.sumNumber().doubleValue() / x.length() * 2 * learningrate;
+        wt = wt + diff.dup().muli(x).sumNumber().doubleValue() / x.length() * 2 * learningrate;
+        bt = bt + diff.sumNumber().doubleValue() / x.length() * 2 * learningrate;
 
         double loss = Math.pow(calc_error(x, y, model), 2);
 
         System.out.println("w->" + wt);
         System.out.println("b->" + bt);
         System.out.println("loss->" + loss);
-
+        System.out.println("\n");
 
         model.setW(wt);
         model.setB(bt);
+        return loss;
     }
 
     //目标函数
@@ -140,7 +145,7 @@ public class LinearRegressionDL4J
     //误差值
     public static double calc_error(INDArray x, INDArray y, LinearRegressionDL4J model)
     {
-        //y-wx-b
+        //y-（wx＋b）
         INDArray yc = predict(x, model);
         INDArray error = y.sub(yc);
         return error.sumNumber().doubleValue();
