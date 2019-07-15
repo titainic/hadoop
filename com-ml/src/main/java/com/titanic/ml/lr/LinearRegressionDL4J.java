@@ -8,6 +8,7 @@ import org.nd4j.linalg.factory.Nd4j;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * 基于DL4J，一元线性回归
@@ -17,15 +18,13 @@ public class LinearRegressionDL4J
     //文件路径
     public static String dataPath = LinearRegressionDL4J.class.getClassLoader().getResource("lr2.csv").getFile();
 
-    //用于打印坐标系点
-    public static List<Double> xList = new ArrayList<>();
-    public static List<Double> yList = new ArrayList<>();
+    Random rr = new Random();
 
-    //初始化斜率
-    public double w = 2;
+    //随机初始化斜率
+    public double w = rr.nextDouble()*10;
 
-    //初始化截距
-    public double b = 3;
+    //随机初始化截距
+    public double b = rr.nextDouble()*10;
 
     //初始化学习速度（梯度下降速度）
     public double learningrate = 0.01d;
@@ -34,11 +33,13 @@ public class LinearRegressionDL4J
     public static double errorSize = 0.01d;
 
 
-
-
     public static void main(String[] args) throws IOException
     {
         LinearRegressionDL4J model = new LinearRegressionDL4J();
+
+        //用于打印坐标系点
+        List<Double> xList = new ArrayList<>();
+        List<Double> yList = new ArrayList<>();
 
         //初始化加载图像数据
         DataInitUtils.loadCSVinitList(xList,yList,dataPath);
@@ -148,6 +149,4 @@ public class LinearRegressionDL4J
     {
         this.b = b;
     }
-
-
 }
