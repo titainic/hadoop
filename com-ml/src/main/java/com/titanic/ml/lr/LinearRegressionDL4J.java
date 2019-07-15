@@ -21,13 +21,13 @@ public class LinearRegressionDL4J
     Random rr = new Random();
 
     //随机初始化斜率
-    public double w = rr.nextDouble()*10;
+    private double w = rr.nextDouble()*10;
 
     //随机初始化截距
-    public double b = rr.nextDouble()*10;
+    private double b = rr.nextDouble()*10;
 
     //初始化学习速度（梯度下降速度）
-    public double learningrate = 0.01d;
+    private double learningrate = 0.01d;
 
     //误差范围
     public static double errorSize = 0.01d;
