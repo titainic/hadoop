@@ -21,7 +21,6 @@ import java.util.List;
 public class LinearRegressionDL4J
 {
     //文件路径
-
     public static String dataPath = LinearRegressionDL4J.class.getClassLoader().getResource("lr2.csv").getFile();
 
     //用于打印坐标系点
