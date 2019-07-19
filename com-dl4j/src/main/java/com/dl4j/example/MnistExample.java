@@ -12,6 +12,7 @@ import org.deeplearning4j.optimize.listeners.ScoreIterationListener;
 import org.nd4j.linalg.activations.Activation;
 import org.nd4j.linalg.dataset.api.iterator.DataSetIterator;
 import org.nd4j.linalg.learning.config.Nesterovs;
+import org.nd4j.linalg.lossfunctions.LossFunctions.LossFunction;
 
 import java.io.IOException;
 
@@ -85,7 +86,7 @@ public class MnistExample
                                     .activation(Activation.RELU)
                                     .weightInit(WeightInit.XAVIER)
                                     .build())
-                .layer(new OutputLayer.Builder()
+                .layer(new OutputLayer.Builder(LossFunction.NEGATIVELOGLIKELIHOOD)
                                     .nIn(1000)
                                     .nOut(outoutNum)
                                     .activation(Activation.SOFTMAX)
