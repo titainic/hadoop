@@ -3,10 +3,10 @@ package com.titanic.ml.lr;
 import com.titanic.ml.utils.DataInitUtils;
 import org.nd4j.linalg.api.ndarray.INDArray;
 import org.nd4j.linalg.factory.Nd4j;
-import org.nd4j.linalg.inverse.InvertMatrix;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -32,23 +32,22 @@ public class GeneralizedLinearRegressionForMatrix
         //加载csv数据,用于计算
         INDArray data = Nd4j.readNumpy(dataPath, ",");
         INDArray x1 = data.getColumn(0);
-        INDArray y = data.getColumn(1);
+        INDArray Y = data.getColumn(1);
 
-        //构建A矩阵
+        //构建X矩阵
         INDArray x2 = Nd4j.ones( 1,x1.length());
-        INDArray x = Nd4j.vstack(x1, x2);
 
-        INDArray xTranspose = x.transpose();
+        INDArray XTranspose = Nd4j.vstack(x1, x2);
 
-        INDArray xUmlxTranspose = x.mmul(xTranspose);
+        INDArray X = XTranspose.transpose();
 
-        System.out.println(xUmlxTranspose);
-//        System.out.println(dd);
 
-        //矩阵求逆，有疑问
-        INDArray xNi = InvertMatrix.invert(xUmlxTranspose,false);
+        INDArray XUmlxTranspose = X.mmul(XTranspose);
+//        INDArray xNi = InvertMatrix.invert(XUmlxTranspose,false);
 
-        System.out.println(xNi);
+//        System.out.println(xNi);
+        long[] shape = XUmlxTranspose.shape();
+        System.out.println( Arrays.toString(shape));
 
     }
 }
