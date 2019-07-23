@@ -33,35 +33,28 @@ public class GeneralizedLinearRegressionForMatrix
         //加载csv数据,用于计算
         INDArray data = Nd4j.readNumpy(dataPath, ",");
 
-
-
         INDArray x1 = data.getColumn(0);
         INDArray Y = data.getColumn(1);
 
-        //构建X矩阵
         INDArray x2 = Nd4j.ones( 1,x1.length());
 
         INDArray xTranspose = Nd4j.vstack(x1, x2);
 
+        //构建X矩阵
         INDArray X = xTranspose.transpose();
 
-        xTranspose.mmul(X);
-
+        //矩阵的逆
         INDArray xNi = InvertMatrix.invert(xTranspose.mmul(X),false);
 
+        //回归因子
         INDArray A = xNi.mmul(xTranspose).mmul(Y);
 
         double[] aArry =   A.data().asDouble();
         double w = aArry[0];
         double b = aArry[1];
 
-        INDArray cc = X.mmul(A);
-
-        double error = Y.sub(cc).sumNumber().doubleValue();
-        System.out.println(error);
-        double loss = Math.pow(error,2);
-
-
+        //误差
+        double loss = Math.pow(Y.sub(X.mmul(A)).sumNumber().doubleValue(),2);
 
         List<Double> yLine = new ArrayList<>();
         for (int i = 0; i < xList.size(); i++)
