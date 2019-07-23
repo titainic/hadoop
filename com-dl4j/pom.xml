@@ -19,6 +19,7 @@
             </plugin>
         </plugins>
     </build>
+
     <name>com-dl4j</name>
     <!-- FIXME change it to the project's website -->
 
@@ -48,18 +49,18 @@
         </dependency>
 
         <!--GPU使用此依赖 -->
-        <dependency>
-            <groupId>org.nd4j</groupId>
-            <artifactId>nd4j-cuda-10.1-platform</artifactId>
-            <version>1.0.0-beta4</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.nd4j</groupId>-->
+            <!--<artifactId>nd4j-cuda-10.1-platform</artifactId>-->
+            <!--<version>1.0.0-beta4</version>-->
+        <!--</dependency>-->
 
         <!--CPU使用此依赖 -->
-<!--        <dependency>-->
-<!--            <groupId>org.nd4j</groupId>-->
-<!--            <artifactId>nd4j-native-platform</artifactId>-->
-<!--            <version>1.0.0-beta4</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>org.nd4j</groupId>
+            <artifactId>nd4j-native-platform</artifactId>
+            <version>1.0.0-beta4</version>
+        </dependency>
 
 
     </dependencies>

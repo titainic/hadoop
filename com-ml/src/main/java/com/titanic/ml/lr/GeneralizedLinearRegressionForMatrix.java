@@ -38,18 +38,17 @@ public class GeneralizedLinearRegressionForMatrix
         INDArray x2 = Nd4j.ones( 1,x1.length());
         INDArray x = Nd4j.vstack(x1, x2);
 
-        INDArray xt = x.transpose();
+        INDArray xTranspose = x.transpose();
+
+        INDArray xUmlxTranspose = x.mmul(xTranspose);
+
+        System.out.println(xUmlxTranspose);
+//        System.out.println(dd);
 
         //矩阵求逆，有疑问
-        INDArray xNi = InvertMatrix.invert(x.mmul(xt),true);
+        INDArray xNi = InvertMatrix.invert(xUmlxTranspose,false);
 
-        INDArray cc = xt.mul(xNi);
+        System.out.println(xNi);
 
-        System.out.println(cc);
-//
-//        System.out.println(xNi);
-//        INDArray y2 = xNi.mmul(y).mmul(xt);
-
-//        System.out.println(y2);
     }
 }
