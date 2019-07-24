@@ -7,32 +7,7 @@
     <groupId>yang-bin</groupId>
     <artifactId>com-dl4j</artifactId>
     <version>1</version>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>8</source>
-                    <target>8</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 
-    <name>com-dl4j</name>
-    <!-- FIXME change it to the project's website -->
-
-
-
-    <properties>
-        <!--使用CPU-->
-<!--        <nd4j.backend>nd4j-native-platform</nd4j.backend>-->
-
-        <!--  也可以换为Cuda GPU计算，1.0.0 beta版支持cuda8.0、cuda9.0、cuda9.1，
-        对应的<nd4j.backend>配置可改为nd4j-cuda-8.0-platform, nd4j-cuda-9.0-platform 或者 nd4j-cuda-9.1-platform-->
-<!--        <nd4j.backend>nd4j-native-platform</nd4j.backend>-->
-    </properties>
 
     <dependencies>
 
@@ -49,18 +24,18 @@
         </dependency>
 
         <!--GPU使用此依赖 -->
-        <!--<dependency>-->
-            <!--<groupId>org.nd4j</groupId>-->
-            <!--<artifactId>nd4j-cuda-10.1-platform</artifactId>-->
-            <!--<version>1.0.0-beta4</version>-->
-        <!--</dependency>-->
-
-        <!--CPU使用此依赖 -->
         <dependency>
             <groupId>org.nd4j</groupId>
-            <artifactId>nd4j-native-platform</artifactId>
+            <artifactId>nd4j-cuda-10.1-platform</artifactId>
             <version>1.0.0-beta4</version>
         </dependency>
+
+        <!--CPU使用此依赖 -->
+<!--        <dependency>-->
+<!--            <groupId>org.nd4j</groupId>-->
+<!--            <artifactId>nd4j-native-platform</artifactId>-->
+<!--            <version>1.0.0-beta4</version>-->
+<!--        </dependency>-->
 
 
     </dependencies>
