@@ -7,26 +7,6 @@
   <groupId>yang-bin</groupId>
   <artifactId>com-ml</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-          <source>8</source>
-          <target>8</target>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
-
-  <name>com-ml</name>
-  <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
-
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
 
   <dependencies>
     <dependency>
@@ -42,18 +22,18 @@
     </dependency>
 
     <!--GPU使用此依赖 -->
-    <!--<dependency>-->
-      <!--<groupId>org.nd4j</groupId>-->
-      <!--<artifactId>nd4j-cuda-10.1-platform</artifactId>-->
-      <!--<version>1.0.0-beta4</version>-->
-    <!--</dependency>-->
+    <dependency>
+      <groupId>org.nd4j</groupId>
+      <artifactId>nd4j-cuda-10.1-platform</artifactId>
+      <version>1.0.0-beta4</version>
+    </dependency>
 
     <!--CPU使用此依赖 -->
-            <dependency>
-                <groupId>org.nd4j</groupId>
-                <artifactId>nd4j-native-platform</artifactId>
-                <version>1.0.0-beta4</version>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>org.nd4j</groupId>-->
+<!--                <artifactId>nd4j-native-platform</artifactId>-->
+<!--                <version>1.0.0-beta4</version>-->
+<!--            </dependency>-->
 
   </dependencies>
 
