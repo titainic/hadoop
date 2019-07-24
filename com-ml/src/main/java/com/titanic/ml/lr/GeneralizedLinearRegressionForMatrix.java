@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 广义线性回归，线性方程组求解
+ * 多变量线性回归，矩阵解析解形式
  */
 public class GeneralizedLinearRegressionForMatrix
 {
@@ -21,19 +21,8 @@ public class GeneralizedLinearRegressionForMatrix
     {
 //        unaryLinearRegression();
 //        multipleLinearRegression();
-
-
-
-
     }
-
-    /**
-     * 多项式非线性回归
-     */
-    public static void PolynomialNonlinearRegression()
-    {
-
-    }
+    
 
     /**
      * 多元线性回归
