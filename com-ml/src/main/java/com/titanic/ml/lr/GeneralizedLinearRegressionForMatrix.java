@@ -24,8 +24,8 @@ public class GeneralizedLinearRegressionForMatrix
         GeneralizedLinearRegressionForMatrix model = new GeneralizedLinearRegressionForMatrix();
 
         //用于打印坐标系点
-        List<Double> xList = new ArrayList<>();
-        List<Double> yList = new ArrayList<>();
+        List<Double> xList = new ArrayList<Double>();
+        List<Double> yList = new ArrayList<Double>();
 
         //初始化加载图像数据
         DataInitUtils.loadCSVinitList(xList,yList,dataPath);
@@ -56,7 +56,7 @@ public class GeneralizedLinearRegressionForMatrix
         //误差
         double loss = Math.pow(Y.sub(X.mmul(A)).sumNumber().doubleValue(),2);
 
-        List<Double> yLine = new ArrayList<>();
+        List<Double> yLine = new ArrayList<Double>();
         for (int i = 0; i < xList.size(); i++)
         {
             double xi = xList.get(i);

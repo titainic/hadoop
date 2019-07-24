@@ -38,8 +38,8 @@ public class LinearRegressionDL4J
         LinearRegressionDL4J model = new LinearRegressionDL4J();
 
         //用于打印坐标系点
-        List<Double> xList = new ArrayList<>();
-        List<Double> yList = new ArrayList<>();
+        List<Double> xList = new ArrayList<Double>();
+        List<Double> yList = new ArrayList<Double>();
 
         //初始化加载图像数据
         DataInitUtils.loadCSVinitList(xList,yList,dataPath);
@@ -65,7 +65,7 @@ public class LinearRegressionDL4J
         Double bx = model.getB();
 
         //根据x求出ｙ.y就是预测的值
-        List<Double> yLine = new ArrayList<>();
+        List<Double> yLine = new ArrayList<Double>();
         for (int i = 0; i < xList.size(); i++)
         {
             double xi = xList.get(i);
