@@ -39,8 +39,8 @@ public class NonlinearregRessionDL4J
         NonlinearregRessionDL4J model = new NonlinearregRessionDL4J();
 
         //用于打印坐标系点
-        List<Double> xList = new ArrayList<>();
-        List<Double> yList = new ArrayList<>();
+        List<Double> xList = new ArrayList<Double>();
+        List<Double> yList = new ArrayList<Double>();
 
         DataInitUtils.loadCSVinitList(xList, yList, dataPath);
 
