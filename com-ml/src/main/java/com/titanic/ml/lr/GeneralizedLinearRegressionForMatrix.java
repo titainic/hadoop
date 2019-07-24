@@ -16,27 +16,67 @@ import java.util.List;
 public class GeneralizedLinearRegressionForMatrix
 {
 
-    //文件路径
-    public static String dataPath = GeneralizedLinearRegressionForMatrix.class.getClassLoader().getResource("lr2.csv").getFile();
 
     public static void main(String[] args) throws IOException
     {
-        GeneralizedLinearRegressionForMatrix model = new GeneralizedLinearRegressionForMatrix();
+//        unaryLinearRegression();
+//        multipleLinearRegression();
+
+
+
+
+    }
+
+    /**
+     * 多项式非线性回归
+     */
+    public static void PolynomialNonlinearRegression()
+    {
+
+    }
+
+    /**
+     * 多元线性回归
+     * @return
+     * @throws IOException
+     */
+    public static double multipleLinearRegression() throws IOException
+    {
+        String dataPath = GeneralizedLinearRegressionForMatrix.class.getClassLoader().getResource("lpsa.data").getFile();
+        INDArray data = Nd4j.readNumpy(dataPath, ",");
+
+        INDArray Y = data.getColumn(0);
+        INDArray X = data.getColumns(1, 2, 3, 4, 5, 6, 7, 8);
+
+        INDArray Xtranspose = X.transpose();
+
+        INDArray A = InvertMatrix.invert(Xtranspose.mmul(X), false).mmul(Xtranspose).mmul(Y);
+
+        double loss = Math.pow(Y.sub(X.mmul(A)).sumNumber().doubleValue(), 2);
+
+        return  loss;
+    }
+
+    /**
+     * 一元线性回归
+     */
+    public static double unaryLinearRegression() throws IOException
+    {
+        String dataPath = GeneralizedLinearRegressionForMatrix.class.getClassLoader().getResource("lr2.csv").getFile();
 
         //用于打印坐标系点
-        List<Double> xList = new ArrayList<Double>();
-        List<Double> yList = new ArrayList<Double>();
+        List<Double> xList = new ArrayList<>();
+        List<Double> yList = new ArrayList<>();
 
         //初始化加载图像数据
-        DataInitUtils.loadCSVinitList(xList,yList,dataPath);
-
+        DataInitUtils.loadCSVinitList(xList, yList, dataPath);
         //加载csv数据,用于计算
         INDArray data = Nd4j.readNumpy(dataPath, ",");
 
         INDArray x1 = data.getColumn(0);
         INDArray Y = data.getColumn(1);
 
-        INDArray x2 = Nd4j.ones( 1,x1.length());
+        INDArray x2 = Nd4j.ones(1, x1.length());
 
         INDArray xTranspose = Nd4j.vstack(x1, x2);
 
@@ -44,19 +84,19 @@ public class GeneralizedLinearRegressionForMatrix
         INDArray X = xTranspose.transpose();
 
         //矩阵的逆
-        INDArray xNi = InvertMatrix.invert(xTranspose.mmul(X),false);
+        INDArray xNi = InvertMatrix.invert(xTranspose.mmul(X), false);
 
         //回归因子
         INDArray A = xNi.mmul(xTranspose).mmul(Y);
 
-        double[] aArry =   A.data().asDouble();
+        double[] aArry = A.data().asDouble();
         double w = aArry[0];
         double b = aArry[1];
 
         //误差
-        double loss = Math.pow(Y.sub(X.mmul(A)).sumNumber().doubleValue(),2);
+        double loss = Math.pow(Y.sub(X.mmul(A)).sumNumber().doubleValue(), 2);
 
-        List<Double> yLine = new ArrayList<Double>();
+        List<Double> yLine = new ArrayList<>();
         for (int i = 0; i < xList.size(); i++)
         {
             double xi = xList.get(i);
@@ -64,9 +104,11 @@ public class GeneralizedLinearRegressionForMatrix
             Double yL = w * xi + b;
             yLine.add(yL);
         }
-        PlotViewUtils.xyViewAndLine(xList,yList,yLine,0,12,0,25,loss+"");
+        PlotViewUtils.xyViewAndLine(xList, yList, yLine, 0, 12, 0, 25, loss + "");
 
+        return loss;
     }
+
 
 
 }
