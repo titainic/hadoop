@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * 多变量线性回归，矩阵解析解形式
  */
-public class GeneralizedLinearRegressionForMatrix
+public class LinearRegressionForMatrix
 {
 
 
@@ -31,7 +31,7 @@ public class GeneralizedLinearRegressionForMatrix
      */
     public static double multipleLinearRegression() throws IOException
     {
-        String dataPath = GeneralizedLinearRegressionForMatrix.class.getClassLoader().getResource("lpsa.data").getFile();
+        String dataPath = LinearRegressionForMatrix.class.getClassLoader().getResource("lpsa.data").getFile();
         
         INDArray data = Nd4j.readNumpy(dataPath, ",");
 
@@ -52,7 +52,7 @@ public class GeneralizedLinearRegressionForMatrix
      */
     public static double unaryLinearRegression() throws IOException
     {
-        String dataPath = GeneralizedLinearRegressionForMatrix.class.getClassLoader().getResource("lr2.csv").getFile();
+        String dataPath = LinearRegressionForMatrix.class.getClassLoader().getResource("lr2.csv").getFile();
 
         //用于打印坐标系点
         List<Double> xList = new ArrayList<>();
