@@ -26,12 +26,12 @@ public class Taylor
         {
             Double cc = Math.pow(cosx.get(i), 16)/ +20922789888000d+
                         Math.pow(cosx.get(i), 14)/ -87178291200d+
-                        Math.pow(cosx.get(i), 12)/479001600 +
-                        Math.pow(cosx.get(i), 10)/-3628800+
-                        Math.pow(cosx.get(i), 8)/40320 +
-                        Math.pow(cosx.get(i), 6)/-720 +
-                        Math.pow(cosx.get(i), 4)/24 +
-                        Math.pow(cosx.get(i), 2)/-2 +1;
+                        Math.pow(cosx.get(i), 12)/  479001600 +
+                        Math.pow(cosx.get(i), 10)/ -3628800+
+                        Math.pow(cosx.get(i), 8)/   40320 +
+                        Math.pow(cosx.get(i), 6)/  -720 +
+                        Math.pow(cosx.get(i), 4)/   24 +
+                        Math.pow(cosx.get(i), 2)/  -2 +1;
             a12y.add(cc);
         }
 
