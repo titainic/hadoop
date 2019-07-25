@@ -66,12 +66,17 @@ public class PlotViewUtils
     }
 
 
-    public static void printxLine(List<Double> xList, List<Double> yList, double xStart, double xEnd, double yStart, double yEnd)
+    public static void printxLine(List<Double>... listDoub)
     {
         Plot plxt = Plot.create(PythonConfig.pyenvConfig("anaconda3-4.6.11"));
-        plxt.plot().add(xList, yList);
-        plxt.xlim(xStart, xEnd);
-        plxt.ylim(yStart, yEnd);
+
+        for(int i = 1 ;i < listDoub.length;i++)
+        {
+            plxt.plot().add(listDoub[0], listDoub[i]);
+        }
+
+        plxt.xlim(0, 10);
+        plxt.ylim(-2, 2);
         plxt.legend();
         try
         {
