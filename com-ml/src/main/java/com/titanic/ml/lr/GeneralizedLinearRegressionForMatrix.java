@@ -1,7 +1,7 @@
 package com.titanic.ml.lr;
 
 import com.titanic.ml.utils.DataInitUtils;
-import com.titanic.ml.utils.PlotViewUtils;
+import com.view.point.PlotViewUtils;
 import org.nd4j.linalg.api.ndarray.INDArray;
 import org.nd4j.linalg.factory.Nd4j;
 import org.nd4j.linalg.inverse.InvertMatrix;

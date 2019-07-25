@@ -21,6 +21,14 @@
   </build>
 
   <dependencies>
+
+    <dependency>
+      <groupId>yang-bin</groupId>
+      <artifactId>com-utils</artifactId>
+      <version>1</version>
+    </dependency>
+
+
     <dependency>
       <groupId>com.github.sh0nk</groupId>
       <artifactId>matplotlib4j</artifactId>
