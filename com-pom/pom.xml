@@ -80,5 +80,6 @@
         <module>../com-dl4j-spark</module>
         <module>../com-ml</module>
         <module>../com-dl</module>
+        <module>../com-math</module>
     </modules>
 </project>
