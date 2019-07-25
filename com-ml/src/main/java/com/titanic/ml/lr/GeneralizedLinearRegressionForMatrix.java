@@ -22,7 +22,7 @@ public class GeneralizedLinearRegressionForMatrix
 //        unaryLinearRegression();
 //        multipleLinearRegression();
     }
-    
+
 
     /**
      * 多元线性回归
@@ -32,6 +32,7 @@ public class GeneralizedLinearRegressionForMatrix
     public static double multipleLinearRegression() throws IOException
     {
         String dataPath = GeneralizedLinearRegressionForMatrix.class.getClassLoader().getResource("lpsa.data").getFile();
+        
         INDArray data = Nd4j.readNumpy(dataPath, ",");
 
         INDArray Y = data.getColumn(0);
@@ -72,11 +73,7 @@ public class GeneralizedLinearRegressionForMatrix
         //构建X矩阵
         INDArray X = xTranspose.transpose();
 
-        //矩阵的逆
-        INDArray xNi = InvertMatrix.invert(xTranspose.mmul(X), false);
-
-        //回归因子
-        INDArray A = xNi.mmul(xTranspose).mmul(Y);
+        INDArray A = InvertMatrix.invert(xTranspose.mmul(X), false).mmul(xTranspose).mmul(Y);
 
         double[] aArry = A.data().asDouble();
         double w = aArry[0];
