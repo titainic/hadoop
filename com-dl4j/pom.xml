@@ -23,11 +23,7 @@
 
     <dependencies>
 
-        <dependency>
-            <groupId>com.github.sh0nk</groupId>
-            <artifactId>matplotlib4j</artifactId>
-            <version>0.4.0</version>
-        </dependency>
+
 
         <dependency>
             <groupId>org.deeplearning4j</groupId>

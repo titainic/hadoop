@@ -1,4 +1,4 @@
-package com.titanic.ml.utils;
+package com.view.point;
 
 import com.github.sh0nk.matplotlib4j.Plot;
 import com.github.sh0nk.matplotlib4j.PythonConfig;
@@ -9,7 +9,6 @@ import java.util.List;
 
 public class PlotViewUtils
 {
-
     /**
      * 根据x,y，一元先行回顾ｘ得到的ｙ，画出点和最优化直线
      * @param xList
@@ -65,4 +64,26 @@ public class PlotViewUtils
             e.printStackTrace();
         }
     }
+
+
+    public static void printxLine(List<Double> xList, List<Double> yList, double xStart, double xEnd, double yStart, double yEnd)
+    {
+        Plot plxt = Plot.create(PythonConfig.pyenvConfig("anaconda3-4.6.11"));
+        plxt.plot().add(xList, yList);
+        plxt.xlim(xStart, xEnd);
+        plxt.ylim(yStart, yEnd);
+        plxt.legend();
+        try
+        {
+            plxt.show();
+        } catch (IOException e)
+        {
+            e.printStackTrace();
+        } catch (PythonExecutionException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+
 }
