@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+/**
+ * 泰勒展开
+ */
 public class Taylor
 {
 
@@ -18,27 +21,21 @@ public class Taylor
                 .map(d -> d / 15).collect(Collectors.toList());
         List<Double> cosy = cosx.stream().map(Math::cos).collect(Collectors.toList());
 
-
-        List<Double> a1y = new ArrayList<>();
-
-        //
+        List<Double> a12y = new ArrayList<>();
         for(int i = 0 ;i< cosx.size();i++)
         {
-            Double yprint = 0*cosx.get(i)+1;
-            a1y.add(yprint);
+            Double cc = Math.pow(cosx.get(i), 16)/ +20922789888000d+
+                        Math.pow(cosx.get(i), 14)/ -87178291200d+
+                        Math.pow(cosx.get(i), 12)/479001600 +
+                        Math.pow(cosx.get(i), 10)/-3628800+
+                        Math.pow(cosx.get(i), 8)/40320 +
+                        Math.pow(cosx.get(i), 6)/-720 +
+                        Math.pow(cosx.get(i), 4)/24 +
+                        Math.pow(cosx.get(i), 2)/-2 +1;
+            a12y.add(cc);
         }
 
-        List<Double> a2y = new ArrayList<>();
-        //a1x+a2
-        for(int i = 0 ;i< cosx.size();i++)
-        {
-            Double cc = -0.5 * Math.pow(cosx.get(i), 2) +1;
-            System.out.println(cc);
-            a2y.add(cc);
-        }
-
-        PlotViewUtils.printxLine(cosx,cosy,a1y,a2y);
+        PlotViewUtils.printxLine(cosx,cosy,a12y);
     }
-
 
 }
