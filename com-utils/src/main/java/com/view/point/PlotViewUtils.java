@@ -66,6 +66,43 @@ public class PlotViewUtils
     }
 
 
+    /**
+     *
+     * @param AxList    A类的x坐标
+     * @param AyList    A类的y坐标
+     * @param BxList    B类的x坐标
+     * @param ByList    B类的y坐标
+     * @param xStart    x轴起始点
+     * @param xEnd      x轴结束点
+     * @param yStart    y轴起始点
+     * @param yEnd      y轴结束点
+     */
+    public static void xyViewPoint(List<Double> AxList, List<Double> AyList,List<Double> BxList, List<Double> ByList, int xStart, int xEnd, int yStart, int yEnd)
+    {
+        Plot plt = Plot.create(PythonConfig.pyenvConfig("anaconda3-4.6.11"));
+        plt.plot().add(AxList, AyList, "o");
+        plt.plot().add(BxList, ByList, "o");
+        plt.title("lr");
+        plt.xlim(xStart, xEnd);
+        plt.ylim(yStart, yEnd);
+        plt.legend();
+        try
+        {
+            plt.show();
+        } catch (IOException e)
+        {
+            e.printStackTrace();
+        } catch (PythonExecutionException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+
+    /**
+     * 多重线性打印
+     * @param listDoub
+     */
     public static void printxLine(List<Double>... listDoub)
     {
         Plot plxt = Plot.create(PythonConfig.pyenvConfig("anaconda3-4.6.11"));
