@@ -22,11 +22,7 @@
 
   <dependencies>
 
-    <dependency>
-      <groupId>yang-bin</groupId>
-      <artifactId>com-utils</artifactId>
-      <version>1</version>
-    </dependency>
+
 
 
     <dependency>
