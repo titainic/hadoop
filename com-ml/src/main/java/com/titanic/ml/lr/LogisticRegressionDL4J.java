@@ -20,12 +20,12 @@ public class LogisticRegressionDL4J
     public static String dataPath = LogisticRegressionDL4J.class.getClassLoader().getResource("logistic.csv").getFile();
 
     //初始化学习速度（梯度下降速度）
-    public static double learningrate = 0.001d;
+    public static double learningrate = 0.0000001d;
 
     //迭代次数
-    public static int maxIterations = 1000;
+    public static int maxIterations = 10000000;
 
-    public static double epsilon = 0.001d;
+    public static double epsilon = 0.0001d;
 
     public static void main(String[] args) throws IOException
     {
@@ -38,7 +38,7 @@ public class LogisticRegressionDL4J
         List<Double> ByList = new ArrayList<>();
 
 
-        INDArray xi = data.getColumns(0,1);
+        INDArray xi = data.getColumns(0, 1);
         INDArray y = data.getColumn(0);
 
         INDArray xii = Nd4j.ones(1, xi.size(0));
@@ -46,20 +46,53 @@ public class LogisticRegressionDL4J
         //构建X矩阵
         INDArray X = Nd4j.hstack(xi, xii.transpose());
 
-        INDArray theta = training(learningrate,X,y,maxIterations,epsilon);
+        INDArray theta = training(learningrate, X, y, maxIterations, epsilon);
+        double[] argsTheta = theta.data().asDouble();
 
         System.out.println(theta);
+        List<Double> xListLines = new ArrayList<>();
+        for (int i = -6; i <=100; i++)
+        {
+            xListLines.add(Double.valueOf(i));
+        }
 
-        DataInitUtils.loadVSCLogisticData(AxList,AyList,BxList,ByList,dataPath);
 
-        PlotViewUtils.xyViewPoint(AxList,AyList,BxList,ByList,-5,6,-5,17);
+        List<Double> yListLines = viewY(xListLines,argsTheta);
+
+
+        //画图所用数据
+        DataInitUtils.loadVSCLogisticData(AxList, AyList, BxList, ByList, dataPath);
+
+        //画图
+        PlotViewUtils.xyViewPoint(AxList, AyList, BxList, ByList,xListLines,yListLines, -5, 6, -5, 17);
 
     }
 
+    public static List<Double> viewY(List<Double> xList, double[] argsTheta)
+    {
+        double theta1 = argsTheta[0];
+        double theta2 = argsTheta[1];
+        double theta3 = argsTheta[2];
+        List<Double> yList = new ArrayList<>();
+
+        double k = -theta1 / theta2;
+        double b = -theta3 / theta2;
+
+//        double k = 54 / 5;
+//        double b = 23/ 5;
+
+        for (int i = 0; i < xList.size(); i++)
+        {
+            double y = k * xList.get(i) + b;
+            yList.add(y);
+        }
+        return yList;
+    }
 
 
     /**
      * sigmoid矩阵形式
+     *
      * @param Z
      * @return
      */
@@ -80,6 +113,7 @@ public class LogisticRegressionDL4J
 
     /**
      * 线性回归矩阵形式
+     *
      * @param X
      * @param theta
      * @return
@@ -93,6 +127,7 @@ public class LogisticRegressionDL4J
 
     /**
      * 梯度计算
+     *
      * @param theta
      * @param X
      * @param y
@@ -108,14 +143,15 @@ public class LogisticRegressionDL4J
         // h(x)-y_i
         INDArray diff = h.dup().sub(y);
 
-        return X.dup().transpose().mmul(diff).mul(1.0 /  m);
+        return X.dup().transpose().mmul(diff).mul(1.0 / m);
     }
 
     /**
      * 训练
-     * @param learningrate 学习率
-     * @param X 样本数据矩阵
-     * @param y 样本结果向量
+     *
+     * @param learningrate  学习率
+     * @param X             样本数据矩阵
+     * @param y             样本结果向量
      * @param maxIterations 最大迭代
      * @param epsilon
      * @return
@@ -157,6 +193,7 @@ public class LogisticRegressionDL4J
 
     /**
      * 当计算
+     *
      * @param oldTheta
      * @param newTheta
      * @param epsilon
