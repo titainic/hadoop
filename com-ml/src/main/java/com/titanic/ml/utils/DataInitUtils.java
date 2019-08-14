@@ -46,7 +46,7 @@ public class DataInitUtils
      * @param ByList
      * @param dataPath
      */
-    public static void loadVSCLogisticData(List<Double> AxList, List<Double> AyList, List<Double> BxList, List<Double> ByList, String dataPath)
+    public static void loadVSCLogisticData(List<Double> AxList, List<Double> AyList, List<Double> BxList, List<Double> ByList,String dataPath)
     {
         DataInputStream in = null;
         try
@@ -68,7 +68,6 @@ public class DataInitUtils
                     BxList.add(Double.valueOf(strArr[0]));
                     ByList.add(Double.valueOf(strArr[1]));
                 }
-
             }
         } catch (FileNotFoundException e)
         {
