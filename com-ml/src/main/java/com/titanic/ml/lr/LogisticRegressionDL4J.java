@@ -143,7 +143,6 @@ public class LogisticRegressionDL4J
             //梯度计算的终止条件
             if (hasConverged(theta, newTheta, epsilon))
             {
-                System.out.println("Done");
                 break;
             }
             theta = newTheta;
