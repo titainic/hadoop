@@ -20,12 +20,12 @@ public class LogisticRegressionDL4J
     public static String dataPath = LogisticRegressionDL4J.class.getClassLoader().getResource("logistic.csv").getFile();
 
     //初始化学习速度（梯度下降速度）
-    public static double learningrate = 0.0000001d;
+    public static double learningrate = 0.00001d;
 
     //迭代次数
-    public static int maxIterations = 10000000;
+    public static int maxIterations = 1000000000;
 
-    public static double epsilon = 0.0001d;
+    public static double epsilon = 0.001d;
 
     public static void main(String[] args) throws IOException
     {
@@ -75,11 +75,11 @@ public class LogisticRegressionDL4J
         double theta3 = argsTheta[2];
         List<Double> yList = new ArrayList<>();
 
-        double k = -theta1 / theta2;
-        double b = -theta3 / theta2;
+        double k = theta1 / theta2;
+        double b = theta3 / theta2;
 
-//        double k = 54 / 5;
-//        double b = 23/ 5;
+//        double k = 0.404 / 0.4824;
+//        double b = 3.2595/ 0.4824;
 
         for (int i = 0; i < xList.size(); i++)
         {
@@ -176,7 +176,7 @@ public class LogisticRegressionDL4J
             gradients = gradients.mul(learningrate);
             newTheta = theta.sub(gradients);
 
-            System.out.println("迭代次数:"+i+" theta->"+theta);
+            System.out.println("迭代次数:"+i);
 
             //梯度计算的终止条件
             if (hasConverged(theta, newTheta, epsilon))
