@@ -77,11 +77,12 @@ public class PlotViewUtils
      * @param yStart    y轴起始点
      * @param yEnd      y轴结束点
      */
-    public static void xyViewPoint(List<Double> AxList, List<Double> AyList,List<Double> BxList, List<Double> ByList, int xStart, int xEnd, int yStart, int yEnd)
+    public static void xyViewPoint(List<Double> AxList, List<Double> AyList,List<Double> BxList,List<Double> ByList,List<Double> xListLines,List<Double> yListLines, int xStart, int xEnd, int yStart, int yEnd)
     {
         Plot plt = Plot.create(PythonConfig.pyenvConfig("anaconda3-4.6.11"));
         plt.plot().add(AxList, AyList, "o");
         plt.plot().add(BxList, ByList, "o");
+        plt.plot().add(xListLines, yListLines);
         plt.title("lr");
         plt.xlim(xStart, xEnd);
         plt.ylim(yStart, yEnd);
