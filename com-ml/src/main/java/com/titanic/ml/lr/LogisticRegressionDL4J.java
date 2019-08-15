@@ -20,12 +20,13 @@ public class LogisticRegressionDL4J
     public static String dataPath = LogisticRegressionDL4J.class.getClassLoader().getResource("logistic.csv").getFile();
 
     //初始化学习速度（梯度下降速度）
-    public static double learningrate = 0.00001d;
+    public static double learningrate = 0.1d;
 
     //迭代次数
-    public static int maxIterations = 1000000000;
+    public static int maxIterations = 1000000;
 
-    public static double epsilon = 0.001d;
+    //梯度下降的误差范围
+    public static double epsilon = 0.01d;
 
     public static void main(String[] args) throws IOException
     {
@@ -100,9 +101,9 @@ public class LogisticRegressionDL4J
     {
         //Z = (-Z)
         Z = Z.mul(-1.0);
-        //Z = e^(Z);
+        //-Z = e^(Z);
         Z = exp(Z, false);
-        //1 + Z
+        //1 + e^(-Z)
         Z = Z.add(1.0);
 
         //反向除法的缩写
@@ -159,11 +160,11 @@ public class LogisticRegressionDL4J
     private static INDArray training(double learningrate, INDArray X, INDArray y, int maxIterations, double epsilon)
     {
         //随机构建
-        Nd4j.getRandom().setSeed(1234);
+        Nd4j.getRandom().setSeed(123);
 
         //随机初始化theta
         INDArray theta = Nd4j.rand((int) X.size(1), 1);
-
+        System.out.println(theta);
         INDArray newTheta = theta.dup();
 
         //最优theta
@@ -175,7 +176,8 @@ public class LogisticRegressionDL4J
             //梯度下降计算
             gradients = gradients.mul(learningrate);
             newTheta = theta.sub(gradients);
-
+            System.out.println(newTheta);
+            System.out.println("\n");
             System.out.println("迭代次数:"+i);
 
             //梯度计算的终止条件
@@ -192,7 +194,7 @@ public class LogisticRegressionDL4J
     }
 
     /**
-     * 当计算
+     *
      *
      * @param oldTheta
      * @param newTheta
