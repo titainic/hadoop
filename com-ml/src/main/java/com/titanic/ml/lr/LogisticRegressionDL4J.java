@@ -23,7 +23,7 @@ public class LogisticRegressionDL4J
     public static double learningrate = 0.1d;
 
     //迭代次数
-    public static int maxIterations = 1000000;
+    public static int maxIterations = 10000;
 
     //梯度下降的误差范围
     public static double epsilon = 0.01d;
@@ -52,20 +52,20 @@ public class LogisticRegressionDL4J
 
         System.out.println(theta);
         List<Double> xListLines = new ArrayList<>();
-        for (int i = -6; i <=100; i++)
+        for (int i = -6; i <= 100; i++)
         {
             xListLines.add(Double.valueOf(i));
         }
 
 
-        List<Double> yListLines = viewY(xListLines,argsTheta);
+        List<Double> yListLines = viewY(xListLines, argsTheta);
 
 
         //画图所用数据
         DataInitUtils.loadVSCLogisticData(AxList, AyList, BxList, ByList, dataPath);
 
         //画图
-        PlotViewUtils.xyViewPoint(AxList, AyList, BxList, ByList,xListLines,yListLines, -5, 6, -5, 17);
+        PlotViewUtils.xyViewPoint(AxList, AyList, BxList, ByList, xListLines, yListLines, -5, 6, -5, 17);
 
     }
 
@@ -137,14 +137,14 @@ public class LogisticRegressionDL4J
     private static INDArray gradientFunction(INDArray theta, INDArray X, INDArray y)
     {
         //训练的样本总数
-        double m = X.size(0);
+//        double m = X.size(0);
 
         INDArray h = calculateOutput(X, theta);
 
         // h(x)-y_i
         INDArray diff = h.dup().sub(y);
 
-        return X.dup().transpose().mmul(diff).mul(1.0 / m);
+        return X.dup().transpose().mmul(diff);//.mul(1.0 / m);
     }
 
     /**
@@ -178,7 +178,7 @@ public class LogisticRegressionDL4J
             newTheta = theta.sub(gradients);
             System.out.println(newTheta);
             System.out.println("\n");
-            System.out.println("迭代次数:"+i);
+            System.out.println("迭代次数:" + i);
 
             //梯度计算的终止条件
             if (hasConverged(theta, newTheta, epsilon))
@@ -194,8 +194,6 @@ public class LogisticRegressionDL4J
     }
 
     /**
-     *
-     *
      * @param oldTheta
      * @param newTheta
      * @param epsilon
