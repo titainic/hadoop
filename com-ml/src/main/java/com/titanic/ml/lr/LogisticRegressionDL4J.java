@@ -20,13 +20,13 @@ public class LogisticRegressionDL4J
     public static String dataPath = LogisticRegressionDL4J.class.getClassLoader().getResource("logistic.csv").getFile();
 
     //初始化学习速度（梯度下降速度）
-    public static double learningrate = 0.1d;
+    public static double learningrate = 0.001d;
 
     //迭代次数
-    public static int maxIterations = 10000;
+    public static int maxIterations = 9;
 
     //梯度下降的误差范围
-    public static double epsilon = 0.01d;
+    public static double epsilon = 0.0001d;
 
     public static void main(String[] args) throws IOException
     {
@@ -40,7 +40,10 @@ public class LogisticRegressionDL4J
 
 
         INDArray xi = data.getColumns(0, 1);
-        INDArray y = data.getColumn(0);
+        INDArray y = data.getColumn(2);
+
+        System.out.println(y);
+        System.out.println(xi);
 
         //构建全是1的向量
         INDArray xii = Nd4j.ones(1, xi.size(0));
@@ -62,6 +65,7 @@ public class LogisticRegressionDL4J
         double[] argsTheta = theta.data().asDouble();
         //获取直线y的坐标
         List<Double> yListLines = viewY(xListLines, argsTheta);
+//        loss(theta,X,);
 
 
         //画图所用数据
@@ -91,6 +95,13 @@ public class LogisticRegressionDL4J
             yList.add(y);
         }
         return yList;
+    }
+
+    public static void loss(INDArray theta, INDArray X, INDArray Y)
+    {
+        INDArray diff = sigmoid(X.mmul(theta)).sub(Y);
+        double loss = X.transpose().mmul(diff).sumNumber().doubleValue();
+        System.out.println("loss->"+loss);
     }
 
 
@@ -140,14 +151,14 @@ public class LogisticRegressionDL4J
     private static INDArray gradientFunction(INDArray theta, INDArray X, INDArray y)
     {
         //训练的样本总数
-//        double m = X.size(0);
+        double m = X.size(0);
 
         INDArray h = calculateOutput(X, theta);
 
         // h(x)-y_i
         INDArray diff = h.dup().sub(y);
 
-        return X.dup().transpose().mmul(diff);//.mul(1.0 / m);
+        return X.dup().transpose().mmul(diff).mul(1.0 / m);
     }
 
     /**
@@ -160,7 +171,7 @@ public class LogisticRegressionDL4J
      * @param epsilon
      * @return
      */
-    private static INDArray training(double learningrate, INDArray X, INDArray y, int maxIterations, double epsilon)
+    private static INDArray training(double learningrate, INDArray X, INDArray Y, int maxIterations, double epsilon)
     {
         //随机构建
         Nd4j.getRandom().setSeed(123);
@@ -174,7 +185,7 @@ public class LogisticRegressionDL4J
         INDArray optimalTheta = theta.dup();
         for (int i = 0; i < maxIterations; i++)
         {
-            INDArray gradients = gradientFunction(theta, X, y);
+            INDArray gradients = gradientFunction(theta, X, Y);
 
             //梯度下降计算
             gradients = gradients.mul(learningrate);
