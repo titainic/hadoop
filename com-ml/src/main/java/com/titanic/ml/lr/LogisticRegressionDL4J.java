@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.nd4j.linalg.ops.transforms.Transforms.abs;
 import static org.nd4j.linalg.ops.transforms.Transforms.exp;
 
 /**
@@ -23,7 +22,7 @@ public class LogisticRegressionDL4J
     public static double learningrate = 0.1d;
 
     //迭代次数
-    public static int maxIterations = 1000;
+    public static int maxIterations = 10000;
 
     //梯度下降的误差范围
     public static double epsilon = 0.00001d;
@@ -65,8 +64,6 @@ public class LogisticRegressionDL4J
         double[] argsTheta = theta.data().asDouble();
         //获取直线y的坐标
         List<Double> yListLines = viewY(xListLines, argsTheta);
-
-
 
         //画图所用数据
         DataInitUtils.loadVSCLogisticData(AxList, AyList, BxList, ByList, dataPath);
@@ -164,7 +161,7 @@ public class LogisticRegressionDL4J
      *
      * @param learningrate  学习率
      * @param X             样本数据矩阵
-     * @param y             样本结果向量
+     * @param Y             样本结果向量
      * @param maxIterations 最大迭代
      * @param epsilon
      * @return
@@ -176,7 +173,6 @@ public class LogisticRegressionDL4J
 
         //随机初始化theta
         INDArray theta = Nd4j.rand((int) X.size(1), 1);
-        System.out.println(theta);
         INDArray newTheta = theta.dup();
 
         //最优theta
@@ -188,34 +184,18 @@ public class LogisticRegressionDL4J
             //梯度下降计算
             gradients = gradients.mul(learningrate);
             newTheta = theta.sub(gradients);
-            loss(newTheta,X,Y);
-            System.out.println("\n");
+//            loss(newTheta,X,Y);
+
             System.out.println("迭代次数:" + i);
 
-            //梯度计算的终止条件
-//            if (hasConverged(theta, newTheta, epsilon))
-//            {
-//                break;
-//            }
             theta = newTheta;
-
         }
         optimalTheta = newTheta;
 
         return optimalTheta;
     }
 
-    /**
-     * @param oldTheta
-     * @param newTheta
-     * @param epsilon
-     * @return
-     */
-    private static boolean hasConverged(INDArray oldTheta, INDArray newTheta, double epsilon)
-    {
-        double diffSum = abs(oldTheta.sub(newTheta)).sumNumber().doubleValue();
-        return diffSum / (double) oldTheta.size(0) < epsilon;
-    }
+
 
 
 
