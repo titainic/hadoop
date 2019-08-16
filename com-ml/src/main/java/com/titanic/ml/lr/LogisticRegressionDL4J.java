@@ -42,22 +42,25 @@ public class LogisticRegressionDL4J
         INDArray xi = data.getColumns(0, 1);
         INDArray y = data.getColumn(0);
 
+        //构建全是1的向量
         INDArray xii = Nd4j.ones(1, xi.size(0));
 
         //构建X矩阵
         INDArray X = Nd4j.hstack(xi, xii.transpose());
 
         INDArray theta = training(learningrate, X, y, maxIterations, epsilon);
-        double[] argsTheta = theta.data().asDouble();
 
         System.out.println(theta);
+
+        //直线x的坐标
         List<Double> xListLines = new ArrayList<>();
         for (int i = -6; i <= 100; i++)
         {
             xListLines.add(Double.valueOf(i));
         }
 
-
+        double[] argsTheta = theta.data().asDouble();
+        //获取直线y的坐标
         List<Double> yListLines = viewY(xListLines, argsTheta);
 
 
