@@ -20,13 +20,13 @@ public class LogisticRegressionDL4J
     public static String dataPath = LogisticRegressionDL4J.class.getClassLoader().getResource("logistic.csv").getFile();
 
     //初始化学习速度（梯度下降速度）
-    public static double learningrate = 0.001d;
+    public static double learningrate = 0.1d;
 
     //迭代次数
-    public static int maxIterations = 9;
+    public static int maxIterations = 1000;
 
     //梯度下降的误差范围
-    public static double epsilon = 0.0001d;
+    public static double epsilon = 0.00001d;
 
     public static void main(String[] args) throws IOException
     {
@@ -65,7 +65,7 @@ public class LogisticRegressionDL4J
         double[] argsTheta = theta.data().asDouble();
         //获取直线y的坐标
         List<Double> yListLines = viewY(xListLines, argsTheta);
-//        loss(theta,X,);
+
 
 
         //画图所用数据
@@ -83,11 +83,9 @@ public class LogisticRegressionDL4J
         double theta3 = argsTheta[2];
         List<Double> yList = new ArrayList<>();
 
-        double k = theta1 / theta2;
-        double b = theta3 / theta2;
+        double k = -theta1 / theta2;
+        double b = -theta3 / theta2;
 
-//        double k = 0.404 / 0.4824;
-//        double b = 3.2595/ 0.4824;
 
         for (int i = 0; i < xList.size(); i++)
         {
@@ -190,15 +188,15 @@ public class LogisticRegressionDL4J
             //梯度下降计算
             gradients = gradients.mul(learningrate);
             newTheta = theta.sub(gradients);
-            System.out.println(newTheta);
+            loss(newTheta,X,Y);
             System.out.println("\n");
             System.out.println("迭代次数:" + i);
 
             //梯度计算的终止条件
-            if (hasConverged(theta, newTheta, epsilon))
-            {
-                break;
-            }
+//            if (hasConverged(theta, newTheta, epsilon))
+//            {
+//                break;
+//            }
             theta = newTheta;
 
         }
@@ -218,5 +216,7 @@ public class LogisticRegressionDL4J
         double diffSum = abs(oldTheta.sub(newTheta)).sumNumber().doubleValue();
         return diffSum / (double) oldTheta.size(0) < epsilon;
     }
+
+
 
 }
