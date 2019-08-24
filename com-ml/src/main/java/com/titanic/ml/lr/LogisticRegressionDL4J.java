@@ -169,6 +169,7 @@ public class LogisticRegressionDL4J
 
         //最优theta
         INDArray optimalTheta = theta.dup();
+
         for (int i = 0; i < maxIterations; i++)
         {
             INDArray gradients = gradientFunction(theta, X, Y);
