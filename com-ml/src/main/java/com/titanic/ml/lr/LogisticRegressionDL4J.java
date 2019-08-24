@@ -18,6 +18,7 @@ public class LogisticRegressionDL4J
 {
     public static String dataPath = LogisticRegressionDL4J.class.getClassLoader().getResource("logistic.csv").getFile();
 
+
     //初始化学习速度（梯度下降速度）
     public static double learningrate = 0.1d;
 
