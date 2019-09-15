@@ -81,5 +81,6 @@
         <module>../com-ml</module>
         <module>../com-dl</module>
         <module>../com-math</module>
+        <module>../com-python-math</module>
     </modules>
 </project>
