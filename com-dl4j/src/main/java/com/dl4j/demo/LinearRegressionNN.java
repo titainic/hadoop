@@ -26,7 +26,6 @@ import tech.tablesaw.plotly.traces.Trace;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 /**
  * 神经网络构建一元线性回归
@@ -38,24 +37,13 @@ public class LinearRegressionNN
     //随机数种子，用于结果复现
     public static int seed = 123456;
 
-    //对于每个minibatch的迭代次数
-    public static int iterations = 10;
-
     //全部数据训练的次数
     public static int nEpochs = 200;
-
-    //一共生成多少个样本点
-    public static int nSamples = 1000;
 
     public static int batchSize = 10;
 
     public static double learningRate = 0.01;
 
-    public static int minRange = 0;
-
-    public static int macRange = 3;
-
-    public static Random rng = new Random(seed);
 
     public static void main(String[] args) throws IOException
     {
@@ -67,15 +55,15 @@ public class LinearRegressionNN
 
         Table data = Table.read().csv(path);
 
-//        plotData(data,layout);
-
         nnlr(data,layout);
-
-
-
-
     }
 
+    /**
+     * 神经网络实现一元线性回归
+     * @param data
+     * @param layout
+     * @throws IOException
+     */
     public static void nnlr(Table data,Layout layout) throws IOException
     {
         int numInput = 1;
@@ -99,12 +87,10 @@ public class LinearRegressionNN
 
         net.init();
 
-        DataSetIterator iterator = getTrainingData(batchSize, rng,data);
+        DataSetIterator iterator = getTrainingData(batchSize,data);
 
         for(int i = 0 ; i < nEpochs ; i++)
         {
-            iterator.reset();
-
             net.fit(iterator);
         }
         Map<String, INDArray> param = net.paramTable();
@@ -117,15 +103,19 @@ public class LinearRegressionNN
 
         List<Double> xList = (List<Double>) data.column(0).asList();
 
-
-
         double[] yArray = getY(w, b, xList);
         double[] xcc = Nd4j.create(xList).data().asDouble();
-
 
         plotData(data, layout, xcc,yArray);
     }
 
+    /**
+     * 根据w,b,x的值获取直线y的坐标
+     * @param w
+     * @param b
+     * @param xList
+     * @return
+     */
     public static double[] getY(double w, double b, List<Double> xList)
     {
         double[] y = new double[xList.size()];
@@ -136,7 +126,13 @@ public class LinearRegressionNN
         return y;
     }
 
-    private static DataSetIterator getTrainingData(int batchSize, Random rng,Table data)
+    /**
+     * 数据构建
+     * @param batchSize
+     * @param data
+     * @return
+     */
+    private static DataSetIterator getTrainingData(int batchSize, Table data)
     {
         List<Double> xList = (List<Double>) data.column(0).asList();
         List<Double> yList = (List<Double>) data.column(1).asList();
@@ -144,21 +140,26 @@ public class LinearRegressionNN
         INDArray feayure = Nd4j.create(xList).reshape(new int[]{40,1});
         INDArray lable = Nd4j.create(yList).reshape(new int[]{40,1});
 
-
         DataSet dataSet = new DataSet(feayure,lable);
         List<DataSet> listDS = dataSet.asList();
 
         DataSetIterator dsi = new ListDataSetIterator(listDS, batchSize);
 
         return dsi;
-
     }
 
+    /**
+     * 可视化
+     * @param data
+     * @param layout
+     * @param x
+     * @param y
+     * @throws IOException
+     */
     public static void plotData(Table data, Layout layout,double[] x,double[] y) throws IOException
     {
         Trace polt = ScatterTrace.builder(data.column(0), data.column(1)).marker(Marker.builder().opacity(.9).build()).build();
         ScatterTrace line = ScatterTrace.builder(x, y).mode(ScatterTrace.Mode.LINE).build();
-
         Plot.show(new Figure(layout, polt,line));
     }
 }
