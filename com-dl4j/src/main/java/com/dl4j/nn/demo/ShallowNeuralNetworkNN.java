@@ -1,0 +1,191 @@
+package com.dl4j.nn.demo;
+
+import com.dl4j.utils.DataInitUtils;
+import org.deeplearning4j.datasets.iterator.impl.ListDataSetIterator;
+import org.deeplearning4j.nn.conf.MultiLayerConfiguration;
+import org.deeplearning4j.nn.conf.NeuralNetConfiguration;
+import org.deeplearning4j.nn.conf.layers.DenseLayer;
+import org.deeplearning4j.nn.conf.layers.OutputLayer;
+import org.deeplearning4j.nn.multilayer.MultiLayerNetwork;
+import org.deeplearning4j.nn.weights.WeightInit;
+import org.nd4j.linalg.api.ndarray.INDArray;
+import org.nd4j.linalg.dataset.DataSet;
+import org.nd4j.linalg.dataset.api.iterator.DataSetIterator;
+import org.nd4j.linalg.factory.Nd4j;
+import org.nd4j.linalg.learning.config.Sgd;
+import org.nd4j.linalg.lossfunctions.LossFunctions;
+import tech.tablesaw.plotly.Plot;
+import tech.tablesaw.plotly.components.Axis;
+import tech.tablesaw.plotly.components.Figure;
+import tech.tablesaw.plotly.components.Layout;
+import tech.tablesaw.plotly.components.Marker;
+import tech.tablesaw.plotly.traces.ScatterTrace;
+import tech.tablesaw.plotly.traces.Trace;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+
+import static org.nd4j.linalg.activations.Activation.SIGMOID;
+
+/**
+ * DL4J神经网络实现浅层神经网络
+ */
+public class ShallowNeuralNetworkNN
+{
+
+    public static String path = "/home/titanic/soft/intellij_workspace/github-hadoop/com-dl4j/src/main/resources/point1.csv";
+
+    public static void main(String[] args) throws IOException
+    {
+        MultiLayerConfiguration conf = new NeuralNetConfiguration
+                .Builder()
+                .seed(123456)
+                .weightInit(WeightInit.XAVIER)
+//                .optimizationAlgo(OptimizationAlgorithm.LINE_GRADIENT_DESCENT)
+                .updater(new Sgd(0.1))
+                .list()
+                .layer(0,new DenseLayer.Builder()
+                        .nIn(2)
+                        .nOut(4)
+                        .activation(SIGMOID)
+                        .build())
+                .layer(1,new OutputLayer
+                        .Builder(LossFunctions.LossFunction.MSE)
+                        .nIn(4)
+                        .nOut(1)
+                        .activation(SIGMOID).build())
+                .build();
+
+        MultiLayerNetwork net = new MultiLayerNetwork(conf);
+
+        net.init();
+
+        DataSetIterator train = getData();
+
+        for (int i = 0 ;i< 5000;i++)
+        {
+            net.fit(train);
+            System.out.println(net.score());
+        }
+
+        Map<String,INDArray> paramMap = net.paramTable();
+
+        System.out.println(paramMap);
+
+        viewPointModel(net);
+
+    }
+
+    public static DataSetIterator getData() throws IOException
+    {
+        INDArray data = Nd4j.readNumpy(path,",");
+
+        INDArray x = data.getColumns(0, 1);
+        INDArray y = data.getColumns(2);
+
+        DataSet ds = new DataSet(x, y);
+        List<DataSet> listDS = ds.asList();
+        DataSetIterator dsi = new ListDataSetIterator(listDS, 10);
+        return dsi;
+    }
+
+    /**
+     * 神经网络的平面打印
+     *
+     * @throws IOException
+     */
+    public static void viewPointModel(MultiLayerNetwork net) throws IOException
+    {
+        List<Double> xList = new ArrayList<>();
+        List<Double> yList = new ArrayList<>();
+
+        DataInitUtils.loadCSVinitList(xList, yList, path);
+
+        double xMax = Collections.max(xList);
+        double xMix = Collections.min(xList);
+        double yMax = Collections.max(yList);
+        double yMin = Collections.min(yList);
+
+        List<Double> xINDArrayList = new ArrayList<>();
+        List<Double> yINDArrayList = new ArrayList<>();
+
+        //根据x最小值和最大值，和y的最小值和最大值，取平面所有的点
+        for (double i = xMix; i < xMax; i = i + 0.01)
+        {
+            for (double j = yMin; j < yMax; j = j + 0.01)
+            {
+                xINDArrayList.add(i);
+                yINDArrayList.add(j);
+            }
+        }
+
+        INDArray x1 = Nd4j.create(xINDArrayList);
+        INDArray x2 = Nd4j.create(yINDArrayList);
+
+        //把平面所有的点，组成x，y坐标，构建INDArray
+        INDArray future = Nd4j.vstack(x1, x2).transpose();
+
+        //使用训练好的网络，预测所有平面数据
+        int[] leable = net.predict(future);
+
+
+        double[] xDouble = x1.data().asDouble();
+        double[] yDouble = x2.data().asDouble();
+
+
+        List<Double> AxList = new ArrayList<>();
+        List<Double> AyList = new ArrayList<>();
+        List<Double> BxList = new ArrayList<>();
+        List<Double> ByList = new ArrayList<>();
+
+//        //根据0，1分类，分类平面视图x,y
+        for (int i = 0; i < leable.length; i++)
+        {
+            if (leable[i] == 0)
+            {
+                AxList.add(xDouble[i]);
+                AyList.add(yDouble[i]);
+            } else
+            {
+                BxList.add(xDouble[i]);
+                ByList.add(yDouble[i]);
+            }
+        }
+
+        List<Double> AxtrainList = new ArrayList<>();
+        List<Double> AytrainList = new ArrayList<>();
+
+        List<Double> BxtrainList = new ArrayList<>();
+        List<Double> BytrainList = new ArrayList<>();
+
+        DataInitUtils.loadVSCLogisticData(AxtrainList, AytrainList, BxtrainList, BytrainList, path);
+
+        Layout layout = Layout.builder()
+                .title("浅层神经网络")
+                .xAxis(Axis.builder().build())
+                .yAxis(Axis.builder().build())
+                .build();
+
+        double[] AxtrainIndarray = Nd4j.create(AxtrainList).data().asDouble();
+        double[] AytrainIndarray = Nd4j.create(AytrainList).data().asDouble();
+        double[] BxtrainIndarray = Nd4j.create(BxtrainList).data().asDouble();
+        double[] BytrainIndarray = Nd4j.create(BytrainList).data().asDouble();
+
+        double[] AxTestIndarray = Nd4j.create(AxList).data().asDouble();
+        double[] AyTestIndarray = Nd4j.create(AyList).data().asDouble();
+        double[] BxTestIndarray = Nd4j.create(BxList).data().asDouble();
+        double[] ByTestIndarray = Nd4j.create(ByList).data().asDouble() ;
+
+        Trace aTrainPolt = ScatterTrace.builder(AxtrainIndarray,AytrainIndarray).marker(Marker.builder().color("rgb(17, 157, 255)").build()).build();
+        Trace bTrainPolt = ScatterTrace.builder(BxtrainIndarray,BytrainIndarray).marker(Marker.builder().color("rgb(231, 99, 250)").build()).build();
+        Trace aTestPolt = ScatterTrace.builder(AxTestIndarray,AyTestIndarray).marker(Marker.builder().color("rgb(17, 157, 255)").build()).build();
+        Trace bTestPolt = ScatterTrace.builder(BxTestIndarray,ByTestIndarray).marker(Marker.builder().color("rgb(231, 99, 250)").build()).build();
+
+        Plot.show(new Figure(layout, aTrainPolt,bTrainPolt,aTestPolt,bTestPolt));
+    }
+
+
+}
