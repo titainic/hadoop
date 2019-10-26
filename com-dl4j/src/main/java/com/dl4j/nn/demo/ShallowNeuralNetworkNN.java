@@ -8,6 +8,7 @@ import org.deeplearning4j.nn.conf.layers.DenseLayer;
 import org.deeplearning4j.nn.conf.layers.OutputLayer;
 import org.deeplearning4j.nn.multilayer.MultiLayerNetwork;
 import org.deeplearning4j.nn.weights.WeightInit;
+import org.deeplearning4j.optimize.listeners.ScoreIterationListener;
 import org.nd4j.linalg.api.ndarray.INDArray;
 import org.nd4j.linalg.dataset.DataSet;
 import org.nd4j.linalg.dataset.api.iterator.DataSetIterator;
@@ -62,13 +63,13 @@ public class ShallowNeuralNetworkNN
         MultiLayerNetwork net = new MultiLayerNetwork(conf);
 
         net.init();
+        net.setListeners(new ScoreIterationListener());
 
         DataSetIterator train = getData();
 
         for (int i = 0 ;i< 5000;i++)
         {
             net.fit(train);
-            System.out.println(net.score());
         }
 
         Map<String,INDArray> paramMap = net.paramTable();
@@ -88,7 +89,7 @@ public class ShallowNeuralNetworkNN
 
         DataSet ds = new DataSet(x, y);
         List<DataSet> listDS = ds.asList();
-        DataSetIterator dsi = new ListDataSetIterator(listDS, 10);
+        DataSetIterator dsi = new ListDataSetIterator(listDS, 100);
         return dsi;
     }
 
@@ -129,8 +130,11 @@ public class ShallowNeuralNetworkNN
         INDArray future = Nd4j.vstack(x1, x2).transpose();
 
         //使用训练好的网络，预测所有平面数据
-        int[] leable = net.predict(future);
+        INDArray leable = net.output(future);
 
+        INDArray yhat = sigmiodClassification(leable);
+
+        double[] leableArray = yhat.data().asDouble();
 
         double[] xDouble = x1.data().asDouble();
         double[] yDouble = x2.data().asDouble();
@@ -142,9 +146,9 @@ public class ShallowNeuralNetworkNN
         List<Double> ByList = new ArrayList<>();
 
 //        //根据0，1分类，分类平面视图x,y
-        for (int i = 0; i < leable.length; i++)
+        for (int i = 0; i < leableArray.length; i++)
         {
-            if (leable[i] == 0)
+            if (leableArray[i] == 0)
             {
                 AxList.add(xDouble[i]);
                 AyList.add(yDouble[i]);
@@ -179,12 +183,36 @@ public class ShallowNeuralNetworkNN
         double[] BxTestIndarray = Nd4j.create(BxList).data().asDouble();
         double[] ByTestIndarray = Nd4j.create(ByList).data().asDouble() ;
 
-        Trace aTrainPolt = ScatterTrace.builder(AxtrainIndarray,AytrainIndarray).marker(Marker.builder().color("rgb(17, 157, 255)").build()).build();
-        Trace bTrainPolt = ScatterTrace.builder(BxtrainIndarray,BytrainIndarray).marker(Marker.builder().color("rgb(231, 99, 250)").build()).build();
-        Trace aTestPolt = ScatterTrace.builder(AxTestIndarray,AyTestIndarray).marker(Marker.builder().color("rgb(17, 157, 255)").build()).build();
+        Trace aTrainPolt = ScatterTrace.builder(AxtrainIndarray,AytrainIndarray).marker(Marker.builder().color("rgb(231, 99, 250)").build()).build();
+        Trace bTrainPolt = ScatterTrace.builder(BxtrainIndarray,BytrainIndarray).marker(Marker.builder().color("rgb(34, 157, 255)").build()).build();
+        Trace aTestPolt = ScatterTrace.builder(AxTestIndarray,AyTestIndarray).marker(Marker.builder().color("rgb(34, 157, 255)").build()).build();
         Trace bTestPolt = ScatterTrace.builder(BxTestIndarray,ByTestIndarray).marker(Marker.builder().color("rgb(231, 99, 250)").build()).build();
 
         Plot.show(new Figure(layout, aTrainPolt,bTrainPolt,aTestPolt,bTestPolt));
+    }
+
+    /**
+     * sigmoid 0,1分类
+     *
+     * @param Z
+     * @return
+     */
+    public static INDArray sigmiodClassification(INDArray Z)
+    {
+        double[] zArray = Z.data().asDouble();
+        double[] dataArray = new double[zArray.length];
+        for (int i = 0; i < zArray.length; i++)
+        {
+            if (zArray[i] > 0.5)
+            {
+                dataArray[i] = 1;
+            } else
+            {
+                dataArray[i] = 0;
+            }
+        }
+        INDArray yHat = Nd4j.create(dataArray);
+        return yHat;
     }
 
 
