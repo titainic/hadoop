@@ -27,7 +27,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 import static org.nd4j.linalg.activations.Activation.SIGMOID;
 
@@ -67,14 +66,10 @@ public class ShallowNeuralNetworkNN
 
         DataSetIterator train = getData();
 
-        for (int i = 0 ;i< 5000;i++)
+        for (int i = 0 ;i< 10000;i++)
         {
             net.fit(train);
         }
-
-        Map<String,INDArray> paramMap = net.paramTable();
-
-        System.out.println(paramMap);
 
         viewPointModel(net);
 
