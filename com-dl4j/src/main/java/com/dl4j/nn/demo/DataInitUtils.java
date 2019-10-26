@@ -1,4 +1,4 @@
-package com.dl4j.demo;
+package com.dl4j.nn.demo;
 
 import java.io.BufferedReader;
 import java.io.DataInputStream;

@@ -1,4 +1,4 @@
-package com.dl4j.example;
+package com.dl4j.nn.example;
 
 import org.deeplearning4j.datasets.iterator.impl.ListDataSetIterator;
 import org.deeplearning4j.nn.api.OptimizationAlgorithm;

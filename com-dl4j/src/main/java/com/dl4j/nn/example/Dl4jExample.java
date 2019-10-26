@@ -1,4 +1,4 @@
-package com.dl4j.example;
+package com.dl4j.nn.example;
 
 import org.nd4j.linalg.api.ndarray.INDArray;
 import org.nd4j.linalg.factory.Nd4j;
