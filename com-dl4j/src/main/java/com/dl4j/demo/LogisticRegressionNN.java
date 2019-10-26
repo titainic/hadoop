@@ -29,6 +29,9 @@ import java.util.Map;
 
 import static org.nd4j.linalg.activations.Activation.SIGMOID;
 
+/**
+ * DL4J神经网络实现逻辑回归
+ */
 public class LogisticRegressionNN
 {
     public static String path = "/home/titanic/soft/intellij_workspace/github-hadoop/com-dl4j/src/main/resources/logistic.csv";
@@ -109,6 +112,12 @@ public class LogisticRegressionNN
 
     }
 
+    /**
+     * 获取ｙ的坐标
+     * @param xList
+     * @param argsTheta
+     * @return
+     */
     public static List<Double> viewY(List<Double> xList, double[] argsTheta)
     {
         double theta1 = argsTheta[0];
@@ -127,6 +136,11 @@ public class LogisticRegressionNN
         return yList;
     }
 
+    /**
+     * 构造数据
+     * @param data
+     * @return
+     */
     public static DataSetIterator getData(Table data)
     {
         List<Double> x1List = (List<Double>) data.column(0).asList();
