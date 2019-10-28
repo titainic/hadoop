@@ -69,6 +69,9 @@ public class LinearRegressionNN
         int numInput = 1;
         int numOutputs = 1;
 
+        /**
+         * 神经网络的构建
+         */
         MultiLayerConfiguration conf = new NeuralNetConfiguration
                 .Builder()
                 .seed(seed)
