@@ -2,6 +2,7 @@ package com.dl4j.nn.demo;
 
 import com.dl4j.utils.DataInitUtils;
 import org.deeplearning4j.datasets.iterator.impl.ListDataSetIterator;
+import org.deeplearning4j.nn.api.OptimizationAlgorithm;
 import org.deeplearning4j.nn.conf.MultiLayerConfiguration;
 import org.deeplearning4j.nn.conf.NeuralNetConfiguration;
 import org.deeplearning4j.nn.conf.layers.DenseLayer;
@@ -44,7 +45,7 @@ public class ShallowNeuralNetworkNN
                 .Builder()
                 .seed(123456)
                 .weightInit(WeightInit.XAVIER)
-//                .optimizationAlgo(OptimizationAlgorithm.LINE_GRADIENT_DESCENT)
+                .optimizationAlgo(OptimizationAlgorithm.LINE_GRADIENT_DESCENT)
                 .updater(new Sgd(0.1))
                 .list()
                 .layer(0,new DenseLayer.Builder()
