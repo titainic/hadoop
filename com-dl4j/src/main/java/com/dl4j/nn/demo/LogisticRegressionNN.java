@@ -39,6 +39,9 @@ public class LogisticRegressionNN
 
     public static void main(String[] args) throws IOException
     {
+        /**
+         * 神经网络的构建
+         */
         MultiLayerConfiguration conf = new NeuralNetConfiguration
                 .Builder()
                 .seed(123456)
