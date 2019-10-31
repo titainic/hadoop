@@ -39,6 +39,7 @@
             <artifactId>nd4j-native-platform</artifactId>
             <version>1.0.0-beta5</version>
         </dependency>
+
         <!--GPU使用此依赖 -->
         <!--                <dependency>-->
         <!--                    <groupId>org.nd4j</groupId>-->
