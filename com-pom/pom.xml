@@ -83,5 +83,6 @@
         <module>../com-java-math</module>
         <module>../com-python-math</module>
         <module>../com-java-view</module>
+        <module>../com-feature</module>
     </modules>
 </project>
