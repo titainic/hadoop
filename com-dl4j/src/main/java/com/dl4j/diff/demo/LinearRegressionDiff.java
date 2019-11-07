@@ -74,6 +74,7 @@ public class LinearRegressionDiff
         DataSetIterator trainIter = new ListDataSetIterator<DataSet>(Lists.newArrayList(dsTrain), 100);
         DataSetIterator testIter = new ListDataSetIterator<DataSet>(Lists.newArrayList(dsTest), 100);
 
+        //训练模型
         sd.fit(trainIter, 1000);
 
         //获取训练好的参数w,b
