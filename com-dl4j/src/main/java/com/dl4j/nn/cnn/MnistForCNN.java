@@ -28,6 +28,7 @@ import org.nd4j.linalg.schedule.ScheduleType;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -62,7 +63,6 @@ public class MnistForCNN
         DataSetIterator trainIter = new RecordReaderDataSetIterator(trainRR, batchSize, 1, outputNum);
 
 
-
         //数据归一化
         DataNormalization imageScaler = new ImagePreProcessingScaler();
         imageScaler.fit(trainIter);
@@ -93,48 +93,49 @@ public class MnistForCNN
                 .weightInit(WeightInit.XAVIER)
 
                 // ? 更新器？梯度？
-                .updater(new Nesterovs(new MapSchedule(ScheduleType.ITERATION,learningRateSchedule)))
+                .updater(new Nesterovs(new MapSchedule(ScheduleType.ITERATION, learningRateSchedule)))
                 .list()
-                .layer(0,new ConvolutionLayer                  //卷积层
-                        .Builder(5,5)                 //卷积大小5*5
-                        .nIn(channels)                              //?　28*28 进行一维化784?进行输入?
-                        .stride(1,1)                                //卷积步长
+                .layer(0, new ConvolutionLayer                  //卷积层
+                        .Builder(5, 5)                 //卷积大小5*5
+                        .nIn(channels)                              //?　28*28 进行一维化784?进行输入 ?
+                        .stride(1, 1)                                //卷积步长
                         .nOut(20)                                   //20个卷积核(过滤器)
                         .activation(Activation.IDENTITY).build())
                 .layer(1, new SubsamplingLayer                 //池化层
                         .Builder(SubsamplingLayer.PoolingType.MAX)  //最大池化
-                        .kernelSize(2,2)                            //池化层大小为2*2
-                        .stride(2,2)                                //池化层步长
+                        .kernelSize(2, 2)                            //池化层大小为2*2
+                        .stride(2, 2)                                //池化层步长
                         .build())
                 .layer(2, new ConvolutionLayer                 //卷积层
-                        .Builder(5,5)                 //卷积大小5*5
-                        .stride(1,1)                                //卷积步长
+                        .Builder(5, 5)                 //卷积大小5*5
+                        .stride(1, 1)                                //卷积步长
                         .nOut(50)                                   //50个卷积核(过滤器)
                         .activation(Activation.IDENTITY)
                         .build())
-                .layer(3,new SubsamplingLayer                  //池化层
+                .layer(3, new SubsamplingLayer                  //池化层
                         .Builder(SubsamplingLayer.PoolingType.MAX)  //最大池化
-                        .kernelSize(2,2)                            //池化层大小为2*2
-                        .stride(2,2)                                //池化层步长
+                        .kernelSize(2, 2)                            //池化层大小为2*2
+                        .stride(2, 2)                                //池化层步长
                         .build())
-                .layer(4,new DenseLayer                        //全连接层
+                .layer(4, new DenseLayer                        //全连接层
                         .Builder()
                         .activation(Activation.RELU)                //激活函数RELU
                         .nOut(500)                                  //500个输出，即神经节点
-                       .build())
+                        .build())
                 .layer(5, new OutputLayer                      //输出层
                         .Builder(LossFunctions.LossFunction.NEGATIVELOGLIKELIHOOD) //　?
                         .nOut(outputNum)                            //分10分类
                         .activation(Activation.SOFTMAX)             //损失函数
                         .build())
-                .setInputType(InputType.convolutionalFlat(height,width,channels))
+                .setInputType(InputType.convolutionalFlat(height, width, channels))
                 .build();
 
         MultiLayerNetwork net = new MultiLayerNetwork(conf);
         net.init();
         net.setListeners(new ScoreIterationListener(10));
 
-        for (int i = 0; i < nEpochs; i++) {
+        for (int i = 0; i < nEpochs; i++)
+        {
             net.fit(trainIter);
             Evaluation eval = net.evaluate(testIter);
             System.out.println(eval.stats());
@@ -143,10 +144,9 @@ public class MnistForCNN
             testIter.reset();
         }
         Map<String, INDArray> param = net.paramTable();
-        param.forEach((key, value) -> System.out.println("key:" + key +", value = " + value));
-
-
-
+//        param.forEach((key, value) -> System.out.println("key:" + key + ", value = " + value));
+        System.out.println(Arrays.toString(param.get("0_W").shape()));
+        System.out.println(Arrays.toString(param.get("0_b").shape()));
 
 
     }
