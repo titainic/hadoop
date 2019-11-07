@@ -48,7 +48,7 @@ public class LinearRegressionDiff
         SDVariable weights = sd.var("weights", new XavierInitScheme('c', numFeautre, numlabel), DataType.FLOAT, numFeautre, numlabel);
         SDVariable bias = sd.var("bias", DataType.FLOAT, 1);
 
-        SDVariable predicted = input.mmul(weights).add("predicted", bias);
+        SDVariable predicted = input.mmul(weights).add( bias);
 
         sd.loss.meanSquaredError("mseloss", leabel, predicted);
 
