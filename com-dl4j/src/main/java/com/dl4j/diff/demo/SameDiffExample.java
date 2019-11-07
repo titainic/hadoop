@@ -32,6 +32,33 @@ public class SameDiffExample
 
 //        multipleLinearRegression();
 
+        funationFx();
+
+    }
+
+    /**
+     * f(x) = e^x
+     */
+    public static void ePartialForX()
+    {
+        SameDiff sd = SameDiff.create();
+
+        SDVariable x = sd.var("x");
+        SDVariable f = sd.math.exp(x);
+
+        //构建数据集
+        INDArray data = Nd4j.arange(5, 20, 1);
+        x.setArray(data);
+
+        INDArray y = sd.batchOutput().output(f.getVarName()).input(x, data).execSingle();
+
+        //公式结果
+        System.out.println(y);
+
+        sd.execBackwards(null);
+
+        //导数
+        System.out.println(x.getGradient().getArr());
     }
 
     /**
@@ -99,18 +126,24 @@ public class SameDiffExample
     {
         SameDiff sd = SameDiff.create();
 
-        SDVariable inputX = sd.placeHolder("inputX", DataType.FLOAT, -1, 1);
+        SDVariable inputX = sd.var("inputX");
 
         //构建函数
         SDVariable f = sd.math.sin(inputX.mul(2)).mul(sd.math.pow(sd.math.pow(inputX, 2).div(1), 3).add(1 / 2));
 
-        INDArray data = Nd4j.arange(1, 100, 1);
+        INDArray data = Nd4j.create(new double[]{1,2,3});
+        inputX.setArray(data);
 
         //向前传播
         INDArray y = sd.batchOutput().output(f.getVarName()).input(inputX, data).execSingle();
 
         System.out.println("正向传播");
         System.out.println(y);
+
+        sd.execBackwards(null);
+
+        //导数
+        System.out.println(inputX.getGradient().getArr());
     }
 
     public static void funationFx2()
@@ -128,13 +161,12 @@ public class SameDiffExample
         x.setArray(data);
 
         //前向计算函数的值
-//        System.out.println(sd.batchOutput().output(f.getVarName()).input(f, data).execSingle());
+        System.out.println(sd.batchOutput().output(f.getVarName()).input(f, data).execSingle());
 
         //后向计算求梯度
         sd.execBackwards(null);
         //打印导数
         System.out.println(x.getGradient().getArr());
-
     }
 
 
