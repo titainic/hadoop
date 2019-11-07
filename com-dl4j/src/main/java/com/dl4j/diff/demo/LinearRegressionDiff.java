@@ -50,8 +50,10 @@ public class LinearRegressionDiff
 
         SDVariable predicted = input.mmul(weights).add( bias);
 
+        //损失函数
         sd.loss.meanSquaredError("mseloss", leabel, predicted);
 
+        //模型参数定义
         double learningRate = 0.0001;
         TrainingConfig config = new TrainingConfig.Builder()
                 .updater(new Sgd(learningRate))
@@ -61,12 +63,11 @@ public class LinearRegressionDiff
         sd.setTrainingConfig(config);
         sd.setListeners(new ScoreListener(1));
 
+        //构建数据
         INDArray data = Nd4j.readNumpy("/home/titanic/soft/intellij_workspace/github-hadoop/com-dl4j/src/main/resources/lr2.csv", ",");
         INDArray feature = data.getColumns(0);
         INDArray label = data.getColumns(1);
-
         DataSet ds = new DataSet(feature, label);
-
         SplitTestAndTrain train_test = ds.splitTestAndTrain(0.7);
         DataSet dsTrain = train_test.getTrain();
         DataSet dsTest = train_test.getTest();
@@ -75,6 +76,7 @@ public class LinearRegressionDiff
 
         sd.fit(trainIter, 1000);
 
+        //获取训练好的参数w,b
         String outputVariable = predicted.getVarName();
 
         RegressionEvaluation evaluation = new RegressionEvaluation();
@@ -85,16 +87,15 @@ public class LinearRegressionDiff
         INDArray trainedBias = sd.getVariable("bias").getArr();
         System.out.println(String.format("Weights: %s, Bias: %s", trainedWeights, trainedBias));
 
+        //构建可视化
         Layout layout = Layout.builder()
                 .title("自动微分构建一元线性回归")
                 .xAxis(Axis.builder().build())
                 .yAxis(Axis.builder().build())
                 .build();
         Trace polt = ScatterTrace.builder(feature.data().asDouble(), label.data().asDouble()).marker(Marker.builder().opacity(.5).build()).build();
-
         double[] x = feature.data().asDouble();
         double[] y = getY(trainedWeights.getDouble(0), trainedBias.getDouble(0), x);
-
         ScatterTrace line = ScatterTrace.builder(x,y).mode(ScatterTrace.Mode.LINE).build();
         Plot.show(new Figure(layout, polt,line));
     }
