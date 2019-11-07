@@ -91,13 +91,11 @@ public class MnistForCNN
                 .seed(1234)
                 .l2(0.0005)
                 .weightInit(WeightInit.XAVIER)
-
-                // ? 更新器？梯度？
                 .updater(new Nesterovs(new MapSchedule(ScheduleType.ITERATION, learningRateSchedule)))
                 .list()
                 .layer(0, new ConvolutionLayer                  //卷积层
                         .Builder(5, 5)                 //卷积大小5*5
-                        .nIn(channels)                              //?　28*28 进行一维化784?进行输入 ?
+                        .nIn(channels)                              // 输入层如果是卷积层,此方法标示通道数
                         .stride(1, 1)                                //卷积步长
                         .nOut(20)                                   //20个卷积核(过滤器)
                         .activation(Activation.IDENTITY).build())
@@ -123,7 +121,7 @@ public class MnistForCNN
                         .nOut(500)                                  //500个输出，即神经节点
                         .build())
                 .layer(5, new OutputLayer                      //输出层
-                        .Builder(LossFunctions.LossFunction.NEGATIVELOGLIKELIHOOD) //　?
+                        .Builder(LossFunctions.LossFunction.NEGATIVELOGLIKELIHOOD)
                         .nOut(outputNum)                            //分10分类
                         .activation(Activation.SOFTMAX)             //损失函数
                         .build())
