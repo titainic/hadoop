@@ -86,12 +86,16 @@ public class LinearRegressionDiff
         System.out.println(String.format("Weights: %s, Bias: %s", trainedWeights, trainedBias));
 
         Layout layout = Layout.builder()
-                .title("一元线性回归")
+                .title("自动微分构建一元线性回归")
                 .xAxis(Axis.builder().build())
                 .yAxis(Axis.builder().build())
                 .build();
         Trace polt = ScatterTrace.builder(feature.data().asDouble(), label.data().asDouble()).marker(Marker.builder().opacity(.5).build()).build();
-        ScatterTrace line = ScatterTrace.builder(getY(trainedWeights.getDouble(0),trainedBias.getDouble(0),feature.data().asDouble()), feature.data().asDouble()).mode(ScatterTrace.Mode.LINE).build();
+
+        double[] x = feature.data().asDouble();
+        double[] y = getY(trainedWeights.getDouble(0), trainedBias.getDouble(0), x);
+
+        ScatterTrace line = ScatterTrace.builder(x,y).mode(ScatterTrace.Mode.LINE).build();
         Plot.show(new Figure(layout, polt,line));
     }
 
