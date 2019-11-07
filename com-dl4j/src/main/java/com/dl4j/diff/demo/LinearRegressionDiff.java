@@ -73,7 +73,7 @@ public class LinearRegressionDiff
         DataSetIterator trainIter = new ListDataSetIterator<DataSet>(Lists.newArrayList(dsTrain), 100);
         DataSetIterator testIter = new ListDataSetIterator<DataSet>(Lists.newArrayList(dsTest), 100);
 
-        sd.fit(trainIter, 10000);
+        sd.fit(trainIter, 1000);
 
         String outputVariable = predicted.getVarName();
 
