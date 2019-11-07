@@ -95,7 +95,7 @@ public class MnistForCNN
                 .list()
                 .layer(0, new ConvolutionLayer                  //卷积层
                         .Builder(5, 5)                 //卷积大小5*5
-                        .nIn(channels)                              // 输入层如果是卷积层,此方法标示通道数
+                        .nIn(channels)                              // 输入层如果是卷积层,此方法表示通道数
                         .stride(1, 1)                                //卷积步长
                         .nOut(20)                                   //20个卷积核(过滤器)
                         .activation(Activation.IDENTITY).build())
