@@ -5,11 +5,17 @@ import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 import tech.tablesaw.plotly.Plot;
 import tech.tablesaw.plotly.api.Histogram;
+import tech.tablesaw.plotly.components.Figure;
+import tech.tablesaw.plotly.traces.BarTrace;
+import tech.tablesaw.plotly.traces.HistogramTrace;
 
 import java.util.List;
 
 import static org.apache.spark.sql.functions.col;
 
+/**
+ * 直方图显示
+ */
 public class ViewBarTraceExample
 {
 
@@ -31,6 +37,16 @@ public class ViewBarTraceExample
         double[] data = row2double(list);
         spark.stop();
 
+        BarTrace trace =
+                BarTrace.builder(null,data)
+                        .orientation(BarTrace.Orientation.VERTICAL)
+                        .build();
+
+
+//        HistogramTrace.builder(data).autoBinX(true).build();
+
+//        Plot.show(new Figure(trace));
+        Plot.show(new Figure(HistogramTrace.builder(data).build()));
         Plot.show(Histogram.create("点击数量直方图", data));
     }
 
