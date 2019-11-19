@@ -8,7 +8,7 @@ import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 
 /**
- * 朴素贝叶斯
+ * 朴素贝叶斯,默认使用多项朴素贝叶斯
  */
 public class JavaNaiveBayesExample
 {
