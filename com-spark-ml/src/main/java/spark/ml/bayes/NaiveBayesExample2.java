@@ -44,11 +44,11 @@ public class NaiveBayesExample2
          * 构建模型所需要的数据集，把csv转换成libsvm格式
          */
         //features特征列
-        String[] col = {"SepalLength", "SepalWidth"};
+        String[] col = {"SepalLength", "SepalWidth","PetalLength","PetalWidth"};
         VectorAssembler assembler = new VectorAssembler();
         //选择要vector的列
         assembler.setInputCols(col).setOutputCol("features");
-        Dataset<Row> mlds = ds.select(col("SepalLength").cast("double"), col("SepalWidth").cast("double"),col("label").cast("int"));
+        Dataset<Row> mlds = ds.select(col("SepalLength").cast("double"), col("SepalWidth").cast("double"),col("PetalLength").cast("double"),col("PetalWidth").cast("double"),col("label").cast("int"));
         Dataset<Row> tmpds = assembler.transform(mlds);
         Dataset<Row> tranDS = tmpds.select(col("label"), col("features"));
 
@@ -70,7 +70,7 @@ public class NaiveBayesExample2
 
         //测试模型
         Dataset<Row> predictions = model.transform(test);
-        predictions.show();
+        predictions.show(151);
 
         //在测试集上面计算精度
         MulticlassClassificationEvaluator evaluator = new MulticlassClassificationEvaluator()
@@ -112,7 +112,7 @@ public class NaiveBayesExample2
 
         //构建可视化
         Layout layout = Layout.builder()
-                .title("鸢尾花构建贝叶斯")
+                .title("鸢尾花构建朴素贝叶斯分类")
                 .xAxis(Axis.builder().build())
                 .yAxis(Axis.builder().build())
                 .build();
