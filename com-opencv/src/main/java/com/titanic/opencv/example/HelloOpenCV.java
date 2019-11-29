@@ -23,7 +23,7 @@ public class HelloOpenCV
     public static void main(String[] args) throws NoSuchFieldException
     {
 
-        gdbSetTo();
+        highlighted2();
     }
 
     public static void createMat()
@@ -120,71 +120,34 @@ public class HelloOpenCV
         HighGui.waitKey(0);
     }
 
-    public static void setToAndCopyTo()
+    /**
+     * 高亮显示图像中的物体-黑色
+     */
+    public static void highlighted()
     {
-        Scalar red = new Scalar(0, 0, 255);
-        Scalar green = new Scalar(0, 255, 0);
-        Scalar blue = new Scalar(255, 0, 0);
-        Scalar cyan = new Scalar(255, 255, 0);
-        Scalar magent = new Scalar(255, 0, 255);
-        Scalar yellow = new Scalar(0, 255, 255);
+        Mat mat = Imgcodecs.imread("/home/titanic/soft/intellij_workspace/github-hadoop/com-opencv/src/main/resources/image/007.png");
 
-
+        Imgproc.cvtColor(mat, mat, Imgproc.COLOR_BGR2GRAY);
+        Imgproc.Canny(mat,mat,150.0,300.0,3,true);
+        HighGui.imshow("", mat);
+        HighGui.waitKey(0);
     }
 
-    public static void gdbSetTo()
+    /**
+     * 高亮显示图像中的物体-白色
+     */
+    public static void highlighted2()
     {
-        Mat mat = new Mat(200, 300, CvType.CV_8UC1);
-        setColors(mat, false, 1);
-        setColors(mat, true, 1);
+        Mat mat = Imgcodecs.imread("/home/titanic/soft/intellij_workspace/github-hadoop/com-opencv/src/main/resources/image/007.png");
+
+        Imgproc.cvtColor(mat, mat, Imgproc.COLOR_BGR2GRAY);
+        Imgproc.Canny(mat,mat,150.0,300.0,3,true);
+
+        Core.bitwise_not(mat,mat);
         HighGui.imshow("", mat);
         HighGui.waitKey(0);
     }
 
 
 
-    public static void setColors(Mat mat, boolean comp, int row)
-    {
-
-        Scalar red = new Scalar(0, 0, 255);
-        Scalar green = new Scalar(0, 255, 0);
-        Scalar blue = new Scalar(255, 0, 0);
-        Scalar cyan = new Scalar(255, 255, 0);
-        Scalar magent = new Scalar(255, 0, 255);
-        Scalar yellow = new Scalar(0, 255, 255);
-
-        for (int i = 1; i <= 3; i++)
-        {
-            Mat sub = mat.submat(row * 100, row * 100 + 100, i * 100, i * 100 + 100);
-            if (comp)
-            {
-                if (i == 0)
-                {
-                    sub.setTo(red);
-                }
-                if (i == 1)
-                {
-                    sub.setTo(green);
-                }
-                if (i==2)
-                {
-                    sub.setTo(blue);
-                } else
-                {
-                    if (i == 0)
-                    {
-                        sub.setTo(cyan);
-                    }
-                    if (i == 1)
-                    {
-                        sub.setTo(magent);
-                    }
-                    if (i == 2)
-                    {
-                        sub.setTo(yellow);
-                    }
-                }
-            }
-        }
-    }
 }
