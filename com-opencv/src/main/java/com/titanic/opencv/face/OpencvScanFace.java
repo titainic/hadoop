@@ -32,7 +32,7 @@ public class OpencvScanFace
     {
         // 1 读取OpenCV自带的人脸识别特征XML文件
         //OpenCV 图像识别库一般位于 opencv\sources\data 下面
-        CascadeClassifier facebook = new CascadeClassifier("/home/titanic/soft/opencv/openCV4.1.2/opencv-opencv-59f0319/data/haarcascades/haarcascade_frontalface_alt.xml");
+        CascadeClassifier facebook = new CascadeClassifier("/home/titanic/soft/opencv/opencv4.1.2/data/haarcascades/haarcascade_frontalface_alt.xml");
         // 2 读取测试图片
         Mat image = Imgcodecs.imread("/home/titanic/soft/intellij_workspace/github-hadoop/com-opencv/src/main/resources/image/qtxz.jpg");
         // 3 特征匹配

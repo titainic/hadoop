@@ -1,4 +1,4 @@
-package com.titanic.opencv.example;
+package com.titanic.opencv.face;
 
 import org.opencv.core.Core;
 import org.opencv.core.CvType;
