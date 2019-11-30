@@ -43,7 +43,7 @@ public class OpencvCameraForFace
         VideoCapture videoCapture = new VideoCapture();
         if (!videoCapture.open(0))
         {
-            System.out.println("相机打开失败");
+            System.out.println("camera error");
             return;
         }
         while (true)
