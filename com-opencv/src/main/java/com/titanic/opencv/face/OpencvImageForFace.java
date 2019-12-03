@@ -14,7 +14,7 @@ import org.opencv.objdetect.CascadeClassifier;
 /**
  * 人脸识别
  */
-public class OpencvScanFace
+public class OpencvImageForFace
 {
     static
     {
