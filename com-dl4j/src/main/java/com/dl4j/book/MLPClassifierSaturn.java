@@ -122,7 +122,7 @@ public class MLPClassifierSaturn
         List<Double> bXList = new ArrayList<>();
         List<Double> bYList = new ArrayList<>();
 
-        DataInitUtils.loadVSCLogisticData(aXList,aYList,bXList,bYList,fileNameTrain);
+        DataInitUtils.loadVSCLogisticDataDL4J(aXList,aYList,bXList,bYList,fileNameTrain);
 
         double[] ax = Nd4j.create(aXList).data().asDouble();
         double[] ay = Nd4j.create(aYList).data().asDouble();
