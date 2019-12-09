@@ -30,27 +30,16 @@ public class LinearRegressionNNSpark
 
     public static void main(String[] args) throws IOException
     {
-//        CudaEnvironment.getInstance().getConfiguration().allowMultiGPU(true);
 
         INDArray data = Nd4j.readNumpy(path, ",");
         DataSet dataSet = new DataSet(data.getColumn(0).reshape(new int[]{41, 1}), data.getColumn(1).reshape(new int[]{41, 1}));
         List<DataSet> trainData = dataSet.asList();
 
 
-        SparkConf sparkConf = new SparkConf()
-                .setAppName("LinearRegressionNNSpark");
-//                .setMaster("spark://titanic:7077");
-//        .setMaster("local[*]");
+        SparkConf sparkConf = new SparkConf().setAppName("LinearRegressionNNSpark");
         sparkConf.set("spark.hadoop.fs.defaultFS", "hdfs://titanic:8020");
-        sparkConf.set("spark.kryo.registrator", "org.nd4j.Nd4jSerializer");
-//        sparkConf.set("spark.sql.broadcastTimeout", "1200");
-//        sparkConf.set("spark.driver.memory ", "4g");
-//        sparkConf.set("spark.executor.memory", "5g");
-        sparkConf.set("spark.executor.extraJavaOptions", "-Dorg.bytedeco.javacpp.maxbytes=2921225472");
-//        sparkConf.set()
-        JavaSparkContext sc = new JavaSparkContext(sparkConf);
 
-//        sc.addJar("/home/titanic/soft/intellij_workspace/github-hadoop/com-dl4j-spark/target/com-dl4j-spark-1.0-SNAPSHOT.jar");
+        JavaSparkContext sc = new JavaSparkContext(sparkConf);
 
         JavaRDD<DataSet> trainRDD = sc.parallelize(trainData);
 
@@ -91,6 +80,10 @@ public class LinearRegressionNNSpark
         {
             sparkNet.fit(trainRDD);
         }
+
+//        sparkNet.
+
+//        Evaluation evaluation = sparkNet.doEvaluation(testData, 64, new Evaluation(10))[0];
 
         sc.stop();
     }

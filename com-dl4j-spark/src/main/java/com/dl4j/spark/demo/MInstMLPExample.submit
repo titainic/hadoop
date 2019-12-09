@@ -1,7 +1,0 @@
-spark-submit \
---conf 'spark.executor.extraJavaOptions=-Dorg.bytedeco.javacpp.maxbytes=2G -Dorg.bytedeco.javacpp.maxphysicalbytes=3G -Daeron.term.buffer.length=33554432' \
---conf 'spark.driver.extraJavaOptions=-Dorg.bytedeco.javacpp.maxbytes=2G -Dorg.bytedeco.javacpp.maxphysicalbytes=3G -Daeron.term.buffer.length=33554432' \
---driver-java-options '-Dorg.bytedeco.javacpp.maxbytes=2G -Dorg.bytedeco.javacpp.maxphysicalbytes=3G -Daeron.term.buffer.length=33554432' \
---master yarn \
---class com.dl4j.spark.demo.MnistMLPExample \
-/home/titanic/soft/intellij_workspace/github-hadoop/com-dl4j-spark/target/com-dl4j-spark-1.0-SNAPSHOT.jar
