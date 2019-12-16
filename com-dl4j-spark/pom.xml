@@ -22,6 +22,7 @@
         <dependency>
             <groupId>org.deeplearning4j</groupId>
             <artifactId>dl4j-spark-parameterserver_2.11</artifactId>
+            <version>1.0.0-beta5</version>
             <exclusions>
                 <exclusion>
                     <groupId>com.fasterxml.jackson.core</groupId>
@@ -45,6 +46,7 @@
         <dependency>
             <groupId>org.nd4j</groupId>
             <artifactId>nd4j-native-platform</artifactId>
+            <version>1.0.0-beta5</version>
         </dependency>
 
         <!--GPU使用此依赖 -->
@@ -112,13 +114,9 @@
 
 <!--        <dependency>-->
 <!--            <groupId>org.deeplearning4j</groupId>-->
-<!--            <artifactId>deeplearning4j-ui_2.11</artifactId>-->
+<!--            <artifactId>deeplearning4j-ui</artifactId>-->
 <!--        </dependency>-->
 
-<!--        <dependency>-->
-<!--            <groupId>org.deeplearning4j</groupId>-->
-<!--            <artifactId>deeplearning4j-play_2.12</artifactId>-->
-<!--        </dependency>-->
 
 
     </dependencies>

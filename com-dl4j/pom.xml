@@ -43,12 +43,9 @@
 
         <dependency>
             <groupId>org.deeplearning4j</groupId>
-            <artifactId>deeplearning4j-ui-model</artifactId>
+            <artifactId>deeplearning4j-ui</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.deeplearning4j</groupId>
-            <artifactId>deeplearning4j-play_2.12</artifactId>
-        </dependency>
+
 
         <!--GPU使用此依赖 -->
         <dependency>

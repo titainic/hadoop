@@ -10,7 +10,7 @@
     <packaging>pom</packaging>
 
     <properties>
-        <dl4j.version>1.0.0-beta5</dl4j.version>
+        <dl4j.version>1.0.0-beta6</dl4j.version>
         <tablesaw.version>0.36.0</tablesaw.version>
         <spark.version>2.4.3</spark.version>
 
@@ -41,14 +41,10 @@
             </dependency>
             <dependency>
                 <groupId>org.deeplearning4j</groupId>
-                <artifactId>deeplearning4j-ui-model</artifactId>
+                <artifactId>deeplearning4j-ui</artifactId>
                 <version>${dl4j.version}</version>
             </dependency>
-            <dependency>
-                <groupId>org.deeplearning4j</groupId>
-                <artifactId>deeplearning4j-play_2.12</artifactId>
-                <version>${dl4j.version}</version>
-            </dependency>
+
 
             <!--GPU使用此依赖 -->
             <dependency>
