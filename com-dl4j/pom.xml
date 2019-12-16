@@ -2,6 +2,13 @@
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>yang-bin</groupId>
+        <artifactId>com-pom</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../com-pom/pom.xml</relativePath>
+    </parent>
+
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>yang-bin</groupId>
@@ -23,53 +30,43 @@
 
     <dependencies>
 
-
         <dependency>
             <groupId>tech.tablesaw</groupId>
             <artifactId>tablesaw-jsplot</artifactId>
-            <version>0.36.0</version>
         </dependency>
-
-
 
 
         <dependency>
             <groupId>org.deeplearning4j</groupId>
             <artifactId>deeplearning4j-core</artifactId>
-            <version>1.0.0-beta5</version>
         </dependency>
 
         <dependency>
             <groupId>org.deeplearning4j</groupId>
             <artifactId>deeplearning4j-ui-model</artifactId>
-            <version>1.0.0-beta5</version>
         </dependency>
         <dependency>
             <groupId>org.deeplearning4j</groupId>
             <artifactId>deeplearning4j-play_2.12</artifactId>
-            <version>1.0.0-beta5</version>
         </dependency>
 
         <!--GPU使用此依赖 -->
         <dependency>
             <groupId>org.nd4j</groupId>
             <artifactId>nd4j-cuda-10.1-platform</artifactId>
-            <version>1.0.0-beta5</version>
         </dependency>
         <dependency>
             <groupId>org.deeplearning4j</groupId>
             <artifactId>deeplearning4j-cuda-10.1</artifactId>
-            <version>1.0.0-beta5</version>
         </dependency>
 
 
-
         <!--CPU使用此依赖 -->
-<!--        <dependency>-->
-<!--            <groupId>org.nd4j</groupId>-->
-<!--            <artifactId>nd4j-native-platform</artifactId>-->
-<!--            <version>1.0.0-beta5</version>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.nd4j</groupId>-->
+        <!--            <artifactId>nd4j-native-platform</artifactId>-->
+        <!--            <version>1.0.0-beta5</version>-->
+        <!--        </dependency>-->
 
 
     </dependencies>

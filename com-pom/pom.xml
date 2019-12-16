@@ -10,18 +10,10 @@
     <packaging>pom</packaging>
 
     <properties>
-        <junit.version>4.1</junit.version>
-        <hadoop.version>2.6.0</hadoop.version>
-        <spark.version>1.6.1</spark.version>
-        <mysql-connector-java>5.1.37</mysql-connector-java>
-        <javax.servlet-api.version>3.1.0</javax.servlet-api.version>
-        <calcite-core.version>1.7.0</calcite-core.version>
-        <commons-lang.version>2.6</commons-lang.version>
-        <guava.version>19.0</guava.version>
-        <hbase-client.version>0.98.0-hadoop2</hbase-client.version>
-        <hbase.version>0.98.0-hadoop2</hbase.version>
-        <zookeeper.version>3.4.5</zookeeper.version>
-        <elasticsearch.version>2.3.3</elasticsearch.version>
+        <dl4j.version>1.0.0-beta5</dl4j.version>
+        <tablesaw.version>0.36.0</tablesaw.version>
+        <spark.version>2.4.3</spark.version>
+
         <lib.basedir>/home/titanic/soft/intellij_worksparce/pentaho-hadoop-shims/7.1/lib</lib.basedir>
     </properties>
 
@@ -30,14 +22,70 @@
 
             <!--依赖本地jar方式-->
             <!--<dependency>-->
-                <!--<groupId>commons-cli-1.2.jar</groupId>-->
-                <!--<artifactId>commons-cli</artifactId>-->
-                <!--<version>1.0</version>-->
-                <!--<scope>system</scope>-->
-                <!--<systemPath>${lib.basedir}/commons-cli-1.2.jar</systemPath>-->
+            <!--<groupId>commons-cli-1.2.jar</groupId>-->
+            <!--<artifactId>commons-cli</artifactId>-->
+            <!--<version>1.0</version>-->
+            <!--<scope>system</scope>-->
+            <!--<systemPath>${lib.basedir}/commons-cli-1.2.jar</systemPath>-->
             <!--</dependency>-->
 
+            <dependency>
+                <groupId>tech.tablesaw</groupId>
+                <artifactId>tablesaw-jsplot</artifactId>
+                <version>${tablesaw.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.deeplearning4j</groupId>
+                <artifactId>deeplearning4j-core</artifactId>
+                <version>${dl4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.deeplearning4j</groupId>
+                <artifactId>deeplearning4j-ui-model</artifactId>
+                <version>${dl4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.deeplearning4j</groupId>
+                <artifactId>deeplearning4j-play_2.12</artifactId>
+                <version>${dl4j.version}</version>
+            </dependency>
 
+            <!--GPU使用此依赖 -->
+            <dependency>
+                <groupId>org.nd4j</groupId>
+                <artifactId>nd4j-cuda-10.1-platform</artifactId>
+                <version>${dl4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.deeplearning4j</groupId>
+                <artifactId>deeplearning4j-cuda-10.1</artifactId>
+                <version>${dl4j.version}</version>
+            </dependency>
+
+            <!--CPU使用此依赖 -->
+            <dependency>
+                <groupId>org.nd4j</groupId>
+                <artifactId>nd4j-native-platform</artifactId>
+                <version>${dl4j.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.spark</groupId>
+                <artifactId>spark-core_2.11</artifactId>
+                <version>${spark.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.spark</groupId>
+                <artifactId>spark-sql_2.11</artifactId>
+                <version>${spark.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.deeplearning4j</groupId>
+                <artifactId>dl4j-spark-parameterserver_2.11</artifactId>
+                <version>${dl4j.version}</version>
+            </dependency>
 
 
         </dependencies>

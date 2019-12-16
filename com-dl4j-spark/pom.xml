@@ -2,23 +2,26 @@
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
 
+    <parent>
+        <groupId>yang-bin</groupId>
+        <artifactId>com-pom</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../com-pom/pom.xml</relativePath>
+    </parent>
+
+
+
+    <modelVersion>4.0.0</modelVersion>
     <groupId>yang-bin</groupId>
     <artifactId>com-dl4j-spark</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
-
-
-
-
-
     <dependencies>
 
         <dependency>
             <groupId>org.deeplearning4j</groupId>
             <artifactId>dl4j-spark-parameterserver_2.11</artifactId>
-            <version>1.0.0-beta5</version>
             <exclusions>
                 <exclusion>
                     <groupId>com.fasterxml.jackson.core</groupId>
@@ -42,21 +45,18 @@
         <dependency>
             <groupId>org.nd4j</groupId>
             <artifactId>nd4j-native-platform</artifactId>
-            <version>1.0.0-beta5</version>
         </dependency>
 
         <!--GPU使用此依赖 -->
 <!--                        <dependency>-->
 <!--                            <groupId>org.nd4j</groupId>-->
 <!--                            <artifactId>nd4j-cuda-10.1-platform</artifactId>-->
-<!--                            <version>1.0.0-beta5</version>-->
 <!--                        </dependency>-->
 
 
 <!--        <dependency>-->
 <!--            <groupId>org.datavec</groupId>-->
 <!--            <artifactId>datavec-spark_2.11</artifactId>-->
-<!--            <version>1.0.0-beta5</version>-->
 <!--        </dependency>-->
 
 <!--        <dependency>-->
@@ -75,7 +75,6 @@
 <!--        <dependency>-->
 <!--            <groupId>org.nd4j</groupId>-->
 <!--            <artifactId>nd4j-kryo_2.11</artifactId>-->
-<!--            <version>1.0.0-beta5</version>-->
 <!--        </dependency>-->
 
 
@@ -100,14 +99,12 @@
 <!--        <dependency>-->
 <!--            <groupId>org.deeplearning4j</groupId>-->
 <!--            <artifactId>deeplearning4j-core</artifactId>-->
-<!--            <version>1.0.0-beta5</version>-->
 <!--        </dependency>-->
 
 
 <!--        <dependency>-->
 <!--            <groupId>org.deeplearning4j</groupId>-->
 <!--            <artifactId>dl4j-spark_2.11</artifactId>-->
-<!--            <version>1.0.0-beta5</version>-->
 <!--        </dependency>-->
 
 
@@ -116,13 +113,11 @@
 <!--        <dependency>-->
 <!--            <groupId>org.deeplearning4j</groupId>-->
 <!--            <artifactId>deeplearning4j-ui_2.11</artifactId>-->
-<!--            <version>1.0.0-beta5</version>-->
 <!--        </dependency>-->
 
 <!--        <dependency>-->
 <!--            <groupId>org.deeplearning4j</groupId>-->
 <!--            <artifactId>deeplearning4j-play_2.12</artifactId>-->
-<!--            <version>1.0.0-beta5</version>-->
 <!--        </dependency>-->
 
 
