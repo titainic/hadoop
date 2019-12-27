@@ -38,6 +38,7 @@ import java.util.List;
 /**
  * Saturn的非线性数据建模
  * 书的126页
+ *
  */
 public class MLPClassifierSaturn
 {
