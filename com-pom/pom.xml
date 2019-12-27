@@ -34,6 +34,8 @@
                 <artifactId>tablesaw-jsplot</artifactId>
                 <version>${tablesaw.version}</version>
             </dependency>
+
+
             <dependency>
                 <groupId>org.deeplearning4j</groupId>
                 <artifactId>deeplearning4j-core</artifactId>
@@ -66,6 +68,13 @@
             </dependency>
 
             <dependency>
+                <groupId>org.deeplearning4j</groupId>
+                <artifactId>dl4j-spark-parameterserver_2.12</artifactId>
+                <version>${dl4j.version}</version>
+            </dependency>
+
+            <!--spark-->
+            <dependency>
                 <groupId>org.apache.spark</groupId>
                 <artifactId>spark-core_2.11</artifactId>
                 <version>${spark.version}</version>
@@ -75,12 +84,6 @@
                 <groupId>org.apache.spark</groupId>
                 <artifactId>spark-sql_2.11</artifactId>
                 <version>${spark.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.deeplearning4j</groupId>
-                <artifactId>dl4j-spark-parameterserver_2.12</artifactId>
-                <version>${dl4j.version}</version>
             </dependency>
 
 
@@ -129,5 +132,6 @@
         <module>../com-java-view</module>
         <module>../com-feature</module>
         <module>../com-opencv</module>
+        <module>../com-ai-project</module>
     </modules>
 </project>
