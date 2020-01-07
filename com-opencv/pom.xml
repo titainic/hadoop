@@ -7,6 +7,18 @@
     <groupId>yang-bin</groupId>
     <artifactId>com-opencv</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>7</source>
+                    <target>7</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
     <name>com-opencv</name>
 
@@ -17,10 +29,6 @@
     </properties>
 
     <dependencies>
-
-
-
-
         <dependency>
             <groupId>opencv</groupId>
             <artifactId>opencv</artifactId>
@@ -29,12 +37,6 @@
             <systemPath>
                 /home/titanic/soft/intellij_workspace/github-hadoop/com-opencv/src/main/resources/opencv-lib/opencv-412.jar
             </systemPath>
-        </dependency>
-
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.11</version>
         </dependency>
     </dependencies>
 
