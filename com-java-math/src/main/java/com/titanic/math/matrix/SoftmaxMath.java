@@ -9,14 +9,15 @@ public class SoftmaxMath
 {
     public static void main(String[] args)
     {
-        INDArray input = Nd4j.create(new double[]{-1d, 0d, 1d, 2d});
+        INDArray input = Nd4j.create(new double[]{0d, 1d, 2d, 3d});
         softmax(input);
     }
 
     public static void softmax(INDArray input)
     {
-        INDArray ei = exp(input, true);
-        INDArray ss = ei.div(exp(input, false).sumNumber().doubleValue());
+        INDArray ss = exp(input).div(exp(input).sumNumber().doubleValue());
         System.out.println(ss);
     }
+
+
 }
