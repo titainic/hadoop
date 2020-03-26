@@ -133,5 +133,6 @@
         <module>../com-feature</module>
         <module>../com-opencv</module>
         <module>../com-ai-project</module>
+        <module>../com-spark-data-analysis</module>
     </modules>
 </project>
