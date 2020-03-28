@@ -24,7 +24,7 @@ public class JavaNaiveBayesExample
         Dataset<Row> dataFrame = spark.read().format("libsvm").load("/home/titanic/soft/intellij_workspace/github-hadoop/com-spark-ml/src/main/resources/bayes/sample_libsvm_data.txt");
 
         //切分训练数据集和测试数据集
-        Dataset<Row>[] splits = dataFrame.randomSplit(new double[]{0.6, 0.4}, 1234L);
+        Dataset<Row>[] splits = dataFrame.randomSplit(new double[]{0.6, 0.4});
         Dataset<Row> train = splits[0];
         Dataset<Row> test = splits[1];
 
