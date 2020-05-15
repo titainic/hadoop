@@ -26,6 +26,12 @@
                 /home/titanic/soft/intellij_workspace/github-hadoop/com-opencv/src/main/resources/opencv-lib/opencv-412.jar
             </systemPath>
         </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
 
