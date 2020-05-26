@@ -4,8 +4,8 @@
 ###硬件配置：NanoPi-M1,1G内存 * 1.NanoPi-NEO,512内存 * 8
 ###操作系统：ubuntu-core-16.04
 ###系统运行占50M内存，hadoop，namenode节点占用200M,spark,master占用200M.子节点(hadoop,spark)都只占用100M内存
-![image](https://github.com/titainic/doc/blob/master/image/IMG_20170209_205102.jpg)
-![image](https://github.com/titainic/doc/blob/master/image/IMG_20170214_203853.jpg)
+![image](https://github.com/titainic/doc/blob/master/image/1.jpg)
+![image](https://github.com/titainic/doc/blob/master/image/2.jpg)
 
 # 本项目，大数据研究学习，积累所写，不定时更新。
 ## com-akka         akka模块学习
