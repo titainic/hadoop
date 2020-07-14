@@ -23,7 +23,7 @@
             <version>1</version>
             <scope>system</scope>
             <systemPath>
-                /home/titanic/soft/intellij_workspace/github-hadoop/com-opencv/src/main/resources/opencv-lib/opencv-412.jar
+                ${basedir}/src/main/resources/opencv-lib/opencv-412.jar
             </systemPath>
         </dependency>
         <dependency>
