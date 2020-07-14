@@ -17,9 +17,10 @@ public class TykyUtils
         String path = System.getProperty("user.home") + File.separator + "kerberos" + File.separator;
 //        String path =TykyUtils.class.getClassLoader().getResource("conf/").getPath();
         File file = new File(path);
-        if (file.exists())
+        if (!file.exists())
         {
-            new Exception("缺少kerberos文件");
+            System.out.println("缺少kerberos文件");
+            System.exit(0);
         }
         return path;
     }
