@@ -29,7 +29,7 @@
     <dependency>
         <groupId>org.elasticsearch</groupId>
         <artifactId>elasticsearch</artifactId>
-        <version>2.3.2</version>
+        <version>6.8.13</version>
         <exclusions>
             <exclusion>
                 <groupId>com.google.guava</groupId>
