@@ -98,7 +98,7 @@
         <module>../com-alluxio</module>
         <module>../com-camel/camel-java</module>
         <module>../com-camel/camel-spring</module>
-        <module>../com-flink-gelly</module>
+        <module>../com-flink</module>
         <module>../com-hadoop-hbase</module>
         <module>../com-hadoop-hdfs</module>
         <module>../com-hadoop-spark</module>
