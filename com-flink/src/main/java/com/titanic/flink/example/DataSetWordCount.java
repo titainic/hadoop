@@ -9,9 +9,9 @@ public class DataSetWordCount {
     public static void main(String[] args) throws Exception {
 //        ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment();
 
-        ExecutionEnvironment env = ExecutionEnvironment.createLocalEnvironment();
+        ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment();
 
-        DataSet<String> readDS = env.readTextFile("src/main/resources/hello.txt");
+        DataSet<String> readDS = env.readTextFile("com-flink/src/main/resources/hello.txt");
 
         readDS.print();
 

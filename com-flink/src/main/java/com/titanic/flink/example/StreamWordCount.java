@@ -9,9 +9,9 @@ import org.apache.flink.util.Collector;
 public class StreamWordCount {
 
     public static void main(String[] args) throws Exception {
-//        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
-        StreamExecutionEnvironment env = StreamExecutionEnvironment.createRemoteEnvironment("172.18.0.3", 6123);
-        DataStream<String> readStream = env.readTextFile("src/main/resources/hello.txt");
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+//        StreamExecutionEnvironment env = StreamExecutionEnvironment.createRemoteEnvironment("172.18.0.3", 6123);
+        DataStream<String> readStream = env.readTextFile("com-flink/src/main/resources/hello.txt");
 
         DataStream<Row> data = readStream.flatMap(new FlatMapFunction<String, Row>() {
             @Override
